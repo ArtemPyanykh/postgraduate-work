@@ -1,0 +1,31 @@
+\documentclass[14pt]{extarticle}
+\usepackage{geometry}
+\geometry{a4paper}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\usepackage{polyglossia}
+\setdefaultlanguage[spelling=modern]{russian}
+\setotherlanguage{english}
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+\usepackage{framed}
+
+\newtheorem{prop}{Утверждение}
+\newtheorem{lemma}{Лемма}
+\newtheorem{thm}{Теорема}
+\newtheorem{definition}{Определение}
+
+\begin{document}
+
+\include{description}
+\include{upper_bound}
+\include{lower_bound}
+\include{value_of_the_game}
+
+\end{document}

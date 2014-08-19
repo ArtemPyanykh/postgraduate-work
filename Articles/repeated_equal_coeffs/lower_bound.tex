@@ -1,0 +1,426 @@
+\section{Оценка снизу}
+\label{sec:lower_bound}
+
+Рассмотрим следующий шаг первого игрока $ \sigma^k_1 = (\sigma^H, \sigma^L) $, где $ \sigma^H = (\sigma^H_k, \sigma^H_{k+1}) $ и $ \sigma^L = (\sigma^L_k, \sigma^L_{k+1}) $, а $ \sigma^S_i $ -- вероятность сделать ставку равную $ i $ в состоянии $ S \in \{ H, L \} $. 
+Т.е. при применении $ \sigma^k_1 $ первый игрок делает ставки $ k $ и $ k + 1 $ с некоторыми заданными вероятностями. 
+
+Первый шаг можно также определить, если задать полные вероятности действий $ k $ и $ k + 1 $ равные $ q_k $ и $ q_{k+1} $, а также апостериорные вероятности $ p(S|i) $ состояния $ S $, если на первом шаге игрок сделал ставку $ i $. При этом вероятности $ \sigma^S_i $ легко рассчитываются по формуле Байеса
+\[
+    \sigma^S_i = \frac{p(S|i)q_i}{p(S)}.
+\]
+
+\begin{prop}
+\label{prop:lower_bound:general_step}
+При использовании шага $ \sigma^k_1 $ первый игрок гарантирует себе следующий одношаговый выигрыш:
+\begin{equation}
+\label{eq:lower_bound:general_step}
+K_1(p, \sigma^k_1, j) = \begin{cases}
+    2mp - j - k - q_{k+1}, &\, j < k,\\
+    2mp(H|k+1)q_{k+1} - (2k+1)q_{k+1}, &\, j = k,\\
+    (2k + 1)q_k - 2mp(H|k)q_k, &\, j = k+1,\\
+    j + k - 2mp + q_{k+1}, &\, j > k + 1.
+\end{cases}
+\end{equation}
+\end{prop}
+\begin{proof}
+\begin{equation}
+\label{eq:payoff:stage}
+    K_1(p, \sigma^k_1, j) = pA^H(\sigma^H, j) + (1-p)A^L(\sigma^L, j).
+\end{equation}
+
+Распишем одношаговый выигрыш в зависимости от значения $ j $ действия второго игрока и проведем нужные преобразования:
+\begin{itemize}
+    \item
+    $ j < k $:
+    \begin{align*}
+        A^H(\sigma^H, j)
+        &= \sigma^H_k (2m - j - k) + \sigma^H_{k+1} (2m - j - k - 1) =  \\
+        &= (2m - j - k) - \sigma^H_{k+1},& \\
+        A^L(\sigma^L, j)
+        &= \sigma^L_k (-j - k) + \sigma^L_{k+1} (-j - k - 1) = \\
+        &= - j - k - \sigma^L_{k+1},& \\
+        K_1(p, \sigma^k_1, j) 
+        &= p (2m - j - k) - p\sigma^H_{k+1} + 
+            (1-p)(-j - k) - (1-p)\sigma^L_{k+1} = \\
+        &= 2mp - j - k - (p\sigma^H_{k+1} + (1-p)\sigma^L_{k+1}) =\\
+        &= 2mp - j - k - q_{k+1}.
+    \end{align*}
+    \item
+    $ j = k $:
+    \begin{align*}
+        A^H(\sigma^H, j) &= \sigma^H_{k+1} (2m - j -k - 1), \\
+        A^L(\sigma^L, j) &= \sigma^L_{k+1} (-j - k - 1), \\
+        K_1(p, \sigma^k_1, j) &= 2mp\sigma^H_{k+1} - (2k+1)q_{k+1} \\
+        &= 2mp(H|k+1)q_{k+1} - (2k+1)q_{k+1}.
+    \end{align*}
+    \item
+    $ j = k+1 $:
+    \begin{align*}
+        A^H(\sigma^H, j) &= \sigma^H_k (2k + 1 - 2m), \\
+        A^L(\sigma^L, j) &= \sigma^L_k (2k + 1), \\
+        K_1(p, \sigma^k_1, j) &= (2k+1)q_k - 2mp\sigma^H_k \\
+        &= (2k+1)q_k - 2mp(H|k)q_k.
+    \end{align*}
+    \item
+    $ j > k + 1 $:
+    \begin{align*}
+        A^H(\sigma^H, j) &= (j + k - 2m) + \sigma^H_{k+1}, \\
+        A^L(\sigma^L, j) &= j + k + \sigma^L_{k+1}, \\
+        K_1(p, \sigma^k_1, j) &= j + k - 2mp + q_{k+1}.
+    \end{align*}
+\end{itemize}
+\end{proof}
+
+Пусть теперь при $ p = \frac{k+1/2}{m} $ и $ p = \frac{k+1}{m} $, где $ k = \overline{0, m - 1} $, первый игрок делает шаг $ \sigma^k_1 $, такой что полные вероятности использования ставок $ k $ и $ k + 1 $ равны $ q_k = q_{k+1} = \frac{1}{2} $, причем апостериорные вероятности, присваиваемые вторым игроком состоянию $ H $ равны $ p(H|k) = p - \frac{1}{2m} $ и $ p(H|k+1) = p + \frac{1}{2m} $. 
+Обозначим данный шаг через $ \sigma^k_{eq} $.
+
+\begin{prop}
+В вышеописанных предположениях при использовании шага $ \sigma^k_{eq} $ первый игрок может гарантировать себе выигрыш в одношаговой игре не менее $ \frac{1}{2} $~при~$ p = \frac{k+1/2}{m} $ и не менее $ 0 $ при $ p = \frac{k+1}{m} $.
+\end{prop}
+\begin{proof}
+    Подставив заданные $ q_k $, $ q_{k+1} $, $ p(H|k) $, $ p(H|{k+1}) $ в \eqref{eq:lower_bound:general_step} получим при $ p = \frac{k + 1/2}{m} $:
+    \begin{itemize}
+    \item
+    $ j < k $: $ K_1(p, \sigma^k_1, j) = k - j + \frac{1}{2} \geq 1\frac{1}{2} $;
+    \item
+    $ j = k $: $ K_1(p, \sigma^k_1, j) = \frac{1}{2} $;
+    \item
+    $ j = k + 1 $: $ K_1(p, \sigma^k_1, j) = \frac{1}{2} $;
+    \item
+    $ j > k + 1 $: $ K_1(p, \sigma^k_1, j) = 1\frac{1}{2} $.
+    \end{itemize}
+    
+    Аналогично для $ p = \frac{k+1}{m} $:
+    \begin{itemize}
+    \item
+    $ j < k $: $ K_1(p, \sigma^k_, j) = 2\frac{1}{2} $;
+    \item
+    $ j = k $: $ K_1(p, \sigma^k_1, j) = 1 $;
+    \item
+    $ j = k + 1 $: $ K_1(p, \sigma^k_1, j) = 0 $;
+    \item
+    $ j > k + 1 $: $ K_1(p, \sigma^k_1, j) = \frac{1}{2} $.
+    \end{itemize}
+    
+    Таким образом утверждение полностью доказано.
+\end{proof}
+
+Заметим, что если $ p = \frac{k}{m} $ или $ p = \frac{k+1/2}{m} $, то при применении $ \sigma^k_{eq} $ апостериорные вероятности на последующих шагах игры всегда принадлежат множеству 
+$ \left\{
+    \frac{i}{m}, \frac{j+1/2}{m}, \,|\, i \in \overline{0,m}, j \in \overline{1,m-1}
+\right\} $. 
+Таким образом, определив шаг первого игрока при любом значении апостериорной вероятности $ p $, мы тем самым определим стратегию первого игрока для игры $ G_n^m(p) $ произвольной продолжительности.
+
+В силу рекурсивной структуры игры $ G_n^m(p) $ можно выписать рекуррентную формулу для нижней оценки значения игры $ L_n^m(p) $ при $ p = \frac{k+1/2}{m} $ и $ p = \frac{k+1}{m} $:
+
+\begin{equation}
+\label{eq:lower_bound:recurrence_finite}
+\begin{aligned}[c]
+&L_n^m\left(\frac{k+\frac{1}{2}}{m}\right) = 
+    \frac{1}{2} + \frac{1}{2}\left(
+        L_{n-1}^m\left(\frac{k}{m}\right) + 
+        L_{n-1}^m\left(\frac{k + 1}{m}\right)
+    \right) \\
+&L_n^m\left(\frac{k+1}{m}\right) = 
+    \frac{1}{2}\left(
+        L_{n-1}^m\left(\frac{k+\frac{1}{2}}{m}\right) + 
+        L_{n-1}^m\left(\frac{k+\frac{3}{2}}{m}\right)
+    \right) \\
+&L_n^m(0) = L_n^m(1) = 0.
+\end{aligned}
+\end{equation}
+
+Устремив $ n $ в бесконечность получим рекуррентную формулу для нижней оценки значения игры $ G_\infty^m(p) $. Перепишем эту рекуррентную формулу в следующем виде:
+\begin{equation}
+\label{eq:lower_bound:recurrence_infinite}
+\begin{aligned}
+L_0 &= 0 \\
+L_{2k + 1} &= \frac{1}{2} + \frac{1}{2} (L_{2k} + L_{2k + 2}), \, 
+    k = \overline{0,m-1}\\
+L_{2k + 2} &= \frac{1}{2} (L_{2k + 1} + L_{2k + 3}), \, 
+    k = \overline{0,m-1}\\
+L_{2m} &= 0.
+\end{aligned}
+\end{equation}
+
+Введем следующее обозначение:
+\begin{equation}
+A = \left.
+\left(\begin{array}{ccccccc}
+    1 & -\frac{1}{2} & 0 & \cdots & 0 & 0 & 0 \\
+    -\frac{1}{2} & 1 & -\frac{1}{2} & \cdots & 0 & 0 & 0 \\
+    \hdotsfor{7} \\
+    0 & 0 & 0 & \cdots & -\frac{1}{2} & 1 & -\frac{1}{2} \\
+    0 & 0 & 0 & \cdots & 0 & -\frac{1}{2} & 1 \\
+\end{array}\right)
+b = \left(\begin{array}{c}
+\frac{1}{2} \\
+0\\
+\cdots\\
+0 \\
+\frac{1}{2}
+\end{array}\right)
+\right\} (2m - 1).
+\end{equation}
+
+
+Тогда \eqref{eq:lower_bound:recurrence_infinite} можно переписать следующим образом:
+\[
+\begin{aligned}
+AL &= b, \\
+L_0 &= L_{2m} = 0,
+\end{aligned}
+\]
+где $ L = (L_1, L_2, \ldots, L_{2m-1})^T $.
+
+Известно, что системы $ Mx = F $ с трехдиагональной матрицей $ M $, имеющей следующую структуру:
+\[
+M = \left(\begin{array}{ccccccc}
+c_1 & b_1 & 0 & \cdots & 0 & 0 & 0 \\
+a_2 & b_2 & c_2 & \cdots & 0 & 0 & 0 \\
+\hdotsfor{7} \\
+0 & 0 & 0 & \cdots & a_{n-1} & c_{n-1} & b_{n-1} \\
+0 & 0 & 0 & \cdots & 0 & a_n & c_n
+\end{array}\right)
+\]
+можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и значения переменного:
+\begin{equation}
+\label{eq:tridiagonal:formulas}
+\begin{split}
+    &x_i = \alpha_{i+1} x_{i+1} + \beta_{i+1}, \\
+    &\alpha_{i+1} = -\frac{b_i}{c_i + a_i\alpha_i}, \\
+    &\beta_{i+1} = \frac{F_i - a_i\beta_i}{c_i + a_i\alpha_i}, \\
+\end{split}
+\qquad
+\begin{split}
+    &x_n = \frac{F_n - a_n\beta_n}{c_n + a_n\alpha_n} \\
+    &\alpha_2 = -\frac{b_1}{c_1} \\
+    &\beta_2 = \frac{F_1}{c_1}
+\end{split}
+\end{equation}
+
+Матрица $ A $ является трехдиагональной матрицей, в которой $ a_i = b_i = -\frac{1}{2}, \, c_i = 1 $. В этом случае мы можем получить явные выражения для прогоночных коэффициентов и значения $ L $.
+
+\begin{prop}
+\label{prop:tridiagonal:coefficients}
+Прогоночные коэффициенты для матрицы $ A $ выражаются следующим образом:
+\begin{align}
+\label{eq:tridiagonal:alpha}
+&\alpha_i = \frac{i-1}{i} \\
+\label{eq:tridiagonal:beta}
+&\beta_{2i} = \frac{2i}{4}, \,
+\beta_{2i+1} = \frac{i^2}{2i+1}
+\end{align}
+\end{prop}
+\begin{proof}
+Проведем доказательство по индукции. 
+
+Сначала для $ \alpha_i $. $ \alpha_2  = \frac{1}{2} / 1 = \frac{1}{2} $. База индукции проверена. Пусть теперь $ \forall i \leq n $ справедливо \eqref{eq:tridiagonal:alpha}. Докажем, что \eqref{eq:tridiagonal:alpha} справедливо при $ i = n + 1 $.
+\[
+    a_{n+1} = \frac{\frac{1}{2}}{1 - \frac{1}{2}\frac{n - 1}{n}}
+    = \frac{1}{2} \frac{1}{\frac{n+1}{2n}} = \frac{n}{n+1}.
+\]
+Утверждение доказано для $ \alpha_i $. Аналогично для $ \beta_i $: 
+$ \beta_2 = \frac{1}{2} $, 
+$  \beta_3 = \frac{0 + 1/2 \cdot 1/2}{1 - 1/2 \cdot 1/2} = \frac{1}{3} $. База индукции проверена. Пусть $ \forall i \leq n $ справедливо \eqref{eq:tridiagonal:beta}. Докажем, что \eqref{eq:tridiagonal:beta} справедливо при $ i = n + 1 $.
+\begin{align*}
+    \beta_{2(n+1)+1} 
+    &= \frac{
+        \frac{1}{2} + \frac{1}{2} \frac{n^2}{2n+1}
+    }{
+        1 - \frac{1}{2} \frac{2n}{2n+1}
+    }
+    = \frac{1}{2} \frac{
+        \frac{(n+1)^2}{2n+1}
+    }{
+        \frac{n+1}{2n+1}
+    }
+    = \frac{2(n+1)}{4} \\
+    \beta_{2(n+1)+1}
+    &= \frac{
+        \frac{1}{2} \frac{2(n+1)}{4}
+    }{
+        1 - \frac{1}{2} \frac{2n+1}{2(n+1)}
+    }
+    = \frac{n+1}{4} \cdot 2 \cdot \frac{2(n+1)}{2n+3} = \frac{(n+1)^2}{2n+3}
+\end{align*}
+
+Утверждение полностью доказано.
+\end{proof}
+
+Из утверждения \ref{prop:tridiagonal:coefficients} и соображений симметрии, мы можем найти значение $ L_{2m - 1} = L_1 $. Действительно,
+\begin{align}
+\label{eq:lower_bound:recurrent_boundaries}
+L_1 = L_{2m-1} &= 
+\frac{
+    \frac{1}{2} + \frac{1}{2}\frac{(m-1)^2}{2m-1}
+}{
+    1 - \frac{1}{2}\frac{2m-1-1}{2m-1}
+} =
+\frac{
+    2m - 1 + (m-1)^2
+}{
+    4m - 2 - 2m + 2
+} = \nonumber \\
+& = \frac{2m - 1 + m^2  - 2m + 1}{2m} = \frac{m}{2}.
+\end{align}
+
+Так как 
+\[
+L_{2(m + 1)} = \frac{1}{2} (L_{2m+1} + L_{2(m+1) + 1}),
+\]
+то нам достаточно найти явный вид только для нечетных $ L_i $. Из \eqref{eq:tridiagonal:formulas} и утверждения \ref{prop:tridiagonal:coefficients} мы получаем, что
+\begin{align}
+\label{eq:lower_bound:recurrent_formula}
+L_{2i+1} &= \alpha_{2(i+1)}(
+    \alpha_{2(i+1)+1} L_{2(i+1)+1} + \beta_{2(i+1)+1}
+    ) + \beta_{2(i+1)} = \nonumber \\
+&= \alpha_{2(i+1)}\alpha_{2(i+1)+1} L_{2(i+1)+1} +
+    \alpha_{2(i+1)}\beta_{2(i+1)+1} + \beta_{2(i+1)} = \nonumber \\
+&= \frac{2i+1}{2i+3} L_{2i+3} + \frac{2(i+1)^2}{2i+3}.
+\end{align}
+
+\begin{prop}
+\label{prop:lower_bound:solution}
+Решение \eqref{eq:lower_bound:recurrent_boundaries}, \eqref{eq:lower_bound:recurrent_formula} дается следующей формулой:
+\begin{equation}
+\label{eq:lower_bound:recurrence_solution}
+L_{2k+1} = \frac{m}{2} + mk - k^2 - k.
+\end{equation}
+\end{prop}
+\begin{proof}
+Для простоты перепишем \eqref{eq:lower_bound:recurrent_boundaries}, \eqref{eq:lower_bound:recurrent_formula} в следующем виде:
+\begin{equation}
+\label{eq:lower_bound:recurrent_formula_simplified}
+f_{k+1} = \frac{2k+3}{2k+1} f_k - \frac{2(k+1)^2}{2k+1}, \quad f_0 = \frac{m}{2}.
+\end{equation}
+
+Решение этого конечно-разностного уравнения будем искать в следующем виде:
+\[
+f(k) = f^*(k) + Cf^O(k),
+\]
+где $ f^*(k) $ -- частное решение неоднородного уравнения, а $ f^O(k) $ -- решение однородного уравнения.
+
+Сначала найдем $ f^O(k) $. Для $ f^O(k) $ выполнено
+\begin{align*}
+    f^O_1 &= \frac{3}{1} f_0 \\
+    f^O_2 &= \frac{5}{3} f_1 \\
+    &\cdots \\
+    f^O_{k} &= \frac{2k+1}{2k-1} f^O_{k-1}
+\end{align*}
+Тогда $ f^O_k = (2k+1)f^O_0 $ и можно положить $ f^O(k) = 2k + 1 $. 
+
+Перейдем к поиску частного решения. Будем искать его в виде $ f^*(k) = ak^2 + bk + c $. Тогда
+\begin{align*}
+    &2k\left[
+        a(k+1)^2 + b(k+1) + c - ak^2 - bk - c)
+    \right] + \\
+    &\left[
+        a(k+1)^2 + b(k+1) + c - 3 ak^2 - 3bk - 3c
+    \right]
+    = -2k^2 - 4k - 2 \\
+    &2ak^2 + 4ak + a + b - 2c = -2k^2 - 4k - 2
+\end{align*}
+Положим $ a = -1, \, b = -1, \, c = 0 $. Тогда $ f^*(k) = -k^2 - k $. 
+Таким образом $ f(k) = -k^2 - k + C(2k + 1) $. 
+
+Из граничного условия найдем, что $ C = \frac{m}{2} $ и 
+\[
+f(k) = \frac{m}{2} + mk - k - k^2,
+\]
+а значит
+\[
+L_{2k+1} = \frac{m}{2} + mk - k - k^2.
+\]
+
+Утверждение доказано.
+\end{proof}
+
+Таким образом функция $ L^m(p) $ определена при
+\[ p \in \left\{
+    \frac{i}{m}, \, \frac{j+1/2}{m}, \,|\, i = \overline{0, m}, \, j = \overline{0, m-1}
+\right\}.
+\]
+Для того, чтобы определить эту функцию при $ p $ лежащих внутри соответствующих отрезком нам нужная стратегия, гарантирующая первому игроку выигрыш, лежащий на прямой, соединяющей крайние точки этих отрезком. Данная стратегия дается следующим утверждением.
+
+\begin{prop}
+\label{prop:lower_bound:lottery}
+Рассмотрим следующие случаи:
+\begin{enumerate}
+\item
+Пусть 
+$ p^a = \frac{k}{m} $,
+$ p^b = \frac{k+1/2}{m} $,
+$ p \in \left(p^a, p^b\right) $, 
+$ k = \overline{0, m-1} $. 
+Тогда определим первый шаг $ \sigma^{k}_{lot} $, как $ \sigma^k_1 $ с 
+$ q_k = 2k + 1 - 2mp $, 
+$ q_{k+1} = 2(pm - k) $, 
+$ p(H|k) = \frac{k}{m} $,
+$ p(H|k+1) = \frac{k+1/2}{m} $.
+
+\item
+Пусть 
+$ p^a = \frac{k+1/2}{m} $,
+$ p^b = \frac{k+1}{m} $,
+$ p \in \left(p^a, p^b\right) $, 
+$ k = \overline{0, m-1} $. 
+Тогда определим первый шаг $ \sigma^{k}_{lot} $, как $ \sigma^k_1 $ с 
+$ q_k = 2(k + 1 - mp) $, 
+$ q_{k+1} = 2mp - 2k - 1 $, 
+$ p(H|k) = \frac{k+1/2}{m} $,
+$ p(H|k+1) = \frac{k+1}{m} $.
+\end{enumerate}
+
+В обоих случаях шаг $ \sigma^k_{lot} $ гарантирует первому игроку неотрицательный одношаговый выигрыш. Если на последующих шагах игрок будет применять $ \sigma^k_{eq} $, то он гарантирует себе выигрыш $ L^m(p) $, лежащий на прямой, соединяющей $ L^m(p^a) $ и $ L^m(p^b) $.
+\end{prop}
+\begin{proof}
+Проведем доказательство для случая 1. Доказательство для случая 2 проводится аналогично.
+
+Из утверждения \ref{prop:lower_bound:general_step} подстановкой соответствующих переменных получаем:
+\begin{itemize}
+\item
+    $ j < k $: 
+        $ K_1(p, \sigma^k_{lot}, j) = 2mp - j - k - 2mp + 2k = k - j \geq 1 $.
+\item
+    $ j = k $:
+        $ K_1(p, \sigma^k_{lot}, j) = 2m\frac{k+1/2}{m}q_{k+1} - (2k+1)q_{k+1} = 0 $.
+\item
+    $ j = k + 1 $:
+        $ K_1(p, \sigma^k_{lot}, j) = (2k + 1)q_k - 2m\frac{k}{m}q_k = q_k > 0 $.
+\item
+    $ j > k + 1 $:
+        $ K_1(p, \sigma^k_{lot}, j) = j + k - 2mp + 2mp - 2k = j - k \geq 2 $.
+\end{itemize}
+
+Мы получили, что $ K_1(p, \sigma^k_{lot}, j) \geq 0 $. 
+
+Далее заметим, что после применения $ \sigma^k_{lot} $ апостериорные вероятности принадлежат множеству
+\[
+    \left\{
+        \frac{i}{m}, \, \frac{j+1/2}{m}, \,|\, i = \overline{0, m}, \, j = \overline{0, m-1}
+    \right\}
+\].
+Это означает, что при применении на последующих шагах $ \sigma^i_{eq} $ игрок гарантирует себе 
+$ L^m(p) = q_k L^m(p^a) + q_{k+1} L^m(p^b) $. Из того, что 
+\[
+    q_k = \frac{p^b - p}{p^b - p^a}, \quad q_{k+1} = \frac{p - p^a}{p^b - p^a} 
+\]
+следует, что $ L^m(p) $ лежит на прямой, соединяющей $ L^m(p^a) $ и $ L^m(p^b) $. Доказательство закончено.
+\end{proof}
+
+
+
+\begin{lemma}
+\label{lemma:lower_bound:function}
+Функция $ L^m(p) $ является кусочно-линейной функцией, состоящей из $ m $ линейный сегментов, и полностью определяется своими значениями в следующих точках:
+\begin{eqnarray*}
+& L^m(0) = L^m(1) = 0, \\
+& L^m\left(\frac{k+1/2}{m}\right) 
+    = \frac{m}{2} + mk - k^2 - k, 
+        \, k = \overline{0, m - 1}
+\end{eqnarray*}
+\end{lemma}
+\begin{proof}
+Справедливость данной леммы непосредственно следует из утверждений \ref{prop:lower_bound:solution} и \ref{prop:lower_bound:lottery}.
+\end{proof}

@@ -1,0 +1,57 @@
+\section{Описание}
+Рассмотрим следующую игру.
+Есть две платежные матрицы:
+\begin{eqnarray*}
+A^L(i, j) &=& \frac{1}{m}\begin{cases}
+\frac{i+j}{2}, &\, i < j\\
+0, &\, i = j\\
+-\frac{i+j}{2}, &\, i > j
+\end{cases}
+\\
+A^H(i, j) &=& \frac{1}{m}\begin{cases}
+\frac{i+j}{2} - m, &\, i < j\\
+0, &\, i = j\\
+m - \frac{i+j}{2}, &\, i > j,
+\end{cases}
+\end{eqnarray*}
+
+На первом шаге случай выбирает $ S \in \{H, L\} $, причем вероятности выбора $ H $ и $ L $ равны $ p(H) = p $ и $ p(L) = (1 - p) $ соответственно. Первый игрок осведомлен о выборе случая, второй игрок знает только вероятностное распределение на $ \{ H, L\} $.
+
+После этого на протяжении $ n \leq \infty $ шагов игроки играют в игру $ A^S $.
+
+Множество чистых стратегий первого и второго игроков 
+$ i \in I = \{0, 1, \ldots, m\}$,
+$ j \in J = \{0, 1, \ldots, m\} $.
+
+Выигрыш каждого из игроков равен суммарному выигрышу за $ n $ шагов.
+
+
+Для упрощения вычислений умножим платежные матрицы на $ 2m $:
+\begin{eqnarray}
+\label{eq:payoff_matrix_h}
+A^L(i, j) &=& \begin{cases}
+  i + j, &\, i < j\\
+  0, &\, i = j\\
+  -i - j, &\, i > j
+\end{cases}
+\\
+\label{eq:payoff_matrix_l}
+A^H(i, j) &=& \begin{cases}
+  i + j - 2m, &\, i < j\\
+  0, &\, i = j\\
+  2m - i - j, &\, i > j
+\end{cases}
+\end{eqnarray}
+
+В дальнейшем будем рассматривать повторяющуюся игру именно с матрицами \eqref{eq:payoff_matrix_h} и \eqref{eq:payoff_matrix_l}, которую назовем $ G_n^m(p) $. При применении первым игроков смешанной стратегий 
+$ \sigma = (\sigma_1, \sigma_2, \ldots, \sigma_n) $, где 
+$ \sigma_t = (\sigma_t^L, \sigma_t^H)$, 
+а вторым игроком смешанной стратегии 
+$ \tau = (\tau_1, \tau_2, \ldots, \tau_n) $, выигрыш равен
+\begin{equation}
+\label{eq:value_of_game_n}
+K_n^m(p, \sigma, \tau) = \sum_{t=1}^n
+    \left(
+        pA^H(\sigma_t^H, \tau_t) + (1 - p)A^L(\sigma_t^L, \tau_t)
+    \right).
+\end{equation}
