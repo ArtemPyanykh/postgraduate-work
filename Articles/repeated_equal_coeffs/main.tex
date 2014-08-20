@@ -1,25 +1,37 @@
-\documentclass[14pt]{extarticle}
+\documentclass[12pt,a4paper,twoside]{article}
 \usepackage{geometry}
 \geometry{a4paper}
 
+\usepackage{latexsym}
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{hyperref}
 
-\usepackage{polyglossia}
-\setdefaultlanguage[spelling=modern]{russian}
-\setotherlanguage{english}
-\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
-\setmainfont{CMU Serif}
-\setsansfont{CMU Sans Serif}
-\setmonofont{CMU Typewriter Text}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{mgta_utf8}
 
-\usepackage{framed}
+% For the First Player
+% First step
+\newcommand{\fpfs}[1]{\ensuremath{\sigma^#1_1}}
+% First step for state
+\newcommand{\fpfss}[1]{\ensuremath{\sigma^#1_1}}
+% First step for state and action
+\newcommand{\fpfssa}[2]{\ensuremath{\sigma^#1_{1,#2}}}
+% Partitioning of p = [0,1]
+\newcommand{\peven}[1]{\ensuremath{p_#1^{even}}}
+\newcommand{\podd}[1]{\ensuremath{p_#1^{odd}}}
+% First player p_k^even first step
+\newcommand{\fpefs}[1]{\ensuremath{\phi_#1^{even}}}
+% First player p_k^odd first step
+\newcommand{\fpofs}[1]{\ensuremath{\phi_#1^{odd}}}
 
-\newtheorem{prop}{Утверждение}
-\newtheorem{lemma}{Лемма}
-\newtheorem{thm}{Теорема}
-\newtheorem{definition}{Определение}
+% List of literature entries nums to ease changes in numbering
+\newcommand{\samarsky}{1}
+\newcommand{\gelfond}{2}
+\newcommand{\aumann}{3}
+\newcommand{\domansky}{4}
 
 \begin{document}
 
@@ -27,5 +39,6 @@
 \include{upper_bound}
 \include{lower_bound}
 \include{value_of_the_game}
+\include{literature}
 
 \end{document}

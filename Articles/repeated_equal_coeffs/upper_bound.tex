@@ -1,7 +1,6 @@
 \section{Оценка сверху}
 \label{sec:upper_bound}
-Рассмотрим следующую чистую стратегию второго игрока\\
-$ \tau^k $:
+Рассмотрим следующую чистую стратегию второго игрока $ \tau^k $:
 \begin{equation}
 \label{eq:strategy:sp}
 \begin{aligned}
@@ -14,18 +13,19 @@ $ \tau^k $:
 \end{aligned}
 \end{equation}
 
-\begin{prop}
-При применении стратегии \eqref{eq:strategy:sp} в игре $ G_n^m(p) $ второй игрок может гарантировать себе выигрыш не более:
-\begin{eqnarray}
+
+\begin{utver}
+При применении стратегии \eqref{eq:strategy:sp} в игре $ G_n^m(p) $ второй игрок может гарантировать себе проигрыш не более:
+\begin{align}
 \label{eq:upper_bound:l}
-h_n^L(\tau^k) &=& \sum_{t=0}^{n-1}
+h_n^L(\tau^k) &= \sum_{t=0}^{n-1}
     (2(k - t) - 1)^+,\\
 \label{eq:upper_bound:h}
-h_n^H(\tau^k) &=& \sum_{t=0}^{n-1}
+h_n^H(\tau^k) &= \sum_{t=0}^{n-1}
     (2(m - k - t) - 1)^+,
-\end{eqnarray}
+\end{align}
 в состояниях $ L $ и $ H $ соответственно.
-\end{prop}
+\end{utver}
 \begin{proof}
 Проведем доказательство по индукции.
 Для $ h_n^L(\tau^k) $:
@@ -33,12 +33,12 @@ h_n^H(\tau^k) &=& \sum_{t=0}^{n-1}
 \[ 
 h_1^L(\tau^k) = \max_{i \in I} a_{ik}^L = \max(0, 2k - 1).
 \]
-Таким образом база индукции для $ h_n^L(\tau^k) $ проверена. 
-
-Пусть $ \forall t \leq n $ выполнено \eqref{eq:upper_bound:l}. Докажем, что \eqref{eq:upper_bound:l} выполняется при $ t=n+1 $.
-\[
+База индукции проверена.
+Пусть $ \forall t \leq n $ выполнено \eqref{eq:upper_bound:l}. 
+Докажем, что \eqref{eq:upper_bound:l} выполняется при $ t=n+1 $. Имеем
+$
 h_{n+1}^L(\tau^k) = \max_{i \in I} (a_{ik}^L + h_n^L(\tau^{c(i)})),
-\]
+$
 где
 \[ 
 c(i) = \begin{cases}
@@ -48,64 +48,53 @@ c(i) = \begin{cases}
 \end{cases}
 \]
 
-Рассмотрим значение выигрыша в зависимости от действия $ i $ первого игрока:
-\begin{itemize}
-\item
-    $ i < k $:
-    \begin{align*}
-    h_{n+1}^L(\tau^k) &= 2k - 1 + h_n^L(\tau^{k-1}) = \\
-    &= 2k - 1 + \sum_{t = 0}^{n-1}(2(k-1-t)-1)^+ = \\
-    &= \sum_{t = 0}^n (2(k-t) - 1)^+
-    \end{align*}
-\item
-    $ i = k $:
-    \[
-    h_{n+1}^L(\tau^k) = h_n^L(\tau^k) \leq \sum_{t=0}^n(2(k-t)-1)^+.
-    \]
-\item
-    $ i > k $:
-    \begin{align*}
-    h_{n+1}^L(\tau^k) &= -2k - 1 + h_n^L(\tau^{k+1}) = \\
-    &= -2k - 1 + \sum_{t = -1}^{n-2} (2(k-t)-1)^+ \\
-    &\leq \sum_{t=0}^n(2(k-t)-1)^+.
-    \end{align*}
-    Индуктивный переход обоснован, и \eqref{eq:upper_bound:l} доказано.
-    Аналогично для \eqref{eq:upper_bound:h}.
-    \[
-    h_1^H(\tau^k) = \max_{i \in I} a_{ik}^H = \max(0, 2(m - k) - 1).
-    \]
-    База индукции для $ h_n^H(\tau^k) $ проверена.
-    Пусть $ \forall t \leq n $ выполнено \eqref{eq:upper_bound:h}. Докажем, что \eqref{eq:upper_bound:h} выполняется при $ t = n + 1 $.
-    \[
-    h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
-    \]
-\item
-    $ i > k $:
-    \begin{align*}
-    h_{n+1}^H(\tau^k) &= 2m - 2k - 1 + h_n^H(\tau^{k-1}) = \\
-    &= 2(m-k)- 1 + \sum_{t = 0}^{n-1}(2(m-k-1-t)-1)^+ = \\
-    &= \sum_{t = 0}^n (2(m-k-t) - 1)^+
-    \end{align*}
-\item
-    $ i = k $:
-    \[
-    h_{n+1}^H(\tau^k) = h_n^H(\tau^k) \leq \sum_{t=0}^n(2(m-k-t)-1)^+.
-    \]
-\item
-    $ i < k $:
-    \begin{align*}
-    h_{n+1}^H(\tau^k) &= 2k - 1 - 2m + h_n^H(\tau^{k+1}) = \\
-    &= 2k - 1 - 2m + \sum_{t = -1}^{n-2} (2(m-k-t)-1)^+ \\
-    &\leq \sum_{t=0}^n(2(m-k-t)-1)^+.
-    \end{align*}
-\end{itemize}
+Рассмотрим значение выигрыша в зависимости от действия $ i $ первого игрока. 
+При $ i < k $ имеем:
+\begin{align*}
+  h_{n+1}^L(\tau^k) = 2k - 1 + h_n^L(\tau^{k-1}) &= 2k - 1 + \sum_{t = 0}^{n-1} (2(k-1-t)-1)^+ \\
+  &\leq \sum_{t = 0}^n (2(k-t) - 1)^+.
+\end{align*}
+При $ i = k $ получаем:
+\[
+  h_{n+1}^L(\tau^k) = h_n^L(\tau^k) \leq \sum_{t=0}^n(2(k-t)-1)^+.
+\]
+При $ i > k $ имеем:
+\begin{align*}
+  h_{n+1}^L(\tau^k) = -2k - 1 + h_n^L(\tau^{k+1}) &= -2k - 1 + \sum_{t = -1}^{n-2} (2(k-t)-1)^+ \\
+  &\leq \sum_{t=0}^n(2(k-t)-1)^+.
+\end{align*}
 
-Таким образом индуктивный переход обоснован и утверждение полностью доказано.
+Таким образом \eqref{eq:upper_bound:l} доказано.
+Аналогично для \eqref{eq:upper_bound:h} имеем:
+\[
+  h_1^H(\tau^k) = \max_{i \in I} a_{ik}^H = \max(0, 2(m - k) - 1).
+\]
+База индукции проверена.
+Пусть $ \forall t \leq n $ выполнено \eqref{eq:upper_bound:h}. Докажем, что \eqref{eq:upper_bound:h} выполняется при $ t = n + 1 $.
+\[
+h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
+\]
+При $ i > k $ имеем:
+\begin{align*}
+  h_{n+1}^H(\tau^k) = 2m - 2k - 1 + h_n^H(\tau^{k-1}) &= 2(m-k)- 1 + \sum_{t = 0}^{n-1}(2(m-k-1-t)-1)^+ \\
+  &\leq \sum_{t = 0}^n (2(m-k-t) - 1)^+
+\end{align*}
+При $ i = k $ получаем:
+\[
+  h_{n+1}^H(\tau^k) = h_n^H(\tau^k) \leq \sum_{t=0}^n(2(m-k-t)-1)^+.
+\]
+При $ i < k $ имеем:
+\begin{align*}
+  h_{n+1}^H(\tau^k) = 2k - 1 - 2m + h_n^H(\tau^{k+1}) &= 2k - 1 - 2m + \sum_{t = -1}^{n-2} (2(m-k-t)-1)^+ \\
+  &\leq \sum_{t=0}^n(2(m-k-t)-1)^+.
+\end{align*}
+
+Таким образом утверждение полностью доказано.
 \end{proof}
 
 Можно заметить, что при $ t > m $ значения \eqref{eq:upper_bound:l} и \eqref{eq:upper_bound:h} стабилизируются. Таким образом, справедливо следующее
 
-\begin{prop}
+\begin{utver}
 Для значения бесконечной игры справедливо следующее неравенство:
 \begin{equation}
 \label{eq:upper_bound:value}
@@ -114,9 +103,9 @@ V_\infty^m(p)
 H^m(p) = \min_{j \in J}
     (p(m-j)^2 + (1-p)j^2).
 \end{equation}
-\end{prop}
+\end{utver}
 \begin{proof}
-
+При каждом $ j $:
 \begin{align*}
 h_{m+1}^H(\tau^j) 
 &= \sum_{t=0}^m (2(m-j-t)-1)^+ = \\
@@ -127,21 +116,13 @@ h_{m+1}^L(\tau^j)
 &= \sum_{t=0}^m (2(j-t)-1)^+ = \\
 &= (2 \cdot 0 - 1)^+ + (2 \cdot 1 - 1)^+ + \ldots + (2 \cdot j - 1)^+ = \\
 &= j(j+1) - j = j^2
-\\
-H^m(p) 
-&= \min_{j \in J} \left(
-    p h_{m+1}^H(\tau^j) + (1-p) h_{m+1}^L(\tau^j)
-\right) \\
-&= \min_{j \in J} \left(
-p (m - j)^2 + (1-p)j^2
-\right).
 \end{align*}
-
+Отсюда и из \eqref{eq:value_of_game_n} очевидным образом получаем \eqref{eq:upper_bound:value}. Утверждение доказано.
 \end{proof}
 
 \begin{lemma}
 \label{lemma:upper_bound:function}
-Функция $ H^m(p) $ является кусочно-линейной функцией, состоящей из $ m $ линейных сегментов, и полностью определяется своими значениями в следующих точках:
+Функция $ H^m(p) $ является кусочно-линейной функцией, состоящей из $ m + 1 $ линейных сегментов, и полностью определяется своими значениями в следующих точках:
 \begin{eqnarray*}
 & H^m(0) = H^m(1) = 0, \\
 & H^m\left(\frac{k+1/2}{m}\right) 
@@ -150,24 +131,9 @@ p (m - j)^2 + (1-p)j^2
 \end{eqnarray*}
 \end{lemma}
 \begin{proof}
-Пусть $ \omega(j) = p(m-j)^2 + (1-p)j^2 $. 
-\[
-\omega'(j) = 2(j-pm), \quad
-\omega''(j) = 2.
-\]
-Т.е. минимум $ \omega(j) $ достигается при $ j = pm $. 
-Тогда при $ p \in \left( \frac{k - 1/2}{m}, \frac{k+1/2}{m} \right] $ минимум $ p(m-j)^2 + (1-p)j^2 $ достигается при $ j = k $. 
-Таким образом, показано, что $ H^m(p) $ является кусочно-линейной функцией, которая полностью определяется своими значениями в точках 
-$ p = \frac{k+1/2}{m}, \, k = \overline{0, m-1} $. Найдем значение $ H^m(p) $ при $ p = \frac{k+1/2}{m} $:
-\begin{align*}
-H^m \left(\frac{k+1/2}{m}\right)
-&= \frac{1}{m} \left(
-    (k+1/2)(m - k)^2 + (m-k-1/2)k^2
-\right) = \\
-&= \frac{1}{m} \left(
-    m^2/2 + m^2 k - mk^2 - mk
-\right) = \\
-&= \frac{m}{2} + mk - k^2 - k.
-\end{align*}
-Лемма полностью доказана.
+Квадратичная функция $ \omega(x) = p(m-x)^2 + (1-p)x^2 $ достигает минимума при $ x = pm $. 
+Отсюда при $ p \in \left( \frac{k - 1/2}{m}, \frac{k+1/2}{m} \right] $ минимум $ p(m-j)^2 + (1-p)j^2 $ по целым $ j $ достигается при $ j = k $.
+ 
+Отсюда видно, что $ H^m(p) $ является кусочно-линейной функцией, которая полностью определяется своими значениями в точках $ p = \frac{k+1/2}{m}, \, k = \overline{0, m-1} $. 
+Значение $ H^m(p) $ при $ p = \frac{k+1/2}{m} $ легко находится подстановкой $ j~=~k $.
 \end{proof}
