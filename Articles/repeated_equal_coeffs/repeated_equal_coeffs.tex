@@ -9,16 +9,34 @@
 
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[russian,english]{babel}
+\usepackage[russian]{babel}
 \usepackage{mgta}
 \usepackage{dsl}
+\sloppy
+
+\ppage{с. 150--152}
+
+%TODO!!!!!!!!!!!!!!!!!!!!!!
+\markboth{\bf И.О. Фамилия автора \hfil}{\hfil \bf
+Краткое Название Статьи }
+%TODO!!!!!!!!!!!!!!!!!!!!!!
+
+\setcounter{page}{150}
 
 \begin{document}
+\input{header}
 
-\input{description}
+\input{introduction}
+
+\input{model}
+
 \input{upper_bound}
-\input{lower_bound}
-\input{value_of_the_game}
-\input{literature}
 
+\input{lower_bound}
+
+\input{value_of_the_game}
+
+\vskip 10mm
+
+\input{footer}
 \end{document}

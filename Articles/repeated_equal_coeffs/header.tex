@@ -1,0 +1,50 @@
+\renewcommand{\thefootnote}{ }
+\renewcommand{\footnoterule}{ \vskip 5mm \hrule width 8cm \vskip 3mm}
+
+%TODO!!!!!!!!!! FROM HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\footnote{\medskip \footnotesize \copyright 2014 И.О. Фамилия}
+
+%
+%\copyrightheading{}
+\normalsize
+
+% обязательны коды УДК и ББК статьи
+\begin{flushleft}
+УДК (обязательно указывать)
+
+ББК
+\end{flushleft}
+
+\vskip 10mm \thispagestyle{empty}
+\begin{center}
+\Large \bf НАЗВАНИЕ СТАТЬИ
+\end{center}
+\begin{center}
+\large \sc Имя О. Фамилия\\ %первый автор
+\rm
+Организация\\
+Полный адрес организации\\
+\normalsize e-mail: author@noname.ru\\
+\end{center}
+
+\engtitle{ARTICLE TITLE}
+
+\engauthors{%
+\textbf{Authors}, MSU.}
+
+%TODO!!!!!!!!!!!!!! TO HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+\abstr{%
+Рассматривается модификация дискретной модели многошаговых торгов, введенной В. Доманским (Int J Game Theory 36:241--257), с ценой транзакции равной полусумме ставок, предложенных игроками. Приведены оптимальные стратегии игроков, и найдено значение выигрыша в бесконечной игре.}
+\keywords{многошаговые торги, асимметричная информация, повторяющиеся игры с неполной информацией}
+
+\engabstract{%
+This paper is concerned with a modification of a discreete multistage bidding model introduced in Domansky (Int J Game Theory 36:241--257) with a transaction price equal to convex combination of players' bids with a coefficient of $ \frac{1}{2} $. The optimal strategies and the value of an infinite game are found.}
+
+\engkeywords{Multistage Bidding, Repeated Games with Incomplete Information, Asymmetric Information}
+
+\makeinfo
+
+\setcounter{footnote}{0}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\normalsize

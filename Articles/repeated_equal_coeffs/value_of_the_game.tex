@@ -3,7 +3,7 @@
 \label{theorem:infinite_game:value}
 Игра $ G_\infty^m(p) $ имеет значение 
 \[
-V_\infty^m(p) = L^m(p) = H^m(p).
+V_\infty^m(p) = H^m(p) = L^m(p).
 \]
 
 Оптимальная стратегия первого игрока $ \sigma^* $ дается утверждениями \ref{utver:first_player:strategy:extreme_points} и \ref{utver:lower_bound:lottery}.
@@ -12,11 +12,11 @@ V_\infty^m(p) = L^m(p) = H^m(p).
 \end{theorem}
 \begin{proof}
 Непосредственно из лемм \ref{lemma:upper_bound:function} и \ref{lemma:lower_bound:function} следует, что
-$ \forall \sigma \in \Sigma, \, \tau \in T $, где $ \Sigma $ и $ T $ -- множество стратегий первого и второго игроков соответственно, справедливо
+$ \forall \sigma \in \Sigma, \, \tau \in \Tau $, где $ \Sigma $ и $ \Tau $ -- множество стратегий первого и второго игроков соответственно, справедливо
 \[
   K_\infty^m(p, \sigma, \tau^*)
-\leq K_\infty^m(p, \sigma^*, \tau^*) = H^m(p) \leq 
+\leq K_\infty^m(p, \sigma^*, \tau^*) = H^m(p) = L^m(p) \leq 
   K_\infty^m(p, \sigma^*, \tau).
 \]
-А это значит, что $ \sigma^* $ и $ \tau^* $ -- оптимальные стратегии, и значение игры $ V_\infty^m(p) = H^m(p) $.
+А это значит, что $ \sigma^* $ и $ \tau^* $ -- оптимальные стратегии, и значение игры $ V_\infty^m(p) = H^m(p) = L^m(p) $.
 \end{proof}
