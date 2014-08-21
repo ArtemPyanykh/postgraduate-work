@@ -6,35 +6,9 @@
 V_\infty^m(p) = L^m(p) = H^m(p).
 \]
 
-Оптимальная стратегия первого игрока $ \sigma^* $ описывается следующим образом: на каждом шаге игры при 
-\[
-  p \in \left\{
-    \frac{k+1/2}{m}, \, \frac{k+1}{m} \,|\, k = \overline{0, m-1}
-  \right\}
-\]
-первый игрок применяет соответствующую $ \sigma^k_{eq} $; при
-\[
-  p \in \left(
-    \frac{k}{m}, \frac{k+1/2}{m}
-  \right),\,
-  k = \overline{0, m-1},
-\]
-или
-\[
-  p \in \left(
-    \frac{k+1/2}{m}, \frac{k+1}{m}
-  \right),\,
-  k = \overline{0, m-1},
-\]
-игрок применяет соответствующую $ \sigma^k_{lot} $.
+Оптимальная стратегия первого игрока $ \sigma^* $ дается утверждениями \ref{utver:first_player:strategy:extreme_points} и \ref{utver:lower_bound:lottery}.
 
-Оптимальная стратегию второго игрока $ \tau^* $ описывается следующим образом: при
-\[
-  p \in \left(
-    \frac{k-1/2}{m}, \frac{k+1/2}{m}
-  \right]
-\]
-второй игрок применяет $ \tau^k $.
+Оптимальная стратегию второго игрока $ \tau^* $ описывается следующим образом: на каждом шаге игры при $ p \in (\podd{k-1}, \podd{k+1}) $ второй игрок применяет $ \tau^k $.
 \end{theorem}
 \begin{proof}
 Непосредственно из лемм \ref{lemma:upper_bound:function} и \ref{lemma:lower_bound:function} следует, что
