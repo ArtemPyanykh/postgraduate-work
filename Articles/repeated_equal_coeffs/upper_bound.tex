@@ -52,7 +52,7 @@ c(i) = \begin{cases}
 При $ i < k $ имеем:
 \begin{align*}
   h_{n+1}^L(\tau^k) = 2k - 1 + h_n^L(\tau^{k-1}) &= 2k - 1 + \sum_{t = 0}^{n-1} (2(k-1-t)-1)^+ \\
-  &\leq \sum_{t = 0}^n (2(k-t) - 1)^+.
+  &= \sum_{t = 0}^n (2(k-t) - 1)^+.
 \end{align*}
 При $ i = k $ получаем:
 \[
@@ -79,7 +79,7 @@ h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
   h_{n+1}^H(\tau^k) 
   &= 2m - 2k - 1 + h_n^H(\tau^{k-1}) \\
   &= 2(m-k)- 1 + \sum_{t = 0}^{n-1}(2(m-k-1-t)-1)^+ \\
-  &\leq \sum_{t = 0}^n (2(m-k-t) - 1)^+
+  &= \sum_{t = 0}^n (2(m-k-t) - 1)^+
 \end{align*}
 При $ i = k $ получаем:
 \[
