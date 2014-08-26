@@ -1,14 +1,14 @@
-\section{Оценка сверху}
+\section{Оценка сверху значения игры $ G^m_\infty(p) $}
 \label{sec:upper_bound}
 Рассмотрим следующую стратегию второго игрока $ \tau^k $:
 \begin{equation}
 \label{eq:strategy:sp}
 \begin{aligned}
-\tau_1^k &= k \\
+\tau_1^k &= k, \\
 \tau_t^k(i_{t-1}, j_{t-1}) &= \begin{cases}
-    j_{t-1} - 1, &\, i_{t-1} < j_{t-1} \\
-    j_{t-1}, &\, i_{t-1} = j_{t-1} \\
-    j_{t-1} + 1, &\, i_{t-1} > j_{t-1}
+    j_{t-1} - 1, &\, i_{t-1} < j_{t-1}, \\
+    j_{t-1}, &\, i_{t-1} = j_{t-1}, \\
+    j_{t-1} + 1, &\, i_{t-1} > j_{t-1}.
 \end{cases}
 \end{aligned}
 \end{equation}
@@ -42,8 +42,8 @@ $
 где
 \[ 
 c(i) = \begin{cases}
-    k - 1, &\, i < k \\
-    k, &\, i = k \\
+    k - 1, &\, i < k, \\
+    k, &\, i = k, \\
     k + 1, &\, i > k.
 \end{cases}
 \]
@@ -51,7 +51,7 @@ c(i) = \begin{cases}
 Рассмотрим значение выигрыша в зависимости от действия $ i $ первого игрока. 
 При $ i < k $ имеем:
 \begin{align*}
-  h_{n+1}^L(\tau^k) = 2k - 1 + h_n^L(\tau^{k-1}) &= 2k - 1 + \sum_{t = 0}^{n-1} (2(k-1-t)-1)^+ \\
+  h_{n+1}^L(\tau^k) = 2k - 1 + h_n^L(\tau^{k-1}) &= 2k - 1 + \sum_{t = 0}^{n-1} (2(k-1-t)-1)^+ = \\
   &= \sum_{t = 0}^n (2(k-t) - 1)^+.
 \end{align*}
 При $ i = k $ получаем:
@@ -60,11 +60,11 @@ c(i) = \begin{cases}
 \]
 При $ i > k $ имеем:
 \begin{align*}
-  h_{n+1}^L(\tau^k) = -2k - 1 + h_n^L(\tau^{k+1}) &= -2k - 1 + \sum_{t = -1}^{n-2} (2(k-t)-1)^+ \\
+  h_{n+1}^L(\tau^k) = -2k - 1 + h_n^L(\tau^{k+1}) &= -2k - 1 + \sum_{t = -1}^{n-2} (2(k-t)-1)^+ \leq \\
   &\leq \sum_{t=0}^n(2(k-t)-1)^+.
 \end{align*}
 
-Таким образом \eqref{eq:upper_bound:l} доказано.
+Таким образом, \eqref{eq:upper_bound:l} доказано.
 Аналогично для \eqref{eq:upper_bound:h} имеем:
 \[
   h_1^H(\tau^k) = \max_{i \in I} a_{ik}^H = \max(0, 2(m - k) - 1).
@@ -77,9 +77,9 @@ h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
 При $ i > k $ имеем:
 \begin{align*}
   h_{n+1}^H(\tau^k) 
-  &= 2m - 2k - 1 + h_n^H(\tau^{k-1}) \\
-  &= 2(m-k)- 1 + \sum_{t = 0}^{n-1}(2(m-k-1-t)-1)^+ \\
-  &= \sum_{t = 0}^n (2(m-k-t) - 1)^+
+  &= 2m - 2k - 1 + h_n^H(\tau^{k-1}) = \\
+  &= 2(m-k)- 1 + \sum_{t = 0}^{n-1}(2(m-k-1-t)-1)^+ = \\
+  &= \sum_{t = 0}^n (2(m-k-t) - 1)^+.
 \end{align*}
 При $ i = k $ получаем:
 \[
@@ -88,8 +88,8 @@ h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
 При $ i < k $ имеем:
 \begin{align*}
   h_{n+1}^H(\tau^k) 
-    &= 2k - 1 - 2m + h_n^H(\tau^{k+1}) \\
-    &= 2k - 1 - 2m + \sum_{t = -1}^{n-2} (2(m-k-t)-1)^+ \\
+    &= 2k - 1 - 2m + h_n^H(\tau^{k+1}) = \\
+    &= 2k - 1 - 2m + \sum_{t = -1}^{n-2} (2(m-k-t)-1)^+ \leq \\
     &\leq \sum_{t=0}^n(2(m-k-t)-1)^+.
 \end{align*}
 
@@ -104,7 +104,7 @@ h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
 \label{eq:upper_bound:value}
 V_\infty^m(p) 
 <= 
-H^m(p) = \min_{j \in J}
+H^m(p) \eqdef \min_{j \in J}
     (p(m-j)^2 + (1-p)j^2).
 \end{equation}
 \end{utver}
@@ -114,14 +114,14 @@ H^m(p) = \min_{j \in J}
 h_{m+1}^H(\tau^j) 
 &= \sum_{t=0}^m (2(m-j-t)-1)^+ = \\
 &= (2 \cdot 0 - 1)^+ + (2 \cdot 1 - 1)^+ + \ldots + (2(m-j) - 1)^+ = \\
-&= (m-j)(m-j+1) - (m-j) = (m-j)^2
+&= (m-j)(m-j+1) - (m-j) = (m-j)^2,
 \\
 h_{m+1}^L(\tau^j)
 &= \sum_{t=0}^m (2(j-t)-1)^+ = \\
 &= (2 \cdot 0 - 1)^+ + (2 \cdot 1 - 1)^+ + \ldots + (2 \cdot j - 1)^+ = \\
-&= j(j+1) - j = j^2
+&= j(j+1) - j = j^2.
 \end{align*}
-Отсюда и из \eqref{eq:value_of_game_n} очевидным образом получаем \eqref{eq:upper_bound:value}. Утверждение доказано.
+Отсюда и из \eqref{eq:value_of_game_n} очевидным образом получаем \eqref{eq:upper_bound:value}.
 \end{proof}
 
 \begin{lemma}
@@ -131,11 +131,11 @@ h_{m+1}^L(\tau^j)
 & H^m(0) = H^m(1) = 0, \\
 & H^m\left(\frac{k+1/2}{m}\right) 
     = \frac{m}{2} + mk - k^2 - k, 
-        \, k = \overline{0, m - 1}
+        \, k = \overline{0, m - 1}.
 \end{eqnarray*}
 \end{lemma}
 \begin{proof}
-Квадратичная функция $ \omega(x) = p(m-x)^2 + (1-p)x^2 $ достигает минимума при $ x = pm $. 
+Квадратичная функция $ \omega(x) = p(m-x)^2 + (1-~p)x^2 $ достигает минимума при $ x = pm $. 
 Отсюда при $ p \in \left( \frac{k - 1/2}{m}, \frac{k+1/2}{m} \right] $ минимум $ p(m-j)^2 + (1-p)j^2 $ по целым $ j $ достигается при $ j = k $.
  
 Отсюда видно, что $ H^m(p) $ является кусочно-линейной функцией, которая полностью определяется своими значениями в точках $ p = \frac{k+1/2}{m}, \, k = \overline{0, m-1} $. 

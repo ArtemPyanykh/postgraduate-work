@@ -11,15 +11,15 @@
 Соответствующие платежные матрицы задаются следующим образом:
 \begin{eqnarray*}
 A^L(i, j) &=& \frac{1}{m}\begin{cases}
-\frac{i+j}{2}, &\, i < j\\
-0, &\, i = j\\
--\frac{i+j}{2}, &\, i > j
+\frac{i+j}{2}, &\, i < j, \\
+0, &\, i = j, \\
+-\frac{i+j}{2}, &\, i > j.
 \end{cases}
 \\
 A^H(i, j) &=& \frac{1}{m}\begin{cases}
-\frac{i+j}{2} - m, &\, i < j\\
-0, &\, i = j\\
-m - \frac{i+j}{2}, &\, i > j,
+\frac{i+j}{2} - m, &\, i < j, \\
+0, &\, i = j, \\
+m - \frac{i+j}{2}, &\, i > j.
 \end{cases}
 \end{eqnarray*}
 
@@ -46,17 +46,17 @@ m - \frac{i+j}{2}, &\, i > j,
 \begin{eqnarray}
 \label{eq:payoff_matrix_h}
 A^L(i, j) &=& \begin{cases}
-  i + j, &\, i < j\\
-  0, &\, i = j\\
-  -i - j, &\, i > j
+  i + j, &\, i < j, \\
+  0, &\, i = j, \\
+  -i - j, &\, i > j.
 \end{cases}
 \\
 \label{eq:payoff_matrix_l}
 A^H(i, j) &=& \begin{cases}
-  i + j - 2m, &\, i < j\\
-  0, &\, i = j\\
-  2m - i - j, &\, i > j
-\end{cases}
+  i + j - 2m, &\, i < j, \\
+  0, &\, i = j, \\
+  2m - i - j, &\, i > j.
+\end{cases}.
 \end{eqnarray}
 
 В дальнейшем будем рассматривать повторяющуюся игру именно с матрицами \eqref{eq:payoff_matrix_h} и \eqref{eq:payoff_matrix_l}, которую назовем $ G_n^m(p) $. При применении первым игроков смешанной стратегий 
