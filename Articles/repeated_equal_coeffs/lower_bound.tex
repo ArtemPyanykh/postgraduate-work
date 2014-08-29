@@ -30,10 +30,10 @@ K_1(p, \fpfs{k}, j) = \begin{cases}
 \end{utver}
 \begin{proof}
 По определению
-\begin{equation}
+\begin{equation*}
 \label{eq:payoff:stage}
     K_1(p, \fpfs{k}, j) = pA^H(\fpfss{H}, j) + (1-p)A^L(\fpfss{L}, j).
-\end{equation}
+\end{equation*}
 
 Распишем выигрыш на первом шаге в зависимости от значения $ j $ действия второго игрока.
 При $ j < k $ имеем:
@@ -75,20 +75,20 @@ K_1(p, \fpfs{k}, j) = \begin{cases}
 \begin{gather*}
   p(H|k) = \frac{k}{m} - \frac{1}{2m} = \podd{k-1}, \quad
   p(H|k+1) = \frac{k}{m} + \frac{1}{2m} = \podd{k},\\
-  q_k = q_{k+1} = \frac{1}{2}.
+  q_k = q_{k+1} = 1/2.
 \end{gather*}
 Пусть также $ \fpefs{0} = 0,\, \fpefs{m} = m $ (т.е. если неопределенности нет, первый игрок использует минимаксную стратегию).
 Аналогично, через $ \fpofs{k} $ определим такое действие первого игрока, что $ \fpofs{k}~=~\fpfs{k} $ с параметрами
 \begin{gather*}
   p(H|k) = \frac{k}{m} = \peven{k}, \quad
   p(H|k+1) = \frac{k + 1}{m} = \peven{k+1}, \\
-  q_k = q_{k+1} = \frac{1}{2}.
+  q_k = q_{k+1} = 1/2.
 \end{gather*}
 
 \begin{utver}
 \label{utver:first_player:strategy:extreme_points}
   При $ p = \peven{k} \left( p = \podd{k} \right) $ первый игрок может гарантировать себе выигрыш на первом шаге не менее 
-  $ 0 \left( \text{ не менее } \frac{1}{2} \right) $.
+  $ 0 $ (не менее~$ 1/2 $).
 \end{utver}
 \begin{proof}
   Действительно, пусть при $ p = \peven{k} $ первый игрок применяет $ \fpefs{k} $, а при $ p = \podd{k} $ применяет $ \fpofs{k} $. Тогда подстановкой параметров $ \fpefs{k} $ и $ \fpofs{k} $ в  \eqref{eq:lower_bound:general_step} немедленно получаем справедливость данного утверждения.
@@ -99,7 +99,7 @@ K_1(p, \fpfs{k}, j) = \begin{cases}
 
 В силу рекурсивной структуры игры $ G_n^m(p) $ можно выписать рекуррентную формулу для нижней оценки значения игры $ L_n^m(p) $ при $ p \in P_k $:
 
-\begin{equation}
+\begin{equation*}
 \begin{gathered}
 \label{eq:lower_bound:recurrence_finite}
 L_n^m\left(\frac{k+\frac{1}{2}}{m}\right) = 
@@ -114,7 +114,7 @@ L_n^m\left(\frac{k+1}{m}\right) =
     \right), \\
 L_n^m(0) = L_n^m(1) = 0.
 \end{gathered}
-\end{equation}
+\end{equation*}
 
 Устремив $ n $ в бесконечность получим рекуррентную формулу для нижней оценки значения игры $ G_\infty^m(p) $. Перепишем эту рекуррентную формулу в следующем виде:
 \begin{equation}
@@ -129,7 +129,7 @@ L_0 = L_{2m} = 0.
 \end{equation}
 
 Введем матрицу $ A \in \R^{(2m-1)\times(2m-1)} $ и вектор-столбец $ b \in \R^{2m-1} $ следующим образом:
-\begin{equation}
+\begin{equation*}
 A =
 \left(\begin{array}{ccccccc}
     1 & -\frac{1}{2} & 0 & \cdots & 0 & 0 & 0 \\
@@ -137,7 +137,7 @@ A =
     \hdotsfor{7} \\
     0 & 0 & 0 & \cdots & -\frac{1}{2} & 1 & -\frac{1}{2} \\
     0 & 0 & 0 & \cdots & 0 & -\frac{1}{2} & 1 \\
-\end{array}\right),\;
+\end{array}\right),\quad
 b = \left(\begin{array}{c}
 \frac{1}{2} \\
 0\\
@@ -145,7 +145,7 @@ b = \left(\begin{array}{c}
 0 \\
 \frac{1}{2}
 \end{array}\right).
-\end{equation}
+\end{equation*}
 
 
 Тогда \eqref{eq:lower_bound:recurrence_infinite} можно переписать следующим образом:
@@ -193,13 +193,13 @@ a_i = b_i = -\frac{1}{2}, \quad c_i = 1.
 \begin{utver}
 \label{utver:tridiagonal:coefficients}
 Прогоночные коэффициенты для матрицы $ A $ выражаются следующим образом:
-\begin{gather}
+\begin{gather*}
 \label{eq:tridiagonal:alpha}
   \alpha_i = \frac{i-1}{i}, \\
   \label{eq:tridiagonal:beta}
   \beta_{2i} = \frac{2i}{4}, \;
   \beta_{2i+1} = \frac{i^2}{2i+1}.
-\end{gather}
+\end{gather*}
 \end{utver}
 \begin{proof}
 Справедливость данного утверждения элементарным образом устанавливается доказательством по индукции с учетом \eqref{eq:tridiagonal:coefficients_values} и \eqref{eq:tridiagonal:formulas}.
@@ -209,17 +209,18 @@ a_i = b_i = -\frac{1}{2}, \quad c_i = 1.
 \begin{align}
 \label{eq:lower_bound:recurrent_boundaries}
 L_1 = L_{2m-1} &= 
-\frac{
-    \frac{1}{2} + \frac{1}{2}\frac{(m-1)^2}{2m-1}
-}{
-    1 - \frac{1}{2}\frac{2m-1-1}{2m-1}
-} =
-\frac{
+\left(
+    \frac{1}{2} + \frac{(m-1)^2}{2(2m-1)}
+\right)
+/
+\left(
+    1 - \frac{2m-1-1}{2(2m-1)}
+\right) = \nonumber \\
+&= \frac{
     2m - 1 + (m-1)^2
 }{
     4m - 2 - 2m + 2
-} = \nonumber \\
-& = \frac{2m - 1 + m^2  - 2m + 1}{2m} = \frac{m}{2}.
+} = \frac{m}{2}.
 \end{align}
 
 Так как 
