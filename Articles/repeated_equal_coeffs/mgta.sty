@@ -21,12 +21,12 @@
 \newcommand{\copyrightheading}[1]
 {\vspace*{-2.5cm}\smalllineskip
 \par\hbox to \textwidth{
-{\scriptsize РњР°С‚РµРјР°С‚РёС‡РµСЃРєР°СЏ РўРµРѕСЂРёСЏ РРіСЂ Рё РµС‘ РџСЂРёР»РѕР¶РµРЅРёСЏ, С‚.2, РІ.3, \@ppage } \hspace{2pt
+{\scriptsize Математическая Теория Игр и е\"е Приложения, т.2, в.3, \@ppage } \hspace{2pt
 plus1fill} {\scriptsize  }}
 
 %\par\hbox to \textwidth{
-%{\scriptsize  \copyright\kern2pt РР·Рґ-РІРѕ РљР°СЂРµР»СЊСЃРєРѕРіРѕ РЅР°СѓС‡РЅРѕРіРѕ С†РµРЅС‚СЂР°
-%Р РђРќ} \hspace{2pt plus1fill} {\scriptsize }} 
+%{\scriptsize  \copyright\kern2pt Изд-во Карельского научного центра
+%РАН} \hspace{2pt plus1fill} {\scriptsize }} 
 }
 %MACRO FOR COPYRIGHT BLOCK
 
@@ -43,34 +43,34 @@ plus1fill} {\scriptsize  }}
 \newtheoremstyle{mythm}{2ex}{1ex}{\itshape}{}{\bfseries}{.}{1ex}{}
 \newtheoremstyle{notes}{2ex}{1ex}{\upshape}{}{\itshape}{.}{1ex}{}
 \theoremstyle{mythm}
-\newtheorem{theorem}{РўРµРѕСЂРµРјР°}[section]
-\newtheorem{lemma}{Р›РµРјРјР°}[section]
-\newtheorem{utver}{РЈС‚РІРµСЂР¶РґРµРЅРёРµ}[section]
-\newtheorem{definition}{РћРїСЂРµРґРµР»РµРЅРёРµ}[section]
-\newtheorem{corollary}{РЎР»РµРґСЃС‚РІРёРµ}[section]
-\newtheorem{proposition}{РџСЂРµРґР»РѕР¶РµРЅРёРµ}[section]
-\newtheorem{assumption}{РџСЂРµРґРїРѕР»РѕР¶РµРЅРёРµ}[section]
-\newtheorem{axiom}{РђРєСЃРёРѕРјР°}[section]
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{utver}{Утверждение}[section]
+\newtheorem{definition}{Определение}[section]
+\newtheorem{corollary}{Следствие}[section]
+\newtheorem{proposition}{Предложение}[section]
+\newtheorem{assumption}{Предположение}[section]
+\newtheorem{axiom}{Аксиома}[section]
 \theoremstyle{notes}
-\newtheorem{note}{Р—Р°РјРµС‡Р°РЅРёРµ}[section]
-\newtheorem{example}{РџСЂРёРјРµСЂ}[section]
+\newtheorem{note}{Замечание}[section]
+\newtheorem{example}{Пример}[section]
 
 
 
 \newcommand{\fcaption}[1]{
         \refstepcounter{figure}
            {\begin{center}
-         Р РёСЃСѓРЅРѕРє~\thefigure.~#1
+         Рисунок~\thefigure.~#1
             \end{center}}
 }
 
 
-%%  РњР°РєСЂРѕСЃС‹ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ Р·Р°РіРѕР»РѕРІРєР°
+%%  Макросы для определения заголовка
 \def\abstr#1{\gdef\@abstr{\renewcommand{\abstractname}{}
 \begin{abstract}     
 {\small #1}
-\end{abstract}}} %% С‚РµРєСЃС‚ Р°РЅРЅРѕС‚Р°С†РёРё 
-\def\keywords#1{\gdef\@keywords{\textit{РљР»СЋС‡РµРІС‹Рµ СЃР»РѕРІР°}: #1}} %% РєР»СЋС‡РµРІС‹Рµ СЃР»РѕРІР° 
+\end{abstract}}} %% текст аннотации 
+\def\keywords#1{\gdef\@keywords{\textit{Ключевые слова}: #1}} %% ключевые слова 
 
 \newcommand{\makeinfo}{%
 \@abstr
@@ -79,11 +79,11 @@ plus1fill} {\scriptsize  }}
 
 
 
-%%  РњР°РєСЂРѕСЃС‹ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ Р·Р°РіРѕР»РѕРІРєР°
-\def\engtitle#1{\gdef\@engtitle{#1}} %% РЅР°Р·РІР°РЅРёРµ СЃС‚Р°С‚СЊРё РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
-\def\engauthors#1{\gdef\@engauthors{#1}} %% Р°РІС‚РѕСЂС‹ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
-\def\engabstract#1{\gdef\@engabstract{\parbox{130mm}{{\normalsize \textit{Abstract}: #1}}}} %% С‚РµРєСЃС‚ Р°РЅРЅРѕС‚Р°С†РёРё РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
-\def\engkeywords#1{\gdef\@engkeywords{#1}} %% РєР»СЋС‡РµРІС‹Рµ СЃР»РѕРІР° РЅР° Р°РЅРіР»РёР№СЃРєРѕРј
+%%  Макросы для определения заголовка
+\def\engtitle#1{\gdef\@engtitle{#1}} %% название статьи на английском
+\def\engauthors#1{\gdef\@engauthors{#1}} %% авторы на английском
+\def\engabstract#1{\gdef\@engabstract{\parbox{130mm}{{\normalsize \textit{Abstract}: #1}}}} %% текст аннотации на английском
+\def\engkeywords#1{\gdef\@engkeywords{#1}} %% ключевые слова на английском
 
 
 

@@ -1,22 +1,22 @@
-\section{Р—РЅР°С‡РµРЅРёРµ РёРіСЂС‹ $ G_\infty^m(p) $}
+\section{Значение игры $ G_\infty^m(p) $}
 \begin{theorem}
 \label{theorem:infinite_game:value}
-РРіСЂР° $ G_\infty^m(p) $ РёРјРµРµС‚ Р·РЅР°С‡РµРЅРёРµ 
+Игра $ G_\infty^m(p) $ имеет значение 
 \[
 V_\infty^m(p) = H^m(p) = L^m(p).
 \]
 
-РћРїС‚РёРјР°Р»СЊРЅР°СЏ СЃС‚СЂР°С‚РµРіРёСЏ РїРµСЂРІРѕРіРѕ РёРіСЂРѕРєР° $ \sigma^* $ РґР°РµС‚СЃСЏ СѓС‚РІРµСЂР¶РґРµРЅРёСЏРјРё \ref{utver:first_player:strategy:extreme_points} Рё \ref{utver:lower_bound:lottery}.
+Оптимальная стратегия первого игрока $ \sigma^* $ дается утверждениями \ref{utver:first_player:strategy:extreme_points} и \ref{utver:lower_bound:lottery}.
 
-РћРїС‚РёРјР°Р»СЊРЅР°СЏ СЃС‚СЂР°С‚РµРіРёСЋ РІС‚РѕСЂРѕРіРѕ РёРіСЂРѕРєР° $ \tau^* $ РѕРїРёСЃС‹РІР°РµС‚СЃСЏ СЃР»РµРґСѓСЋС‰РёРј РѕР±СЂР°Р·РѕРј: РїСЂРё $ p \in \left( \podd{k-1}, \podd{k+1} \right] $ РІС‚РѕСЂРѕР№ РёРіСЂРѕРє РїСЂРёРјРµРЅСЏРµС‚ $ \tau^k $.
+Оптимальная стратегию второго игрока $ \tau^* $ описывается следующим образом: при $ p \in \left( \podd{k-1}, \podd{k+1} \right] $ второй игрок применяет $ \tau^k $.
 \end{theorem}
 \begin{proof}
-РќРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ РёР· Р»РµРјРј \ref{lemma:upper_bound:function} Рё \ref{lemma:lower_bound:function} СЃР»РµРґСѓРµС‚, С‡С‚Рѕ
-$ \forall \sigma \in \Sigma, \, \tau \in \Tau $, РіРґРµ $ \Sigma $ Рё $ \Tau $ -- РјРЅРѕР¶РµСЃС‚РІРѕ СЃС‚СЂР°С‚РµРіРёР№ РїРµСЂРІРѕРіРѕ Рё РІС‚РѕСЂРѕРіРѕ РёРіСЂРѕРєРѕРІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ, СЃРїСЂР°РІРµРґР»РёРІРѕ
+Непосредственно из лемм \ref{lemma:upper_bound:function} и \ref{lemma:lower_bound:function} следует, что
+$ \forall \sigma \in \Sigma, \, \tau \in \Tau $, где $ \Sigma $ и $ \Tau $ -- множество стратегий первого и второго игроков соответственно, справедливо
 \[
   K_\infty^m(p, \sigma, \tau^*)
 \leq K_\infty^m(p, \sigma^*, \tau^*) = H^m(p) = L^m(p) \leq 
   K_\infty^m(p, \sigma^*, \tau).
 \]
-Рђ СЌС‚Рѕ Р·РЅР°С‡РёС‚, С‡С‚Рѕ $ \sigma^* $ Рё $ \tau^* $ -- РѕРїС‚РёРјР°Р»СЊРЅС‹Рµ СЃС‚СЂР°С‚РµРіРёРё, Рё Р·РЅР°С‡РµРЅРёРµ РёРіСЂС‹ $ V_\infty^m(p) = H^m(p) = L^m(p) $.
+А это значит, что $ \sigma^* $ и $ \tau^* $ -- оптимальные стратегии, и значение игры $ V_\infty^m(p) = H^m(p) = L^m(p) $.
 \end{proof}
