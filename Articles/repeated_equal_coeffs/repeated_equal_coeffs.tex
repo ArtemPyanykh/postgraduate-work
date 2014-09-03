@@ -11,7 +11,6 @@
 \usepackage[cp1251]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{mgta}
-\usepackage{dsl}
 \sloppy
 
 \ppage{с. 150--152}
@@ -24,20 +23,771 @@
 Модификация многошаговой модели биржевых торгов}
 %TODO!!!!!!! TO HERE !!!!!!!!!!!!
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For the First Player
+% First step
+\newcommand{\fpfs}[1]{\ensuremath{\sigma^{#1}_1}}
+% First step for state
+\newcommand{\fpfss}[1]{\ensuremath{\sigma^{#1}_1}}
+% First step for state and action
+\newcommand{\fpfssa}[2]{\ensuremath{\sigma^{#1}_{1,#2}}}
+% Partitioning of p = [0,1]
+\newcommand{\peven}[1]{\ensuremath{p_{#1}^{+0}}}
+\newcommand{\podd}[1]{\ensuremath{p_{#1}^{+1/2}}}
+
+% First player p_k^even first step
+\newcommand{\fpefs}[1]{\ensuremath{\phi_{#1}^{+0}}}
+% First player p_k^odd first step
+\newcommand{\fpofs}[1]{\ensuremath{\phi_{#1}^{+1/2}}}
+
+% First player lottery for p in [p_k^even, p_k^odd]
+\newcommand{\fpels}[1]{\ensuremath{\lambda_{#1}^{+0}}}
+% First player lottery for p in [p_k^odd, p_k+1^even]
+\newcommand{\fpols}[1]{\ensuremath{\lambda_{#1}^{+1/2}}}
+
+% List of literature entries nums to ease possible changes
+\newcommand{\samarsky}{3}
+\newcommand{\gelfond}{1}
+\newcommand{\aumann}{5}
+\newcommand{\domansky}{8}
+\newcommand{\demeyer}{7}
+\newcommand{\samuelson}{6}
+\newcommand{\kreps}{2}
+\newcommand{\sandomirskaya}{4}
+
+% Capital Tau
+\newcommand{\Tau}{\ensuremath{\mathrm{T}}}
+
+% Equal be definition
+\newcommand\eqdef{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+
+\newcommand\R{\mathbb{R}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom commands end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
-\input{header}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thefootnote}{ }
+\renewcommand{\footnoterule}{ \vskip 5mm \hrule width 8cm \vskip 3mm}
 
-\input{introduction}
+%TODO!!!!!!!!!! FROM HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\footnote{\medskip \footnotesize \copyright 2014 И.О. Фамилия}
 
-\input{model}
+%
+\copyrightheading{}
+\normalsize
 
-\input{upper_bound}
+% обязательны коды УДК и ББК статьи
+\begin{flushleft}
+УДК (обязательно указывать)
 
-\input{lower_bound}
+ББК
+\end{flushleft}
 
-\input{value_of_the_game}
+\vskip 10mm \thispagestyle{empty}
+\begin{center}
+\Large \bf \textsc{Об одной модификации дискретной многошаговой модели биржевых торгов}
+\end{center}
+\begin{center}
+\large \sc Имя О. Фамилия\\ %первый автор
+\rm
+Организация\\
+Полный адрес организации\\
+\normalsize e-mail: author@noname.ru\\
+\end{center}
+
+\engtitle{On a modification of a discrete multistage bidding model}
+
+\engauthors{%
+\textbf{Authors}, MSU.}
+
+%TODO!!!!!!!!!!!!!! TO HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+\abstr{%
+Исследуется модификация дискретной многошаговой модели биржевых торгов, рассмотренной в [\domansky]. Торги происходят между двумя игроками за однотипные акции, случайная цена акции может принимать два значения --- $ m $ с вероятностью $ p $ или $ 0 $ с вероятностью $ (1 - p) $ --- и определяется в начале торгов. Настоящая цена акции известна Игроку 1. Игрок 2 знает вероятность высокой цены акции и то, что Игрок 1 --- инсайдер. На каждом шаге торгов игроки делают целочисленные ставки. Игрок, предложивший большую ставку, покупает у второго акцию. Цена сделки определяется как полусумма предложенных ставок. Данная модель сводится к повторяющейся игре с асимметричной информацией. Получено решение игры бесконечной продолжительности при произвольных значениях $ m $ и $ p $: найдены оптимальные стратегии игроков и значение игры.}
+\keywords{многошаговые торги, асимметричная информация, повторяющиеся игры с неполной информацией}
+
+\engabstract{%
+This paper is concerned with a modification of a discrete multistage bidding model introduced in [\domansky]. Bidding takes place between two players for one unit of a risky asset. The price of the asset is determined randomly at the start of the bidding and can be either $ m $ with a probability of $ p $ or $ 0 $ with a probability of $ (1 - p) $. The real price of the asset is known to Player 1. Player 2 knows only the probability of a high price and that Player 1 is insider. At each stage of the bidding players make integral bids. The higher bid wins and one unit of the asset is transacted to the winning player. The price of the transaction equals to a convex combination of bids with a coefficient of $ 1/2 $. This model is reduced to the repeated game with incomplete information. The solution for the infinite game with arbitrary $ m $ an $ p $ is found, including optimal strategies for both players and the value of the game.}
+
+\engkeywords{Multistage Bidding, Repeated Games with Incomplete Information, Asymmetric Information}
+
+\makeinfo
+
+\setcounter{footnote}{0}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Введение}
+В работе Б. Де Мейера и Х. Салей [\demeyer] рассматривается модель многошаговых торгов однотипными акциями. 
+Торги ведут между собой два игрока.
+Случайная цена акции может принимать два значения ($ 0 $ или $ m $).
+Перед началом торгов случайный ход определяет цену акции на весь период торгов.
+Выбранная цена сообщается первому игроку и не сообщается второму, при этом второй знает, что первый игрок --- инсайдер.
+Оба игрока знают вероятность высокой цены акции.
+
+На каждом шаге торогов оба игрока одновременно и независимо назначают некоторую цену за акцию.
+Игрок предложивший большую цену покупает у второго акцию по названной цене. Предложенные цены объявляются игрокам в конце каждого хода. Игроки помнят предложенные цены на всех предыдущих этапах торгов.
+Задачей игроков является максимизация стоимости своего портфеля.
+
+Де Мейер и Салей сводят эту модель к повторяющейся игре с неполной информацией и, решая эту игру, описывают оптимальное поведение обоих игроков и ожидаемый выигрыш инсайдера.
+
+В модели Мейера--Салей игроки могут делать произвольные вещественные ставки, но поскольку реальные торги проводятся в тех или иных денежных единицах, более реалистично предположить, что игроки могут делать только дискретные ставки, пропорциональные минимальной денежной единице.
+ 
+В работе [\domansky] В. Доманским рассмотрен дискретный аналог модели Мейера--Салей, где игрокам разрешено делать только целочисленные ставки от $ 0 $ до $ m $.
+Получено решение игры неограниченной продолжительности.
+Нахождение явного решения для конечных игр остается открытой проблемой.
+Для $ n $--шаговых игр в работе [\kreps] В. Крепс получено явное решение при $ m \leq 3 $. 
+В работе [\sandomirskaya] М. Сандомирской и В. Доманским найдено явное решение одношаговой игры при произвольном натуральном значении $ m $.
+
+В настоящей работе будет исследована модификация модели [\domansky], в которой наибольшая ставка определяет направление транзакции, но цена сделки определяется путем переговоров между игроками. 
+
+В работе [\samuelson] Чаттерджи и Самуэльсон рассматривают модель двухстороннего аукциона со следующим правилом торгов: продавец и покупатель одновременно назначают цену на товар, $ s $ и $ b $ соответственно, при этом, в случае осуществления сделки, товар продается по цене $ p~=~kb + (1-k)s $, где $ 0 \leq k \leq 1  $. Параметр $ k $ при этом можно интерпретировать как переговорную силу покупателя. 
+
+В данной работе мы полагаем $ k = \frac{1}{2} $ и исследуем оптимальные стратегии игроков и их выигрыши в бесконечной игре.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Model
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Модель}
+Два игрока с противоположными интересами имеют деньги и однотипные акции. Случайная цена акции может принимать либо значение $ m $ в состоянии $ H $, либо $ 0 $ в состоянии $ L $ и определяется на весь период торгов на первом шаге ходом случая. Первый игрок осведомлен о результате случайного хода, второй игрок знает только вероятность выбора того или иного состояния. 
+Второй игрок знает, что первый является инсайдером.
+На каждом последующем шаге игроки одновременно предлагают свою цену за одну акцию. Игрок, назвавший большую цену покупает у другого игрока акцию, по цене равной полусумме предложенных цен. В случае одинаковых ставок транзакции не происходит.
+
+Данную модель торгов можно рассматривать как повторяющуюся игру с неполной информацией. Подобные игры были впервые рассмотрены Р. Ауманом и М. Машлером (см. [\aumann]). Игра задается множеством состояний, каждому состоянию соответствует матричная игра, где матрицу можно рассматривать как матрицу выигрышей первого игрока.
+
+Таким образом мы приходим к следующей формализации рассматриваемой модели.
+Множество состояний $ S = \{H, L\} $. На первом шаге случай выбирает $ s \in S $ с вероятностями $ p(H) = p $ и $ p(L) = (1 - p) $.
+После этого на протяжении $ n \leq \infty $ шагов игроки играют в игру $ A^s $.
+Соответствующие платежные матрицы задаются следующим образом:
+\begin{eqnarray*}
+A^L(i, j) &=& \frac{1}{m}\begin{cases}
+\frac{i+j}{2}, &\, i < j, \\
+0, &\, i = j, \\
+-\frac{i+j}{2}, &\, i > j,
+\end{cases}
+\\
+A^H(i, j) &=& \frac{1}{m}\begin{cases}
+\frac{i+j}{2} - m, &\, i < j, \\
+0, &\, i = j, \\
+m - \frac{i+j}{2}, &\, i > j.
+\end{cases}
+\end{eqnarray*}
+
+
+
+Множество возможных ставок первого и второго игроков:
+\[
+  i \in I = \{0, 1, \ldots, m\}, \;
+  j \in J = \{0, 1, \ldots, m\}.
+\]
+Тогда стратегией первого игрока является последовательность ходов
+\[
+  \sigma = (\sigma_1, \sigma_2, \ldots, \sigma_t, \ldots),
+\]
+где $ \sigma_t: S \times I^{t-1} \rightarrow \Delta(I) $, а $ \Delta(I) $ --- вероятностное распределение на множестве возможных ставок. Множество всевозможных стратегий первого игрока обозначим через $ \Sigma $.
+
+Аналогично стратегией второго игрока назовем последовательность ходов
+\[
+  \tau = (\tau_1, \tau_2, \ldots, \tau_t, \ldots),
+\]
+где $ \tau_t: I^{t-1} \rightarrow \Delta(J) $. Множество всевозможных стратегий второго игрока обозначим через $ \Tau $.
+
+Для упрощения вычислений умножим платежные матрицы на $ 2m $, сохранив обозначения:
+\begin{eqnarray}
+\label{eq:payoff_matrix_h}
+A^L(i, j) &=& \begin{cases}
+  i + j, &\, i < j, \\
+  0, &\, i = j, \\
+  -i - j, &\, i > j,
+\end{cases}
+\\
+\label{eq:payoff_matrix_l}
+A^H(i, j) &=& \begin{cases}
+  i + j - 2m, &\, i < j, \\
+  0, &\, i = j, \\
+  2m - i - j, &\, i > j.
+\end{cases}
+\end{eqnarray}
+
+В дальнейшем будем рассматривать повторяющуюся игру именно с матрицами \eqref{eq:payoff_matrix_h} и \eqref{eq:payoff_matrix_l}, которую назовем $ G_n^m(p) $. При применении первым игроков смешанной стратегий 
+$ \sigma = (\sigma_1, \sigma_2, \ldots, \sigma_n) $, где 
+\[ 
+  \sigma_t = (\sigma_t^L, \sigma_t^H), \quad
+  \sigma^s_t = (\sigma^s_{t, 1}, \ldots, \sigma^s_{t, m}) \in \Delta(I),
+\] 
+а вторым игроком смешанной стратегии 
+$ \tau = (\tau_1, \tau_2, \ldots, \tau_n) $, где
+$ \tau_t~=~(\tau_{t, 1}, \ldots, \tau_{t, m}) \in \Delta(J) $,
+выигрыш равен
+\begin{equation}
+\label{eq:value_of_game_n}
+K_n^m(p, \sigma, \tau) = \sum_{t=1}^n
+    \left(
+        pA^H(\sigma_t^H, \tau_t) + (1 - p)A^L(\sigma_t^L, \tau_t)
+    \right),
+\end{equation}
+где 
+$ 
+  A^s(\sigma^s_t,\tau_t) = 
+    \sum_{i \in I}
+      \sum_{j \in J}
+        \sigma^s_{t, i} \tau_{t, j} A^s(i, j).
+$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Upper Bound
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Оценка сверху значения игры $ G^m_\infty(p) $}
+\label{sec:upper_bound}
+Рассмотрим следующую стратегию второго игрока $ \tau^k $:
+\begin{equation}
+\label{eq:strategy:sp}
+\begin{aligned}
+\tau_1^k &= k, \\
+\tau_t^k(i_{t-1}, j_{t-1}) &= \begin{cases}
+    j_{t-1} - 1, &\, i_{t-1} < j_{t-1}, \\
+    j_{t-1}, &\, i_{t-1} = j_{t-1}, \\
+    j_{t-1} + 1, &\, i_{t-1} > j_{t-1}.
+\end{cases}
+\end{aligned}
+\end{equation}
+
+
+\begin{utver}
+При применении стратегии \eqref{eq:strategy:sp} в игре $ G_n^m(p) $ второй игрок может гарантировать себе проигрыш не более
+\begin{align}
+\label{eq:upper_bound:l}
+h_n^L(\tau^k) &= \sum_{t=0}^{n-1}
+    (2(k - t) - 1)^+,\\
+\label{eq:upper_bound:h}
+h_n^H(\tau^k) &= \sum_{t=0}^{n-1}
+    (2(m - k - t) - 1)^+,
+\end{align}
+в состояниях $ L $ и $ H $ соответственно.
+\end{utver}
+\begin{proof}
+Проведем доказательство по индукции.
+Для $ h_n^L(\tau^k) $:
+
+\[ 
+h_1^L(\tau^k) = \max_{i \in I} a_{ik}^L = \max(0, 2k - 1).
+\]
+База индукции проверена.
+Пусть $ \forall t \leq n $ выполнено \eqref{eq:upper_bound:l}. 
+Докажем, что \eqref{eq:upper_bound:l} выполняется при $ t=n+1 $. Имеем
+$
+h_{n+1}^L(\tau^k) = \max_{i \in I} (a_{ik}^L + h_n^L(\tau^{c(i)})),
+$
+где
+\[ 
+c(i) = \begin{cases}
+    k - 1, &\, i < k, \\
+    k, &\, i = k, \\
+    k + 1, &\, i > k.
+\end{cases}
+\]
+
+Рассмотрим значение выигрыша в зависимости от действия $ i $ первого игрока. 
+При $ i < k $ имеем:
+\begin{align*}
+  h_{n+1}^L(\tau^k) = 2k - 1 + h_n^L(\tau^{k-1}) &= 2k - 1 + \sum_{t = 0}^{n-1} (2(k-1-t)-1)^+ = \\
+  &= \sum_{t = 0}^n (2(k-t) - 1)^+.
+\end{align*}
+При $ i = k $ получаем:
+\[
+  h_{n+1}^L(\tau^k) = h_n^L(\tau^k) \leq \sum_{t=0}^n(2(k-t)-1)^+.
+\]
+При $ i > k $ имеем:
+\begin{align*}
+  h_{n+1}^L(\tau^k) = -2k - 1 + h_n^L(\tau^{k+1}) &= -2k - 1 + \sum_{t = -1}^{n-2} (2(k-t)-1)^+ \leq \\
+  &\leq \sum_{t=0}^n(2(k-t)-1)^+.
+\end{align*}
+
+Таким образом, \eqref{eq:upper_bound:l} доказано.
+Аналогично для \eqref{eq:upper_bound:h} имеем:
+\[
+  h_1^H(\tau^k) = \max_{i \in I} a_{ik}^H = \max(0, 2(m - k) - 1).
+\]
+База индукции проверена.
+Пусть $ \forall t \leq n $ выполнено \eqref{eq:upper_bound:h}. Докажем, что \eqref{eq:upper_bound:h} выполняется при $ t = n + 1 $. Имеем:
+\[
+h_{n+1}^H(\tau^k) = \max_{i \in I}(a_{ik}^H + h_n^H(\tau^{c(i)}).
+\]
+При $ i > k $ имеем:
+\begin{align*}
+  h_{n+1}^H(\tau^k) 
+  &= 2m - 2k - 1 + h_n^H(\tau^{k-1}) = \\
+  &= 2(m-k)- 1 + \sum_{t = 0}^{n-1}(2(m-k-1-t)-1)^+ = \\
+  &= \sum_{t = 0}^n (2(m-k-t) - 1)^+.
+\end{align*}
+При $ i = k $ получаем:
+\[
+  h_{n+1}^H(\tau^k) = h_n^H(\tau^k) \leq \sum_{t=0}^n(2(m-k-t)-1)^+.
+\]
+При $ i < k $ имеем:
+\begin{align*}
+  h_{n+1}^H(\tau^k) 
+    &= 2k - 1 - 2m + h_n^H(\tau^{k+1}) = \\
+    &= 2k - 1 - 2m + \sum_{t = -1}^{n-2} (2(m-k-t)-1)^+ \leq \\
+    &\leq \sum_{t=0}^n(2(m-k-t)-1)^+.
+\end{align*}
+
+Таким образом \eqref{eq:upper_bound:h} доказано.
+\end{proof}
+
+Можно заметить, что при $ t > m $ значения \eqref{eq:upper_bound:l} и \eqref{eq:upper_bound:h} стабилизируются. Таким образом, справедливо следующее
+
+\begin{utver}
+Для значения бесконечной игры справедливо следующее неравенство:
+\begin{equation}
+\label{eq:upper_bound:value}
+V_\infty^m(p) 
+\leq
+H^m(p) \eqdef \min_{j \in J}
+    (p(m-j)^2 + (1-p)j^2).
+\end{equation}
+\end{utver}
+\begin{proof}
+При каждом $ j $:
+\begin{align*}
+h_{m+1}^H(\tau^j) 
+&= \sum_{t=0}^m (2(m-j-t)-1)^+ = \\
+&= (2 \cdot 0 - 1)^+ + (2 \cdot 1 - 1)^+ + \ldots + (2(m-j) - 1)^+ = \\
+&= (m-j)(m-j+1) - (m-j) = (m-j)^2,
+\\
+h_{m+1}^L(\tau^j)
+&= \sum_{t=0}^m (2(j-t)-1)^+ = \\
+&= (2 \cdot 0 - 1)^+ + (2 \cdot 1 - 1)^+ + \ldots + (2 \cdot j - 1)^+ = \\
+&= j(j+1) - j = j^2.
+\end{align*}
+Отсюда и из \eqref{eq:value_of_game_n} очевидным образом получаем \eqref{eq:upper_bound:value}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma:upper_bound:function}
+Функция $ H^m(p) $ является кусочно-линейной функцией, состоящей из $ m + 1 $ линейных сегментов, и полностью определяется своими значениями в следующих точках:
+\begin{eqnarray*}
+& H^m\left(\frac{k+1/2}{m}\right) 
+    = \frac{m}{2} + mk - k^2 - k, 
+        \, k = \overline{0, m - 1},\\
+& H^m(0) = H^m(1) = 0.
+\end{eqnarray*}
+\end{lemma}
+\begin{proof}
+Квадратичная функция $ \omega(x) = p(m-x)^2 + (1-~p)x^2 $ достигает минимума при $ x = pm $. 
+Отсюда при $ p \in \left( \frac{k - 1/2}{m}, \frac{k+1/2}{m} \right] $ минимум $ p(m-j)^2 + (1-p)j^2 $ по целым $ j $ достигается при $ j = k $.
+ 
+Отсюда видно, что $ H^m(p) $ является кусочно-линейной функцией, которая полностью определяется своими значениями в точках $ p~=~\frac{k+1/2}{m}, \, k = \overline{0, m-1} $. 
+Значение $ H^m(p) $ при $ p = \frac{k+1/2}{m} $ легко находится подстановкой $ j~=~k $ в \eqref{eq:upper_bound:value}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lower Bound
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Оценка снизу значения игры $ G^m_\infty(p) $}
+\label{sec:lower_bound}
+
+Пусть на первом шаге первый игрок применяет 
+$ \fpfs{k} = (\fpfss{H}, \fpfss{L}) $, где 
+$ \fpfss{H} = (\fpfssa{H}{k}, \fpfssa{H}{k+1}) $ и 
+$ \fpfss{L} = (\fpfssa{L}{k}, \fpfssa{L}{k+1}) $, где 
+$ \fpfssa{s}{i} $ -- вероятность сделать ставку равную $ i $ в состоянии $ s \in \{ H, L \} $.
+Т.е. при применении $ \fpfs{k} $ первый игрок делает ставки $ k $ и $ k + 1 $ с некоторыми заданными вероятностями. 
+
+Также $ \fpfs{k} $ можно определить, если задать полные вероятности действий $ k $ и $ k + 1 $ равные $ q_k $ и $ q_{k+1} $, а также апостериорные вероятности $ p(s|i) $ состояния $ s $, если на первом шаге игрок сделал ставку $ i $. 
+При этом вероятности $ \fpfssa{s}{i} $ легко рассчитываются по формуле Байеса
+\[
+    \fpfssa{s}{i} = \frac{p(s|i)q_i}{p(s)}.
+\]
+В дальнейшем мы будем пользоваться именно таким параметрическим заданием $ \fpfs{k} $.
+
+\begin{utver}
+\label{utver:lower_bound:general_step}
+При использовании $ \fpfs{k} $ первый игрок гарантирует себе на первом шаге выигрыш:
+\begin{equation}
+\label{eq:lower_bound:general_step}
+K_1(p, \fpfs{k}, j) = \begin{cases}
+    2mp - j - k - q_{k+1}, &\, j < k, \\
+    2mp(H|k+1)q_{k+1} - (2k+1)q_{k+1}, &\, j = k, \\
+    (2k + 1)q_k - 2mp(H|k)q_k, &\, j = k+1, \\
+    j + k - 2mp + q_{k+1}, &\, j > k + 1.
+\end{cases}
+\end{equation}
+\end{utver}
+\begin{proof}
+По определению
+\begin{equation*}
+\label{eq:payoff:stage}
+    K_1(p, \fpfs{k}, j) = pA^H(\fpfss{H}, j) + (1-p)A^L(\fpfss{L}, j).
+\end{equation*}
+
+Распишем выигрыш на первом шаге в зависимости от значения $ j $ действия второго игрока.
+При $ j < k $ имеем:
+\begin{align*}
+  A^H(\fpfss{H}, j)
+  &= \fpfssa{H}{k} (2m - j - k) + \fpfssa{H}{k+1} (2m - j - k - 1) = \\
+  &= (2m - j - k) - \fpfssa{H}{k+1},\\
+  A^L(\fpfss{L}, j)
+  &= \fpfssa{L}{k} (-j - k) + \fpfssa{L}{k+1} (-j - k - 1) = \\
+  &= - j - k - \fpfssa{L}{k+1}.
+\end{align*}
+Отсюда получаем, что
+\begin{multline*}
+  K_1(p, \fpfs{k}, j) 
+  = p (2m - j - k) - p\fpfssa{H}{k+1} + 
+      (1-p)(-j - k) - (1-p)\fpfssa{L}{k+1} = \\
+  = 2mp - j - k - (p\fpfssa{H}{k+1} + (1-p)\fpfssa{L}{k+1}) = 2mp - j - k - q_{k+1}.
+\end{multline*}
+Аналогично при $ j = k $ имеем:
+\begin{gather*}
+  A^H(\fpfss{H}, k) = \fpfssa{H}{k+1} (2m - 2k - 1), \;
+  A^L(\fpfss{L}, k) = \fpfssa{L}{k+1} (-2k - 1), \\
+  K_1(p, \fpfs{k}, k) = 2mp\fpfssa{H}{k+1} - (2k+1)q_{k+1} = \\ 
+  = 2mp(H|k+1)q_{k+1} - (2k+1)q_{k+1}.
+\end{gather*}
+Значения $ K_1(p, \fpfs{k}, j) $ при $ j \geq k + 1 $ получаются из соображений симметрии.
+\end{proof}
+
+Введем на $ [0, 1] $ разбиение $ P_k $ с точками 
+\[
+\begin{array}{lcr}
+  \peven{k} = \frac{k}{m}, \quad k = \overline{0,m} 
+  & \text{и} & 
+  \podd{k} = \frac{k}{m} + \frac{1}{2m}, \quad k = \overline{0, m - 1}.
+\end{array}
+\]
+
+Определим через $ \fpefs{k} $ такое действие первого игрока, что $ \fpefs{k}~=~\fpfs{k} $ с параметрами
+\begin{gather*}
+  p(H|k) = \frac{k}{m} - \frac{1}{2m} = \podd{k-1}, \quad
+  p(H|k+1) = \frac{k}{m} + \frac{1}{2m} = \podd{k},\\
+  q_k = q_{k+1} = 1/2.
+\end{gather*}
+Пусть также $ \fpefs{0} = 0,\, \fpefs{m} = m $ (т.е. если неопределенности нет, первый игрок использует минимаксную стратегию).
+Аналогично, через $ \fpofs{k} $ определим такое действие первого игрока, что $ \fpofs{k}~=~\fpfs{k} $ с параметрами
+\begin{gather*}
+  p(H|k) = \frac{k}{m} = \peven{k}, \quad
+  p(H|k+1) = \frac{k + 1}{m} = \peven{k+1}, \\
+  q_k = q_{k+1} = 1/2.
+\end{gather*}
+
+\begin{utver}
+\label{utver:first_player:strategy:extreme_points}
+  При $ p = \peven{k} \left( p = \podd{k} \right) $ первый игрок может гарантировать себе выигрыш на первом шаге не менее 
+  $ 0 $ (не менее~$ 1/2 $).
+\end{utver}
+\begin{proof}
+  Действительно, пусть при $ p = \peven{k} $ первый игрок применяет $ \fpefs{k} $, а при $ p = \podd{k} $ применяет $ \fpofs{k} $. Тогда подстановкой параметров $ \fpefs{k} $ и $ \fpofs{k} $ в  \eqref{eq:lower_bound:general_step} немедленно получаем справедливость данного утверждения.
+\end{proof}
+
+Заметим, что если $ p \in P_k $, то при применении $ \fpefs{k} $ и $ \fpofs{k} $ апостериорные вероятности также принадлежат $ P_k $.
+Таким образом, определив действие первого игрока на первом шаге для произвольного значения вероятности $ p $, мы тем самым определим стратегию первого игрока в игре $ G_n^m(p) $ произвольной продолжительности.
+
+В силу рекурсивной структуры игры $ G_n^m(p) $ можно выписать рекуррентную формулу для нижней оценки значения игры $ L_n^m(p) $ при $ p \in P_k $:
+
+\begin{equation*}
+\begin{gathered}
+\label{eq:lower_bound:recurrence_finite}
+L_n^m\left(\frac{k+\frac{1}{2}}{m}\right) = 
+    \frac{1}{2} + \frac{1}{2}\left(
+        L_{n-1}^m\left(\frac{k}{m}\right) + 
+        L_{n-1}^m\left(\frac{k + 1}{m}\right)
+    \right), \\
+L_n^m\left(\frac{k+1}{m}\right) = 
+    \frac{1}{2}\left(
+        L_{n-1}^m\left(\frac{k+\frac{1}{2}}{m}\right) + 
+        L_{n-1}^m\left(\frac{k+\frac{3}{2}}{m}\right)
+    \right), \\
+L_n^m(0) = L_n^m(1) = 0.
+\end{gathered}
+\end{equation*}
+
+Устремив $ n $ в бесконечность получим рекуррентную формулу для нижней оценки значения игры $ G_\infty^m(p) $. Перепишем эту рекуррентную формулу в следующем виде:
+\begin{equation}
+\label{eq:lower_bound:recurrence_infinite}
+\begin{gathered}
+L_{2k + 1} = \frac{1}{2} + \frac{1}{2} (L_{2k} + L_{2k + 2}), \, 
+    k = \overline{0,m-1}, \\
+L_{2k} = \frac{1}{2} (L_{2k - 1} + L_{2k + 1}), \, 
+    k = \overline{1,m-1}, \\
+L_0 = L_{2m} = 0.
+\end{gathered}
+\end{equation}
+
+Введем матрицу $ A \in \R^{(2m-1)\times(2m-1)} $ и вектор-столбец $ b \in \R^{2m-1} $ следующим образом:
+\begin{equation*}
+A =
+\left(\begin{array}{ccccccc}
+    1 & -\frac{1}{2} & 0 & \cdots & 0 & 0 & 0 \\
+    -\frac{1}{2} & 1 & -\frac{1}{2} & \cdots & 0 & 0 & 0 \\
+    \hdotsfor{7} \\
+    0 & 0 & 0 & \cdots & -\frac{1}{2} & 1 & -\frac{1}{2} \\
+    0 & 0 & 0 & \cdots & 0 & -\frac{1}{2} & 1 \\
+\end{array}\right),\quad
+b = \left(\begin{array}{c}
+\frac{1}{2} \\
+0\\
+\cdots\\
+0 \\
+\frac{1}{2}
+\end{array}\right).
+\end{equation*}
+
+
+Тогда \eqref{eq:lower_bound:recurrence_infinite} можно переписать следующим образом:
+\[
+\begin{aligned}
+AL &= b, \\
+L_0 &= L_{2m} = 0,
+\end{aligned}
+\]
+где $ L = (L_1, L_2, \ldots, L_{2m-1})^T $.
+
+Известно, что системы $ Mx = f $ с трехдиагональной матрицей $ M $, имеющей следующую структуру:
+\[
+M = \left(\begin{array}{ccccccc}
+c_1 & b_1 & 0 & \cdots & 0 & 0 & 0 \\
+a_2 & b_2 & c_2 & \cdots & 0 & 0 & 0 \\
+\hdotsfor{7} \\
+0 & 0 & 0 & \cdots & a_{n-1} & c_{n-1} & b_{n-1} \\
+0 & 0 & 0 & \cdots & 0 & a_n & c_n
+\end{array}\right)
+\]
+можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и значений переменного (см. [\samarsky]):
+\begin{equation}
+\label{eq:tridiagonal:formulas}
+\begin{split}
+    &x_i = \alpha_{i+1} x_{i+1} + \beta_{i+1}, \\
+    &\alpha_{i+1} = -\frac{b_i}{c_i + a_i\alpha_i}, \\
+    &\beta_{i+1} = \frac{f_i - a_i\beta_i}{c_i + a_i\alpha_i}, \\
+\end{split}
+\qquad
+\begin{split}
+    &x_n = \frac{f_n - a_n\beta_n}{c_n + a_n\alpha_n}, \\
+    &\alpha_2 = -\frac{b_1}{c_1}, \\
+    &\beta_2 = \frac{f_1}{c_1}.
+\end{split}
+\end{equation}
+
+Матрица $ A $ является трехдиагональной матрицей, в которой 
+\begin{equation}
+\label{eq:tridiagonal:coefficients_values}
+a_i = b_i = -\frac{1}{2}, \quad c_i = 1.
+\end{equation}
+В этом случае мы можем получить явные выражения для прогоночных коэффициентов и значения $ L $.
+
+\begin{utver}
+\label{utver:tridiagonal:coefficients}
+Прогоночные коэффициенты для матрицы $ A $ выражаются следующим образом:
+\begin{gather*}
+\label{eq:tridiagonal:alpha}
+  \alpha_i = \frac{i-1}{i}, \\
+  \label{eq:tridiagonal:beta}
+  \beta_{2i} = \frac{2i}{4}, \;
+  \beta_{2i+1} = \frac{i^2}{2i+1}.
+\end{gather*}
+\end{utver}
+\begin{proof}
+Справедливость данного утверждения элементарным образом устанавливается доказательством по индукции с учетом \eqref{eq:tridiagonal:coefficients_values} и \eqref{eq:tridiagonal:formulas}.
+\end{proof}
+
+Из утверждения \ref{utver:tridiagonal:coefficients} и соображений симметрии, мы можем найти значение $ L_{2m - 1} = L_1 $. Действительно,
+\begin{align}
+\label{eq:lower_bound:recurrent_boundaries}
+L_1 = L_{2m-1} &= 
+\left(
+    \frac{1}{2} + \frac{(m-1)^2}{2(2m-1)}
+\right)
+/
+\left(
+    1 - \frac{2m-1-1}{2(2m-1)}
+\right) = \nonumber \\
+&= \frac{
+    2m - 1 + (m-1)^2
+}{
+    4m - 2 - 2m + 2
+} = \frac{m}{2}.
+\end{align}
+
+Так как 
+$ L_{2(m + 1)} = \frac{1}{2} (L_{2m+1} + L_{2m+3}) $,
+то нам достаточно найти явный вид только для нечетных $ L_i $. Из \eqref{eq:tridiagonal:formulas} и утверждения \ref{utver:tridiagonal:coefficients} мы получаем, что
+\begin{align}
+\label{eq:lower_bound:recurrent_formula}
+L_{2i+1} &= \alpha_{2(i+1)}(
+    \alpha_{2(i+1)+1} L_{2(i+1)+1} + \beta_{2(i+1)+1}
+    ) + \beta_{2(i+1)} = \nonumber \\
+&= \alpha_{2(i+1)}\alpha_{2(i+1)+1} L_{2(i+1)+1} +
+    \alpha_{2(i+1)}\beta_{2(i+1)+1} + \beta_{2(i+1)} = \nonumber \\
+&= \frac{2i+1}{2i+3} L_{2i+3} + \frac{2(i+1)^2}{2i+3}.
+\end{align}
+
+\begin{utver}
+\label{utver:lower_bound:solution}
+Решение \eqref{eq:lower_bound:recurrence_infinite} дается следующими формулами:
+\begin{gather*}
+\label{eq:lower_bound:recurrence_solution}
+    L_{2k+1} = m/2 + mk - k^2 - k, \;
+    k = \overline{0, m-1}, \\
+    L_{2k} = mk - k^2, \;
+    k = \overline{0, m}.
+\end{gather*}
+\end{utver}
+\begin{proof}
+Для простоты перепишем \eqref{eq:lower_bound:recurrent_boundaries}, \eqref{eq:lower_bound:recurrent_formula} следующим образом:
+\begin{equation}
+\label{eq:lower_bound:recurrent_formula_simplified}
+f_{k+1} = \frac{2k+3}{2k+1} f_k - \frac{2(k+1)^2}{2k+1}, \quad f_0 = \frac{m}{2}.
+\end{equation}
+
+Из [\gelfond] известно, что решение данного конечно-разностного уравнения представляется в следующем виде:
+\[
+f(k) = f^*(k) + Cf^O(k),
+\]
+где $ f^*(k) $ -- частное решение неоднородного уравнения, а $ f^O(k) $ -- решение однородного уравнения.
+
+Легко проверить, что при
+\[
+\begin{array}{rcl}
+  f^O(k) = 2k + 1, \quad
+  f^*(k) = -k^2 - k, \quad
+  C = m/2,
+\end{array}
+\]
+мы получаем решение \eqref{eq:lower_bound:recurrent_formula_simplified}, а значит и $ L_{2k+1} $. 
+$ L_{2k} $ находится из соотношений \eqref{eq:lower_bound:recurrence_infinite}.
+\end{proof}
+
+Таким образом мы определили функцию $ L^m(p) $ при $ p \in P_k $.
+Для того, чтобы определить эту функцию при $ p $ лежащих внутри интервалов разбиения $ P_k $ нам нужна стратегия, гарантирующая первому игроку выигрыш, лежащий на отрезке, соединяющем крайние точки этих интервалов.
+
+Для заданного $ p $ обозначим через $ \fpels{k} $ такое действие первого игрока, что $ \fpels{k}~=~\fpfs{k} $ с параметрами:
+\begin{gather*}
+  p(H|k) = \frac{k}{m} = \peven{k}, \quad
+  p(H|k+1) = \frac{k}{m} + \frac{1}{2m} = \podd{k}, \\
+  q_k = 2k + 1 - 2mp, \quad
+  q_{k+1} = 2(pm - k).
+\end{gather*}
+Аналогичным образом, через $ \fpols{k} $ обозначим действие первого игрока такое, что $ \fpols{k}~=~\fpfs{k} $ с параметрами:
+\begin{gather*}
+  p(H|k) = \frac{k}{m} + \frac{1}{2m} = \podd{k}, \quad
+  p(H|k+1) = \frac{k + 1}{m} = \peven{k+1}, \\
+  q_k = 2(k + 1 - mp), \quad
+  q_{k+1} = 2mp -2k - 1.
+\end{gather*}
+
+\begin{utver}
+\label{utver:lower_bound:lottery}
+  Пусть 
+  $ p \in (\peven{k}, \podd{k})
+  \left( p \in (\podd{k}, \peven{k+1}) \right) $. 
+  Тогда первый игрок может гарантировать себе на первом шаге неотрицательный выигрыш.
+  
+  Кроме того, если на последующих шагах первый игрок будет использовать стратегию из утверждения \ref{utver:first_player:strategy:extreme_points}, то он может гарантировать себе выигрыш $ L^m(p) $, лежащий на отрезке, соединяющем 
+  $ L^m(\peven{k}) \text{ и } L^m(\podd{k})
+  \left(
+    L^m(\podd{k}) \text{ и } L^m(\peven{k+1}) 
+  \right)$.
+\end{utver}
+\begin{proof}
+Проведем доказательство для случая $ p \in (\peven{k}, \podd{k}) $.
+Пусть первый игрок на первом шаге применяет $ \fpels{k} $. Тогда непосредственной подстановкой параметров $ \fpels{k} $ в \eqref{eq:lower_bound:general_step} получим, что 
+$ \forall j \in J $ выполнено $ K_1(p, \fpels{k}, j)~\geq~0 $.
+
+Далее заметим, что после применения $ \fpels{k} $ апостериорные вероятности принадлежат разбиению $ P_k $.
+Таким образом, если на последующих шагах первый игрок будет использовать стратегию из утверждения \ref{utver:first_player:strategy:extreme_points}, то он гарантирует себе выигрыш
+$ L^m(p)~=~q_k L^m(\peven{k})~+~q_{k+1} L^m(\podd{k}) $. 
+Заметим, что 
+\[
+    q_k = \frac{\podd{k} - p}{\podd{k} - \peven{k}}, \quad q_{k+1} = \frac{p - \peven{k}}{\podd{k} - \peven{k}}.
+\]
+Отсюда видно, что $ L^m(p) $, $ L^m(\peven{k}) $, $ L^m(\podd{k}) $ лежат на одной прямой.
+
+При $ p \in (\podd{k}, \peven{k+1}) $ утверждение доказывается аналогично с заменой $ \fpels{k} $ на $ \fpols{k} $.
+\end{proof}
+
+Из утверждений \ref{utver:lower_bound:solution} и \ref{utver:lower_bound:lottery} непосредственно следует справедливость следующей
+
+\begin{lemma}
+\label{lemma:lower_bound:function}
+Функция $ L^m(p) $ является кусочно-линейной функцией, состоящей из $ m + 1 $ линейных сегментов, и полностью определяется своими значениями в следующих точках:
+\begin{eqnarray*}
+  & L^m\left(\frac{k+1/2}{m}\right) 
+      = \frac{m}{2} + mk - k^2 - k, 
+          \; k = \overline{0, m - 1}, \\
+  & L^m(0) = L^m(1) = 0.
+\end{eqnarray*}
+\end{lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Value
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Значение игры $ G_\infty^m(p) $}
+\begin{theorem}
+\label{theorem:infinite_game:value}
+Игра $ G_\infty^m(p) $ имеет значение 
+\[
+V_\infty^m(p) = H^m(p) = L^m(p).
+\]
+
+Оптимальная стратегия первого игрока $ \sigma^* $ дается утверждениями \ref{utver:first_player:strategy:extreme_points} и \ref{utver:lower_bound:lottery}.
+
+Оптимальная стратегию второго игрока $ \tau^* $ описывается следующим образом: при $ p \in \left( \podd{k-1}, \podd{k+1} \right] $ второй игрок применяет $ \tau^k $.
+\end{theorem}
+\begin{proof}
+Непосредственно из лемм \ref{lemma:upper_bound:function} и \ref{lemma:lower_bound:function} следует, что
+$ \forall \sigma \in \Sigma, \, \tau \in \Tau $, где $ \Sigma $ и $ \Tau $ -- множество стратегий первого и второго игроков соответственно, справедливо
+\[
+  K_\infty^m(p, \sigma, \tau^*)
+\leq K_\infty^m(p, \sigma^*, \tau^*) = H^m(p) = L^m(p) \leq 
+  K_\infty^m(p, \sigma^*, \tau).
+\]
+А это значит, что $ \sigma^* $ и $ \tau^* $ -- оптимальные стратегии, и значение игры $ V_\infty^m(p) = H^m(p) = L^m(p) $.
+\end{proof}
 
 \vskip 10mm
 
-\input{footer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Footer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+СПИСОК ЛИТЕРАТУРЫ
+\end{center}
+
+\begin{enumerate}
+\item
+Гельфонд А.О. \textit{Исчисление конечных разностей}. М.: Книжный дом <<ЛИБРОКОМ>>, 2012
+
+\item
+Крепс В.Л. \textit{Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности} // Изв. РАН. Теория и системы управления. 2009. Вып. 4. С. 109-120
+
+\item
+Самарский А.А., Гулин А.В. \textit{Численные методы}. М.: Наука, 1989
+
+\item
+Сандомирская М.С., Доманский В.К. \textit{Решение одношаговой игры биржевых торгов с неполной информацией} // Математическая теория игр и её приложения. 2012. Т. 4. Вып. 1. С. 32-54 
+
+\item
+Aumann R.J., Maschler M. B. \textit{Repeated Games with Incomplete Information}. The MIT Press, Cambridge, London
+
+\item
+Chatterjee K., Samuelson W. \textit{Bargaining under Incomplete Information} // Operations Research. 1983. V. 31. N. 5. P. 835--851
+
+\item
+De Meyer B., Saley H. \textit{On the stragegic origin of Brownian motion in finance} // Int J Game Theory. 2002. V. 31. P. 285--319
+
+\item
+Domansky V. \textit{Repeated games with asymmetric information and random price fluctuations at finance markets} // Int J Game Theory. 2007. V. 36(2). P. 241--257
+\end{enumerate}
+
+\makeenginfo
 \end{document}
