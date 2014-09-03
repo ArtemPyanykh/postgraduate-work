@@ -47,20 +47,10 @@
 % First player lottery for p in [p_k^odd, p_k+1^even]
 \newcommand{\fpols}[1]{\ensuremath{\lambda_{#1}^{+1/2}}}
 
-% List of literature entries nums to ease possible changes
-\newcommand{\samarsky}{3}
-\newcommand{\gelfond}{1}
-\newcommand{\aumann}{5}
-\newcommand{\domansky}{8}
-\newcommand{\demeyer}{7}
-\newcommand{\samuelson}{6}
-\newcommand{\kreps}{2}
-\newcommand{\sandomirskaya}{4}
-
 % Capital Tau
 \newcommand{\Tau}{\ensuremath{\mathrm{T}}}
 
-% Equal be definition
+% Equal by definition
 \newcommand\eqdef{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
 
 \newcommand\R{\mathbb{R}}
@@ -109,11 +99,11 @@
 %TODO!!!!!!!!!!!!!! TO HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 \abstr{%
-Исследуется модификация дискретной многошаговой модели биржевых торгов, рассмотренной в [\domansky]. Торги происходят между двумя игроками за однотипные акции, случайная цена акции может принимать два значения --- $ m $ с вероятностью $ p $ или $ 0 $ с вероятностью $ (1 - p) $ --- и определяется в начале торгов. Настоящая цена акции известна Игроку 1. Игрок 2 знает вероятность высокой цены акции и то, что Игрок 1 --- инсайдер. На каждом шаге торгов игроки делают целочисленные ставки. Игрок, предложивший большую ставку, покупает у второго акцию. Цена сделки определяется как полусумма предложенных ставок. Данная модель сводится к повторяющейся игре с асимметричной информацией. Получено решение игры бесконечной продолжительности при произвольных значениях $ m $ и $ p $: найдены оптимальные стратегии игроков и значение игры.}
+Исследуется модификация дискретной многошаговой модели биржевых торгов, рассмотренной в [\ref{lit:domansky}]. Торги происходят между двумя игроками за однотипные акции, случайная цена акции может принимать два значения --- $ m $ с вероятностью $ p $ или $ 0 $ с вероятностью $ (1 - p) $ --- и определяется в начале торгов. Настоящая цена акции известна Игроку 1. Игрок 2 знает вероятность высокой цены акции и то, что Игрок 1 --- инсайдер. На каждом шаге торгов игроки делают целочисленные ставки. Игрок, предложивший большую ставку, покупает у второго акцию. Цена сделки определяется как полусумма предложенных ставок. Данная модель сводится к повторяющейся игре с асимметричной информацией. Получено решение игры бесконечной продолжительности при произвольных значениях $ m $ и $ p $: найдены оптимальные стратегии игроков и значение игры.}
 \keywords{многошаговые торги, асимметричная информация, повторяющиеся игры с неполной информацией}
 
 \engabstract{%
-This paper is concerned with a modification of a discrete multistage bidding model introduced in [\domansky]. Bidding takes place between two players for one unit of a risky asset. The price of the asset is determined randomly at the start of the bidding and can be either $ m $ with a probability of $ p $ or $ 0 $ with a probability of $ (1 - p) $. The real price of the asset is known to Player 1. Player 2 knows only the probability of a high price and that Player 1 is insider. At each stage of the bidding players make integral bids. The higher bid wins and one unit of the asset is transacted to the winning player. The price of the transaction equals to a convex combination of bids with a coefficient of $ 1/2 $. This model is reduced to the repeated game with incomplete information. The solution for the infinite game with arbitrary $ m $ an $ p $ is found, including optimal strategies for both players and the value of the game.}
+This paper is concerned with a modification of a discrete multistage bidding model introduced in [\ref{lit:domansky}]. Bidding takes place between two players for one unit of a risky asset. The price of the asset is determined randomly at the start of the bidding and can be either $ m $ with a probability of $ p $ or $ 0 $ with a probability of $ (1 - p) $. The real price of the asset is known to Player 1. Player 2 knows only the probability of a high price and that Player 1 is insider. At each stage of the bidding players make integral bids. The higher bid wins and one unit of the asset is transacted to the winning player. The price of the transaction equals to a convex combination of bids with a coefficient of $ 1/2 $. This model is reduced to the repeated game with incomplete information. The solution for the infinite game with arbitrary $ m $ an $ p $ is found, including optimal strategies for both players and the value of the game.}
 
 \engkeywords{Multistage Bidding, Repeated Games with Incomplete Information, Asymmetric Information}
 
@@ -127,7 +117,7 @@ This paper is concerned with a modification of a discrete multistage bidding mod
 % Introduction
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Введение}
-В работе Б. Де Мейера и Х. Салей [\demeyer] рассматривается модель многошаговых торгов однотипными акциями. 
+В работе Б. Де Мейера и Х. Салей [\ref{lit:demeyer}] рассматривается модель многошаговых торгов однотипными акциями. 
 Торги ведут между собой два игрока.
 Случайная цена акции может принимать два значения ($ 0 $ или $ m $).
 Перед началом торгов случайный ход определяет цену акции на весь период торгов.
@@ -142,15 +132,15 @@ This paper is concerned with a modification of a discrete multistage bidding mod
 
 В модели Мейера--Салей игроки могут делать произвольные вещественные ставки, но поскольку реальные торги проводятся в тех или иных денежных единицах, более реалистично предположить, что игроки могут делать только дискретные ставки, пропорциональные минимальной денежной единице.
  
-В работе [\domansky] В. Доманским рассмотрен дискретный аналог модели Мейера--Салей, где игрокам разрешено делать только целочисленные ставки от $ 0 $ до $ m $.
+В работе [\ref{lit:domansky}] В. Доманским рассмотрен дискретный аналог модели Мейера--Салей, где игрокам разрешено делать только целочисленные ставки от $ 0 $ до $ m $.
 Получено решение игры неограниченной продолжительности.
 Нахождение явного решения для конечных игр остается открытой проблемой.
-Для $ n $--шаговых игр в работе [\kreps] В. Крепс получено явное решение при $ m \leq 3 $. 
-В работе [\sandomirskaya] М. Сандомирской и В. Доманским найдено явное решение одношаговой игры при произвольном натуральном значении $ m $.
+Для $ n $--шаговых игр в работе [\ref{lit:kreps}] В. Крепс получено явное решение при $ m \leq 3 $. 
+В работе [\ref{lit:sandomirskaya}] М. Сандомирской и В. Доманским найдено явное решение одношаговой игры при произвольном натуральном значении $ m $.
 
-В настоящей работе будет исследована модификация модели [\domansky], в которой наибольшая ставка определяет направление транзакции, но цена сделки определяется путем переговоров между игроками. 
+В настоящей работе будет исследована модификация модели [\ref{lit:domansky}], в которой наибольшая ставка определяет направление транзакции, но цена сделки определяется путем переговоров между игроками. 
 
-В работе [\samuelson] Чаттерджи и Самуэльсон рассматривают модель двухстороннего аукциона со следующим правилом торгов: продавец и покупатель одновременно назначают цену на товар, $ s $ и $ b $ соответственно, при этом, в случае осуществления сделки, товар продается по цене $ p~=~kb + (1-k)s $, где $ 0 \leq k \leq 1  $. Параметр $ k $ при этом можно интерпретировать как переговорную силу покупателя. 
+В работе [\ref{lit:chatterjee}] Чаттерджи и Самуэльсон рассматривают модель двухстороннего аукциона со следующим правилом торгов: продавец и покупатель одновременно назначают цену на товар, $ s $ и $ b $ соответственно, при этом, в случае осуществления сделки, товар продается по цене $ p~=~kb + (1-k)s $, где $ 0 \leq k \leq 1  $. Параметр $ k $ при этом можно интерпретировать как переговорную силу покупателя. 
 
 В данной работе мы полагаем $ k = \frac{1}{2} $ и исследуем оптимальные стратегии игроков и их выигрыши в бесконечной игре.
 
@@ -162,7 +152,7 @@ This paper is concerned with a modification of a discrete multistage bidding mod
 Второй игрок знает, что первый является инсайдером.
 На каждом последующем шаге игроки одновременно предлагают свою цену за одну акцию. Игрок, назвавший большую цену покупает у другого игрока акцию, по цене равной полусумме предложенных цен. В случае одинаковых ставок транзакции не происходит.
 
-Данную модель торгов можно рассматривать как повторяющуюся игру с неполной информацией. Подобные игры были впервые рассмотрены Р. Ауманом и М. Машлером (см. [\aumann]). Игра задается множеством состояний, каждому состоянию соответствует матричная игра, где матрицу можно рассматривать как матрицу выигрышей первого игрока.
+Данную модель торгов можно рассматривать как повторяющуюся игру с неполной информацией. Подобные игры были впервые рассмотрены Р. Ауманом и М. Машлером (см. [\ref{lit:aumann}]). Игра задается множеством состояний, каждому состоянию соответствует матричная игра, где матрицу можно рассматривать как матрицу выигрышей первого игрока.
 
 Таким образом мы приходим к следующей формализации рассматриваемой модели.
 Множество состояний $ S = \{H, L\} $. На первом шаге случай выбирает $ s \in S $ с вероятностями $ p(H) = p $ и $ p(L) = (1 - p) $.
@@ -562,7 +552,7 @@ a_2 & b_2 & c_2 & \cdots & 0 & 0 & 0 \\
 0 & 0 & 0 & \cdots & 0 & a_n & c_n
 \end{array}\right)
 \]
-можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и значений переменного (см. [\samarsky]):
+можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и значений переменного (см. [\ref{lit:samarsky}]):
 \begin{equation}
 \label{eq:tridiagonal:formulas}
 \begin{split}
@@ -649,7 +639,7 @@ L_{2i+1} &= \alpha_{2(i+1)}(
 f_{k+1} = \frac{2k+3}{2k+1} f_k - \frac{2(k+1)^2}{2k+1}, \quad f_0 = \frac{m}{2}.
 \end{equation}
 
-Из [\gelfond] известно, что решение данного конечно-разностного уравнения представляется в следующем виде:
+Из [\ref{lit:gelfond}] известно, что решение данного конечно-разностного уравнения представляется в следующем виде:
 \[
 f(k) = f^*(k) + Cf^O(k),
 \]
@@ -764,28 +754,28 @@ $ \forall \sigma \in \Sigma, \, \tau \in \Tau $, где $ \Sigma $ и $ \Tau $ -- мн
 \end{center}
 
 \begin{enumerate}
-\item
+\item\label{lit:gelfond}
 Гельфонд А.О. \textit{Исчисление конечных разностей}. М.: Книжный дом <<ЛИБРОКОМ>>, 2012
 
-\item
+\item\label{lit:kreps}
 Крепс В.Л. \textit{Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности} // Изв. РАН. Теория и системы управления. 2009. Вып. 4. С. 109-120
 
-\item
+\item\label{lit:samarsky}
 Самарский А.А., Гулин А.В. \textit{Численные методы}. М.: Наука, 1989
 
-\item
+\item\label{lit:sandomirskaya}
 Сандомирская М.С., Доманский В.К. \textit{Решение одношаговой игры биржевых торгов с неполной информацией} // Математическая теория игр и её приложения. 2012. Т. 4. Вып. 1. С. 32-54 
 
-\item
+\item\label{lit:aumann}
 Aumann R.J., Maschler M. B. \textit{Repeated Games with Incomplete Information}. The MIT Press, Cambridge, London
 
-\item
+\item\label{lit:chatterjee}
 Chatterjee K., Samuelson W. \textit{Bargaining under Incomplete Information} // Operations Research. 1983. V. 31. N. 5. P. 835--851
 
-\item
+\item\label{lit:demeyer}
 De Meyer B., Saley H. \textit{On the strategic origin of Brownian motion in finance} // Int J Game Theory. 2002. V. 31. P. 285--319
 
-\item
+\item\label{lit:domansky}
 Domansky V. \textit{Repeated games with asymmetric information and random price fluctuations at finance markets} // Int J Game Theory. 2007. V. 36(2). P. 241--257
 \end{enumerate}
 
