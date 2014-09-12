@@ -304,43 +304,25 @@ c(i) = \begin{cases}
 
 Можно заметить, что при $ n \geq m $ значения \eqref{eq:upper_bound:l} и \eqref{eq:upper_bound:h} стабилизируются, то есть 
 $ h^s_m(\tau^k)=h^s_{m+1}(\tau^k)=\ldots=h^s_{m+i}(\tau^k),\; i \in \mathbb{N} $.
-Так как 
-\[ 
-  \max_{\sigma \in \Sigma } K_n^m(p, \sigma, \tau^k) \leq ph^H_n(\tau^k) + (1 - p)h^L_n(\tau^k), 
-\]
-то можно осуществить предельный переход при $ n \rightarrow \infty $. При этом получим, что
-\[ 
-  \max_{\sigma \in \Sigma } K_\infty^m(p, \sigma, \tau^k) \leq ph^H_m(\tau^k) + (1 - p)h^L_m(\tau^k).
-\]
-Таким образом, справедливо следующее
-
-\begin{utver}
-Значение функции выигрыша первого игрока в игре бесконечной продолжительности ограничено сверху, причем имет место следующее неравенство
-\begin{equation}
-\label{eq:upper_bound:value}
-\min_{\tau \in \Tau} 
-  \max_{\sigma \in \Sigma} K_\infty^m(p, \sigma, \tau) 
-\leq
-H^m(p) \eqdef \min_{j \in J}
-    (p(m-j)^2 + (1-p)j^2).
-\end{equation}
-\end{utver}
-\begin{proof}
-При каждом $ j \in J $:
-\begin{align*}
-h_m^H(\tau^j) 
-&= \sum_{t=1}^m (2(m-j-t)+1)^+ = \sum_{t=1}^{m-j} \left( 2(m-j-t) + 1 \right) = (m-j)^2,
-\\
-h_m^L(\tau^j)
-&= \sum_{t=1}^m (2(j-t)+1)^+ = \sum_{t=1}^j \left( 2(j-t) + 1 \right) = j^2.
+Тогда определим
+\begin{align*}  
+  h_\infty^H(\tau^k) 
+  &\eqdef 
+    \lim_{n \rightarrow \infty} h_n^H(\tau^k) = 
+    h_m^H(\tau^k) = \sum_{t=1}^m (2(m - k - t) + 1)^+ = \\
+  &= \sum_{t = 1}^{m - k}(2(m - k - t) + 1) = (m - k)^2,\\
+  h_\infty^L(\tau^k) 
+  &\eqdef
+    \lim_{n \rightarrow \infty} h_n^L(\tau^k) = 
+    h_m^L(\tau^k) = \sum_{t=1}^m (2(k - t) + 1)^+ = \\
+  &= \sum_{t = 1}^{k}(2(k - t) + 1) = k^2,\\
+  H^m(p)
+  &\eqdef \min_{k \in J} \left( ph_\infty^H(\tau^k) + (1-p)h_\infty^L(\tau^k) \right) =
+    \min_{k \in J} \left( p(m-k)^2 + (1-p)k^2 \right).
 \end{align*}
-Итак, любая стратегия $ \tau^j $ второго игрока, гарантирует ему проигрыш не более $ p(m-j)^2 + (1-p)j^2 $.
-Отсюда следует \eqref{eq:upper_bound:value}.
-\end{proof}
-
 Квадратичная функция $ \omega(x) = p(m-x)^2 + (1-~p)x^2 $ достигает минимума при $ x = pm $. 
 Отсюда при $ p \in \left( \frac{k - 1/2}{m}, \frac{k+1/2}{m} \right] $ минимум $ p(m~-~j)^2 + (1-p)j^2 $ по целым $ j $ достигается при $ j = k $.
-Отсюда получаем справедливость следующей
+Отсюда следует
 
 \begin{lemma}
 \label{lemma:upper_bound:function}
@@ -352,6 +334,23 @@ h_m^L(\tau^j)
   H^m(0) = H^m(1) = 0.
 \end{gather*}
 \end{lemma}
+
+Определим стратегию второго игрока $ \tau^* $ следующим образом: при $ p \in (\podd{k-1}, \podd{k+1}] $ второй игрок применяет $ \tau^k $.
+Так как 
+\[ 
+  \max_{\sigma \in \Sigma } K_n^m(p, \sigma, \tau^k) \leq ph^H_n(\tau^k) + (1 - p)h^L_n(\tau^k), 
+\]
+то можно осуществить предельный переход при $ n \rightarrow \infty $. При этом получим
+
+\begin{utver}
+Значение функции выигрыша первого игрока в игре бесконечной продолжительности ограничено сверху, причем имет место следующее неравенство
+\begin{equation}
+\label{eq:upper_bound:value}
+  \max_{\sigma \in \Sigma} K_\infty^m(p, \sigma, \tau^*) 
+\leq
+H^m(p)
+\end{equation}
+\end{utver}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lower Bound
