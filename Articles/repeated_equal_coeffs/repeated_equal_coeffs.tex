@@ -54,6 +54,9 @@
 \newcommand\eqdef{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
 
 \newcommand\R{\mathbb{R}}
+
+\renewcommand\leq{\leqslant}
+\renewcommand\geq{\geqslant}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Custom commands end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -343,19 +346,17 @@ $ h^s_m(\tau^k)=h^s_{m+1}(\tau^k)=\ldots=h^s_{m+i}(\tau^k),\; i \in \mathbb{N} $
 то можно осуществить предельный переход при $ n \rightarrow \infty $. При этом получим
 
 \begin{utver}
+\label{utver:upper_bound:ineq}
 Значение функции выигрыша первого игрока в игре бесконечной продолжительности ограничено сверху, причем имет место следующее неравенство
-\begin{equation}
-\label{eq:upper_bound:value}
-  \max_{\sigma \in \Sigma} K_\infty^m(p, \sigma, \tau^*) 
-\leq
-H^m(p)
-\end{equation}
+\begin{equation*}
+  \max_{\sigma \in \Sigma} K_\infty^m(p, \sigma, \tau^*) \leq H^m(p).
+\end{equation*}
 \end{utver}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Lower Bound
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Оценка снизу значения игры $ G^m_\infty(p) $}
+\section{Оценка снизу величины выигрыша первого игрока}
 \label{sec:lower_bound}
 
 Пусть на первом шаге первый игрок применяет 
@@ -669,37 +670,36 @@ $ L_\infty^m(p)~=~q_k L_\infty^m(\peven{k})~+~q_{k+1} L_\infty^m(\podd{k}) $.
 \end{lemma}
 
 \begin{utver}
+\label{utver:lower_bound:ineq}
 Значение функции выигрыша первого игрока в игре бесконечной продолжительности ограничено снизу, причем имет место следующее неравенство
-\begin{equation}
-\label{eq:lower_bound:value}
-  \min_{\tau \in \Tau} K_\infty^m(p, \sigma^*, \tau) \geq L_\infty^m(p)
-\end{equation}
+\begin{equation*}
+  \min_{\tau \in \Tau} K_\infty^m(p, \sigma^*, \tau) \geq L_\infty^m(p).
+\end{equation*}
 \end{utver}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Value
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Значение игры $ G_\infty^m(p) $}
+В разделах \ref{sec:upper_bound} и \ref{sec:lower_bound} мы определили стратегии $ \tau^* $ и $ \sigma^* $ второго и первого игроков, соответственно, а также получили оценки сверху и снизу на значение функции выигрыша первого игрока в игре бесконечной продолжительности. Докажем теперь, что справедлива
+
 \begin{theorem}
 \label{theorem:infinite_game:value}
 Игра $ G_\infty^m(p) $ имеет значение 
 \[
-V_\infty^m(p) = H^m(p) = L^m(p).
+V_\infty^m(p) = H^m(p) = L_\infty^m(p),
 \]
-
-Оптимальная стратегия первого игрока $ \sigma^* $ дается утверждениями \ref{utver:first_player:strategy:extreme_points} и \ref{utver:lower_bound:lottery}.
-
-Оптимальная стратегию второго игрока $ \tau^* $ описывается следующим образом: при $ p \in \left( \podd{k-1}, \podd{k+1} \right] $ второй игрок применяет $ \tau^k $.
+при этом $ \sigma^* $ -- оптимальная стратегия первого игрока, а $ \tau^* $ -- оптимальная стратегия второго игрока.
 \end{theorem}
 \begin{proof}
-Непосредственно из лемм \ref{lemma:upper_bound:function} и \ref{lemma:lower_bound:function} следует, что
-$ \forall \sigma \in \Sigma, \, \tau \in \Tau $, где $ \Sigma $ и $ \Tau $ -- множество стратегий первого и второго игроков соответственно, справедливо
+Непосредственно из лемм \ref{lemma:upper_bound:function}, \ref{lemma:lower_bound:function} и утверждений \ref{utver:upper_bound:ineq}, \ref{utver:lower_bound:ineq} следует, что для любых
+$ \sigma \in \Sigma $ и $ \tau \in \Tau $ справедливо
 \[
   K_\infty^m(p, \sigma, \tau^*)
-\leq K_\infty^m(p, \sigma^*, \tau^*) = H^m(p) = L^m(p) \leq 
+\leq K_\infty^m(p, \sigma^*, \tau^*) = H^m(p) = L_\infty^m(p) \leq 
   K_\infty^m(p, \sigma^*, \tau).
 \]
-А это значит, что $ \sigma^* $ и $ \tau^* $ -- оптимальные стратегии, и значение игры $ V_\infty^m(p) = H^m(p) = L^m(p) $.
+Это значит, что $ \sigma^* $ и $ \tau^* $ -- оптимальные стратегии, и значение игры $ V_\infty^m(p) = H^m(p) = L_\infty^m(p) $.
 \end{proof}
 
 \vskip 10mm
