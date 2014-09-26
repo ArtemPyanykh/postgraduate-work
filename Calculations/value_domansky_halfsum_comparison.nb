@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      7449,        196]
-NotebookOptionsPosition[      7005,        176]
-NotebookOutlinePosition[      7362,        192]
-CellTagsIndexPosition[      7319,        189]
+NotebookDataLength[      7467,        196]
+NotebookOptionsPosition[      7023,        176]
+NotebookOutlinePosition[      7380,        192]
+CellTagsIndexPosition[      7337,        189]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -102,8 +102,8 @@ Cell[BoxData[{
      RowBox[{"PlotLegends", "\[Rule]", 
       RowBox[{"{", 
        RowBox[{
-       "\"\<\!\(\*SubsuperscriptBox[\(V\), \(\[Infinity]\), \
-\(5\)]\)(\!\(\*FractionBox[\(1\), \(2\)]\), p)\>\"", ",", 
+       "\"\<\!\(\*SubsuperscriptBox[\(V\), \(\[Infinity]\), \(5\)]\)(1/2, \
+p)\>\"", ",", 
         "\"\<\!\(\*SubsuperscriptBox[\(V\), \(\[Infinity]\), \(5\)]\)(1, p)\>\
 \""}], "}"}]}], ",", 
      RowBox[{"AxesLabel", "\[Rule]", 
@@ -145,7 +145,7 @@ Cell[BoxData[{
    3.619672455117947*^9, 3.6196725728066177`*^9}, {3.6196726111102858`*^9, 
    3.6196726590577374`*^9}, {3.619673092426785*^9, 3.619673120498396*^9}, {
    3.619673479854981*^9, 3.619673486702231*^9}, {3.619676998067136*^9, 
-   3.619677038206058*^9}}],
+   3.619677038206058*^9}, {3.620720514519231*^9, 3.6207205151343317`*^9}}],
 
 Cell[BoxData["5"], "Output",
  CellChangeTimes->{
@@ -192,12 +192,12 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 5404, 125, 445, "Input"],
-Cell[5986, 149, 288, 5, 28, "Output"],
-Cell[6277, 156, 315, 5, 28, "Output"]
+Cell[579, 22, 5422, 125, 418, "Input"],
+Cell[6004, 149, 288, 5, 28, "Output"],
+Cell[6295, 156, 315, 5, 28, "Output"]
 }, Open  ]],
-Cell[6607, 164, 199, 5, 28, "Input"],
-Cell[6809, 171, 192, 3, 28, "Input"]
+Cell[6625, 164, 199, 5, 28, "Input"],
+Cell[6827, 171, 192, 3, 28, "Input"]
 }
 ]
 *)
