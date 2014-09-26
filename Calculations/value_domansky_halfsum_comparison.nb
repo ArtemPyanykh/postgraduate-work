@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      7395,        194]
-NotebookOptionsPosition[      6951,        174]
-NotebookOutlinePosition[      7308,        190]
-CellTagsIndexPosition[      7265,        187]
+NotebookDataLength[      7449,        196]
+NotebookOptionsPosition[      7005,        176]
+NotebookOutlinePosition[      7362,        192]
+CellTagsIndexPosition[      7319,        189]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -151,13 +151,15 @@ Cell[BoxData["5"], "Output",
  CellChangeTimes->{
   3.61951606251757*^9, {3.619516146336751*^9, 3.619516183135961*^9}, 
    3.619516358346784*^9, 3.619671882496676*^9, 3.619672467007708*^9, 
-   3.6196726675094852`*^9, 3.619673123168168*^9, 3.6196734884873543`*^9}],
+   3.6196726675094852`*^9, 3.619673123168168*^9, 3.6196734884873543`*^9, 
+   3.619677042555345*^9}],
 
 Cell[BoxData["\<\"value_comparison.eps\"\>"], "Output",
  CellChangeTimes->{
   3.61951606251757*^9, {3.619516146336751*^9, 3.619516183135961*^9}, 
    3.619516358346784*^9, 3.619671882496676*^9, 3.619672467007708*^9, 
-   3.6196726675094852`*^9, 3.619673123168168*^9, 3.619673488777294*^9}]
+   3.6196726675094852`*^9, 3.619673123168168*^9, 3.6196734884873543`*^9, 
+   3.619677042896862*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -191,11 +193,11 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[579, 22, 5404, 125, 445, "Input"],
-Cell[5986, 149, 262, 4, 28, "Output"],
-Cell[6251, 155, 287, 4, 28, "Output"]
+Cell[5986, 149, 288, 5, 28, "Output"],
+Cell[6277, 156, 315, 5, 28, "Output"]
 }, Open  ]],
-Cell[6553, 162, 199, 5, 28, "Input"],
-Cell[6755, 169, 192, 3, 28, "Input"]
+Cell[6607, 164, 199, 5, 28, "Input"],
+Cell[6809, 171, 192, 3, 28, "Input"]
 }
 ]
 *)

@@ -1,3 +1,4 @@
 .DS_Store
 .texpadtmp
 build
+**/eps-converted-to*
