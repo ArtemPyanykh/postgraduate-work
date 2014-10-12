@@ -25,4 +25,226 @@
   \titlepage
 \end{frame}
 
+\begin{frame}
+  \frametitle{План}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Введение}
+
+\begin{frame}
+  \frametitle{Краткое описание}
+  
+  \begin{itemize}
+    \item
+    Торги происходят между двумя игроками за однотипные акции.
+    
+    \item
+    Цена акции может быть либо $0$, либо $m$.
+    
+    \item
+    Игрок 1 (инсайдер) знает настоящую цену акции. Игрок 2 знает вероятности высокой и низкой цены.
+    
+    \item
+    На каждом шаге торгов игроки делают ставки. Наибольшая ставка побеждает, и один игрок покупает у второго акцию.
+    
+    \item
+    Цена сделки равна наибольшей предложенной ставке.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Обзор существующих результатов}
+
+\begin{frame}
+  \frametitle{Обзор существующих результатов}
+  
+  \begin{itemize}
+    \item
+    \cite[De Meyer, Saley, 2002]{DeMeyer2002}. Ставки принимают вещественные значения. Получено решение $n$-шаговой игры.
+    
+    \item
+    \cite[Domansky, 2007]{Domansky2007}. Ставки принимают дискретные значения. Получено решение игры неограниченной продолжительности.
+    
+    \item
+    \cite[Крепс, 2009]{Kreps2009}. Ставки принимают дискретные значения. Получено решение $n$-шаговой игры при $m \leqslant 3$.
+    
+    \item
+    \cite[Сандомирская, 2012]{Sandomirskaya2012}. Ставки принимают дискретные значения. Получено решение одношаговой игры.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Постановка задачи}
+
+\begin{frame}
+  \frametitle{Постановка задачи}
+  
+  \begin{itemize}
+    \item
+    В упомянутых работах цена сделки равна наибольшей предложенной ставке. Можно задать по-другому.
+
+    \item
+    В работе \cite[Chatterjee, Samuelson, 1983]{Chatterjee1983} рассмотрена модель двустороннего аукциона с ценой сделки равной
+  \[
+    p = \beta b + (1 - \beta) s, \: 0 \leqslant \beta \leqslant 1,
+  \]
+  где $b$ и $s$ -- цены, назначенные покупателем и продавцом, соответственно. 
+  
+    \item
+    В работе \cite[Myerson, Satterthwaite, 1983]{Myerson1983} показано, что модель с $\beta = 1/2$ -- оптимальна.
+
+    \item  
+    В данной работе мы рассматриваем модель торгов с ценой сделки равной полусумме предложенных ставок.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Модель}
+
+\begin{frame}
+  \frametitle{Повторяющаяся игра}
+  Формально модель сводится к $n$-шаговой повторяющейся игре с неполной информацией. Назовем ее $G_n^m(p)$.
+  
+  Множество состояний рынка $S = \{H, L\}$. Конкретное состояние $s \in S$ выбирается ходом случая на первом шаге.
+  
+  Платежные матрицы задаются следующим образом:
+  \[
+  A^L(i, j) = 2 \cdot \begin{cases}
+   (i+j)/2, \, i < j, \\
+   0, \, i = j, \\
+   -(i+j)/2, \, i > j,
+ \end{cases}
+ A^H(i, j) = 2 \cdot \begin{cases}
+ (i+j)/2 - m, \, i < j, \\
+ 0, \, i = j, \\
+ m - (i + j)/2, \, i > j.
+ \end{cases}
+  \]
+  
+  На $t$-ом шаге первый игрок выбирает $i_t \in I = \{0,1,\ldots,m\}$, второй --- $j_t \in J = \{0,1,\ldots,m\}$.
+  
+  Выигрыш первого игрока в игре равен $\sum_{t=1}^n a_{i_t j_t}^s$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Определение стратегии}
+  Стратегии игроков задаются следующим образом:
+  \begin{itemize}
+    \item
+    для инсайдера $\sigma = (\sigma_1, \sigma_2, \ldots, \sigma_t, \ldots)$, где 
+    $\sigma_t: S \times I^{t-1} \rightarrow \Delta(I) $, 
+    $\Delta(I)$ --- множество вероятностных распределений на $I$. Множество всех стратегии обозначим $\Sigma$\footnote{рассматриваем только стратегии, дающие неотрицательный выигрыш на каждом шаге}.
+    
+    \item
+    для неосведомленного игрока $\tau = (\tau_1, \tau_2, \ldots, \tau_t, \ldots)$, где
+    $\tau_t: I^{t-1} \rightarrow \Delta(J)$,
+    $\Delta(J)$ --- множество вероятностных распределений на $J$. Множество всех стратеги обозначим $\mathbb{T}$.
+  \end{itemize}
+  
+  Тогда выигрыш первого игрока равен
+  \[
+  K_n^m(p, \sigma, \tau) = \sum_{t=1}^n(pA^H(\sigma_t^H, \tau_t) + (1-p)A^L(\sigma^L_t, \tau_t)),
+  \]
+  где $A^s(\sigma^s_t, \tau_t) = \mathbb{E}_{\sigma^s_t,\tau_t} A^s(i_t, j_t)$.
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Оптимальная стратегия неосведомленного игрока}
+
+\begin{frame}
+  \frametitle{Стратегия неосведомленного игрока}
+  
+  \only<1>{
+    Определим чистую стратегию $\tau^k, \, k \in J$%
+    \footnote{определяется аналогично \cite[Domansky, 2007]{Domansky2007}}:
+    \begin{gather*}
+      \tau_1^k = k,\\
+      \tau_t^k(i_{t-1},j_{t-1})=\begin{cases}
+        j_{t-1} - 1, &\, i_{t-1} < j_{t-1}, \\
+        j_{t-1},     &\, i_{t-1} = j_{t-1}, \\
+        j_{t_1} + 1, &\, i_{t-1} > j_{t+1}
+      \end{cases}
+    \end{gather*}
+    
+      Определим $\tau^*$ следующим образом: при 
+      $p \in \left(\frac{k-1/2}{m},\frac{k+1/2}{m}\right]$ применять $\tau^k$.
+      
+      Справедливо следующее неравенство:
+      \[
+        max_{\sigma \in \Sigma} K_\infty^m(p, \sigma, \tau^*) \leqslant min_{j \in J} (p(m-j)^2 + (1-p)j^2) = H^m(p).
+      \]
+    }
+    
+    \only<2>{
+    $H^m(p)$ --- кусочно-линейная функция, определяется значениями в точках:
+    \begin{gather}
+      H^m\left((k+1/2)/m\right) = m/2 + mk - k^2 -k, \, k=\overline{0,m-1}\\
+      H^m(0) = H^m(1) = 0.
+    \end{gather}
+
+    \begin{center}
+      \includegraphics[height=5cm]{value_combination.eps}
+    \end{center}
+    }
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Оптимальная стратегия инсайдера}
+
+\begin{frame}
+  \frametitle{Стратегия инсайдера}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Решение игры}
+
+\section{Выводы}
+
+\begin{frame}
+  \begin{center}
+    \LargeСпасибо за внимание!
+  \end{center}
+\end{frame}
+
+\begin{thebibliography}{10}
+\footnotesize
+\bibitem{DeMeyer2002}[De Meyer, 2002]
+  De Meyer B., Saley H.
+  \newblock On the strategic origin of Brownian motion in finance.
+  \newblock \emph{Int J Game Theory}, 2002.
+\bibitem{Domansky2007}[Domansky, 2007]
+  Domansky V.
+  \newblock Repeated games with asymmetric information and random price fluctuations at finance markets.
+  \newblock \emph{Int J Game Theory}, 2007.
+\bibitem{Kreps2009}[Крепс, 2009]
+  Крепс В.Л.
+  \newblock Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности.
+  \newblock \emph{Изв. РАН. Теория и системы управления}, 2009.
+\bibitem{Sandomirskaya2012}[Сандомирская, 2012]
+  Сандомирская М.С., Доманский В.К.
+  \newblock Решение одношаговой игры биржевых торгов с неполной информацией.
+  \newblock \emph{Математическая теория игр и её приложения}, 2012.
+\bibitem{Chatterjee1983}[Chatterjee, 1983]
+  Chatterjee K., Samuelson W.
+  \newblock Bargaining under Incomplete Information
+  \newblock \emph{Operations Research}, 1983.
+\bibitem{Myerson1983}[Myerson, 1983]
+  Myerson R., Satterthwaite M.
+  \newblock Efficient Mechanisms for Bilateral Trading
+  \newblock \emph{Journal of Economic Theory}, 1983.
+\end{thebibliography}
+
+
+
 \end{document}
