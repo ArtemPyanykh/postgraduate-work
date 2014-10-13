@@ -203,13 +203,147 @@
 
 \begin{frame}
   \frametitle{—тратеги€ инсайдера}
+  \only<1>{
+    –азобъем отрезок $[0,1]$ точками из 
+    {\small
+    \[
+      P = \left\{ p_i^{+0} = \frac{i}{m}, \: p_j^{+1/2} = \frac{j+1/2}{m}:\: i \in \overline{0,m}, \: j \in \overline{0,m-1} \right\}.
+    \]
+    }
+  }
+  
+  \only<2>{
+    ѕри $p \in \{k/m, (k+1/2)/m\}$ инсайдер использует ставки $k$ и $k+1$, причем:
+    \begin{itemize}
+      \item
+      полные веро€тности использовани€ ставок $k$ и $k+1$ равны $1/2$;
+      
+      \item
+      апостериорные веро€тности равны $p(H|k) = p - 1/(2m)$ и $p(H|k+1) = p + 1/(2m)$.
+    \end{itemize}
+  }
+  
+  \only<3>{
+    ѕолучим рекуррентную формулу дл€ нижней оценки выигрыша инсайдера
+    {\footnotesize
+    \begin{gather}
+      L_\infty^m
+        \left( \frac{k+1/2}{m} \right) = 
+          \frac{1}{2} + 
+            \frac{1}{2} \left(
+              L_\infty^m \left( \frac{k}{m} \right) 
+              + 
+              L_\infty^m\left( \frac{k+1}{m} \right)
+            \right), \: k = \overline{0,m-1}\\
+      L_\infty^m
+        \left( \frac{k}{m} \right) = 
+          \frac{1}{2} \left(
+            L_\infty \left( \frac{k-1/2}{m} \right) 
+            + 
+            L_\infty^m \left( \frac{k+1/2}{m} \right)
+          \right), \: k = \overline{1,m-1}
+    \end{gather}
+    }
+  }
+  
+  \only<4>{
+    –ешение этой системы:
+    {\footnotesize
+    \begin{gather}
+      L_\infty^m \left( \frac{k+1/2}{m} \right) = m/2 + mk - k^2 - k, k = \overline{0,m-1},\\
+      L_\infty^m \left( \frac{k}{m} \right) = mk - k^2, k = \overline{0,m}.
+    \end{gather}
+    }
+    
+    ¬ точках $p = (k+1/2)/m$ совпадает с $H^m(p)$.
+  }
+  
+  \only<5>{
+    Ќужно доопределить стратегию инсайдера в точках $p \in [0,1] \setminus P$. 
+    
+    ѕусть $p \in (p_k^{+0}, p_k^{+1/2})$. “огда инсайдер использует ставки $k$ и $k+1$ с полными веро€тност€ми 
+    \[
+      q_k = \frac{p_k^{+1/2} - p}{p_k^{+1/2}-p_k^{+0}}, \: 
+      q_{k+1} = 1 - q_k.
+    \]
+    ƒл€ $p \in (p_k^{+1/2}, p_{k+1}^{+0})$ --- аналогично.
+    
+    “акое действие гарантирует инсайдеру выигрыш $L_\infty^m(p)$ линейно завис€щий от $p$ на рассматриваемом интервале.
+  }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{–ешение игры}
 
+\begin{frame}
+  \frametitle{–ешение игры}
+  
+  “.к. $H^m(p)$ и $L_\infty^m(p)$ совпадают, то значение игры $G_\infty^m(p)$ существует, равно $H^m(p)$, а определенные ранее стратегии игроков €вл€ютс€ оптимальными.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{¬ыводы}
+
+\begin{frame}
+  \frametitle{ќбобщение на случай произвольного $\beta$}
+  \only<1>{
+  \begin{itemize}
+    \item
+    ¬ общем случае определим $G_n^m(\beta, p), \, n \leqslant \infty$ с платежными матрицами
+    \begin{equation*}\small
+    A^L(i, j) = \begin{cases}
+      \alpha i + \beta j, &\, i < j, \\
+      0, &\, i = j, \\
+      -\beta i - \alpha j, &\, i > j,
+    \end{cases}
+    \,
+    A^H(i, j) = \begin{cases}
+      \alpha i + \beta j - m, &\, i < j, \\
+      0, &\, i = j, \\
+      m - \beta i - \alpha j, &\, i > j,
+    \end{cases}
+    \end{equation*}
+    где $\beta \leqslant 0, \alpha = 1 - \beta$.
+    
+    \item
+    „ерез $V_n^m(\beta, p)$ обозначим значение игры (если существует).
+  \end{itemize}
+  }
+  
+  \only<2>{
+    —тратеги€ $\tau^*$ неосведомленного игрока довольно просто обобщаетс€ на случай произвольного $\beta$. 
+    ѕри этом справедливо неравенство
+    {\small
+    \[
+      \max_{\sigma \in \Sigma} K_\infty^m(\beta, p, \sigma, \tau^*) \leqslant
+      \min_{j \in J} \frac{1}{2} (p(m-j)(m-j+1-2\beta) + (1-p)j(j+1-2\alpha)).
+    \]
+    }
+    
+      сожалению, так же просто обобщить стратегию инсайдера не удаетс€.
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{—равнение с результатами \cite[Domansky, 2007]{Domansky2007}}
+  ћодели рассмотренной в \cite[Domansky, 2007]{Domansky2007} соответствует значение $\beta = 1$. 
+  ¬ данной работе $\beta=1/2$.
+  
+  —праведливо утверждение, что при любом значении $m \geqslant 3$ и $p \in [0,1]$
+  \[
+    V_\infty^m(1/2, p) \geqslant V_\infty^m(1,p),
+  \]
+  причем равенство достигаетс€ только при $p = k/m, \: k = \overline{0,m}$.
+  
+  \begin{center}
+    \includegraphics[height=5cm]{value_comparison.eps}
+  \end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
   \begin{center}
