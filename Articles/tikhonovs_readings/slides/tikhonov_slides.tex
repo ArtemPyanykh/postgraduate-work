@@ -19,6 +19,8 @@
 \usepackage[cp1251]{inputenc}
 \usepackage[russian]{babel}
 
+\usepackage{tikz}
+
 \begin{document}
 
 \begin{frame}
@@ -99,7 +101,7 @@
     ¬ работе \cite[Myerson, Satterthwaite, 1983]{Myerson1983} показано, что модель с $\beta = 1/2$ -- оптимальна.
 
     \item  
-    ¬ данной работе мы рассматриваем модель торгов с ценой сделки равной полусумме предложенных ставок.
+    ¬ данной работе рассматрена модель торгов с ценой сделки равной полусумме предложенных ставок.
   \end{itemize}
 \end{frame}
 
@@ -144,7 +146,7 @@
     \item
     дл€ неосведомленного игрока $\tau = (\tau_1, \tau_2, \ldots, \tau_t, \ldots)$, где
     $\tau_t: I^{t-1} \rightarrow \Delta(J)$,
-    $\Delta(J)$ --- множество веро€тностных распределений на $J$. ћножество всех стратеги обозначим $\mathbb{T}$.
+    $\Delta(J)$ --- множество веро€тностных распределений на $J$. ћножество всех стратегий обозначим $\mathbb{T}$.
   \end{itemize}
   
   “огда выигрыш первого игрока равен
@@ -184,11 +186,11 @@
     }
     
     \only<2>{
-    $H^m(p)$ --- кусочно-линейна€ функци€, определ€етс€ значени€ми в точках:
-    \begin{gather}
+    $H^m(p)$ --- кусочно-линейна€ функци€; определ€етс€ значени€ми в точках:
+    \begin{gather*}
       H^m\left((k+1/2)/m\right) = m/2 + mk - k^2 -k, \, k=\overline{0,m-1}\\
       H^m(0) = H^m(1) = 0.
-    \end{gather}
+    \end{gather*}
 
     \begin{center}
       \includegraphics[height=5cm]{value_combination.eps}
@@ -212,7 +214,7 @@
     }
   }
   
-  \only<2>{
+  \only<1>{
     ѕри $p \in \{k/m, (k+1/2)/m\}$ инсайдер использует ставки $k$ и $k+1$, причем:
     \begin{itemize}
       \item
@@ -223,10 +225,10 @@
     \end{itemize}
   }
   
-  \only<3>{
+  \only<2>{
     ѕолучим рекуррентную формулу дл€ нижней оценки выигрыша инсайдера
     {\footnotesize
-    \begin{gather}
+    \begin{gather*}
       L_\infty^m
         \left( \frac{k+1/2}{m} \right) = 
           \frac{1}{2} + 
@@ -242,35 +244,56 @@
             + 
             L_\infty^m \left( \frac{k+1/2}{m} \right)
           \right), \: k = \overline{1,m-1}
-    \end{gather}
+    \end{gather*}
     }
   }
   
-  \only<4>{
+  \only<2>{
     –ешение этой системы:
     {\footnotesize
-    \begin{gather}
+    \begin{gather*}
       L_\infty^m \left( \frac{k+1/2}{m} \right) = m/2 + mk - k^2 - k, k = \overline{0,m-1},\\
       L_\infty^m \left( \frac{k}{m} \right) = mk - k^2, k = \overline{0,m}.
-    \end{gather}
+    \end{gather*}
     }
     
     ¬ точках $p = (k+1/2)/m$ совпадает с $H^m(p)$.
   }
   
-  \only<5>{
+  \only<3>{
     Ќужно доопределить стратегию инсайдера в точках $p \in [0,1] \setminus P$. 
     
-    ѕусть $p \in (p_k^{+0}, p_k^{+1/2})$. “огда инсайдер использует ставки $k$ и $k+1$ с полными веро€тност€ми 
-    \[
-      q_k = \frac{p_k^{+1/2} - p}{p_k^{+1/2}-p_k^{+0}}, \: 
-      q_{k+1} = 1 - q_k.
-    \]
-    ƒл€ $p \in (p_k^{+1/2}, p_{k+1}^{+0})$ --- аналогично.
+    ѕусть $p \in (k/m, (k+1/2)/m)$%
+    \footnote{ƒл€ $p \in ((k+1/2)/m, (k+1)/m)$ --- аналогично}. 
+    “огда инсайдер использует ставки $k$ и $k+1$, причем полные веро€тности ставок и апостериорные веро€тности равны:
+    \begin{gather*}
+      q_k = 2(k-mp)+1, \: 
+      q_{k+1} = 1 - q_k, \\  
+      p(H|k) = k/m, \:
+      p(H|k+1) = (k+1/2)/m.
+    \end{gather*}
     
-    “акое действие гарантирует инсайдеру выигрыш $L_\infty^m(p)$ линейно завис€щий от $p$ на рассматриваемом интервале.
+    \begin{center}
+    \begin{tikzpicture}
+      [scale=.8,
+       dot/.style={circle,fill=black,scale=0.3}]
+      \node (left) at (0,0) [dot] {};
+      \node (right) at (4,0) [dot] {};
+      \node (p) at (1.5,0) [dot] {};
+      
+      \node [left] at (left.west) {$\frac{k}{m}$};
+      \node [right] at (right.east) {$\frac{k+1/2}{m}$};
+      \node [below] at (p.south) {$p$};
+      
+      \draw (left) to node [above] {$q_k$} (p)
+            (p) to node [above] {$q_{k+1}$} (right);
+    \end{tikzpicture}
+    \end{center}
+    
+    “акое действие гарантирует инсайдеру выигрыш $L_\infty^m(p)$, линейно завис€щий от $p$ на рассматриваемом интервале.
   }
 \end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -328,7 +351,7 @@
 
 \begin{frame}
   \frametitle{—равнение с результатами \cite[Domansky, 2007]{Domansky2007}}
-  ћодели рассмотренной в \cite[Domansky, 2007]{Domansky2007} соответствует значение $\beta = 1$. 
+  ћодели, рассмотренной в \cite[Domansky, 2007]{Domansky2007}, соответствует значение $\beta = 1$. 
   ¬ данной работе $\beta=1/2$.
   
   —праведливо утверждение, что при любом значении $m \geqslant 3$ и $p \in [0,1]$
