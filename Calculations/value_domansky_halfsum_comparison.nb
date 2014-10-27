@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     52157,       1053]
-NotebookOptionsPosition[     51539,       1028]
-NotebookOutlinePosition[     51898,       1044]
-CellTagsIndexPosition[     51855,       1041]
+NotebookDataLength[     52104,       1052]
+NotebookOptionsPosition[     51486,       1027]
+NotebookOutlinePosition[     51845,       1043]
+CellTagsIndexPosition[     51802,       1040]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -181,7 +181,7 @@ Cell[BoxData["5"], "Output",
    3.622121891894483*^9, {3.622988304375898*^9, 3.6229883909008493`*^9}, {
    3.622988478485799*^9, 3.622988503883358*^9}, 3.622988539535387*^9, {
    3.622988661008559*^9, 3.622988671891562*^9}, 3.623340828827607*^9, {
-   3.6233410175493803`*^9, 3.623341131292883*^9}}],
+   3.6233410175493803`*^9, 3.62334114543404*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{{}, {}, 
@@ -329,7 +329,7 @@ sE0vMP3vPwAxcFrYknE/lx8L9f//7z8AABCknh6RPtndN4k=
    3.622121891894483*^9, {3.622988304375898*^9, 3.6229883909008493`*^9}, {
    3.622988478485799*^9, 3.622988503883358*^9}, 3.622988539535387*^9, {
    3.622988661008559*^9, 3.622988671891562*^9}, 3.623340828827607*^9, {
-   3.6233410175493803`*^9, 3.623341131482224*^9}}],
+   3.6233410175493803`*^9, 3.623341145552984*^9}}],
 
 Cell[BoxData["\<\"value_combination.eps\"\>"], "Output",
  CellChangeTimes->{
@@ -341,7 +341,7 @@ Cell[BoxData["\<\"value_combination.eps\"\>"], "Output",
    3.622121891894483*^9, {3.622988304375898*^9, 3.6229883909008493`*^9}, {
    3.622988478485799*^9, 3.622988503883358*^9}, 3.622988539535387*^9, {
    3.622988661008559*^9, 3.622988671891562*^9}, 3.623340828827607*^9, {
-   3.6233410175493803`*^9, 3.623341132144449*^9}}],
+   3.6233410175493803`*^9, 3.623341146209895*^9}}],
 
 Cell[BoxData[
  TemplateBox[{GraphicsBox[{{{}, {}, {
@@ -468,7 +468,7 @@ sE0vMP3vPwAxcFrYknE/lx8L9f//7z8AABCknh6RPtndN4k=
         Opacity[1.], 
         RGBColor[0.880722, 0.611041, 0.142051], 
         AbsoluteThickness[2], 
-        Dashing[{Small, Small}]], 
+        Dashing[{0, Small}]], 
        LineBox[CompressedData["
 1:eJwBYQKe/SFib1JlAgAAACUAAAACAAAASmXo0cDpVT6cfmIGMWSLPueuVmLf
 GTQ/oVrsOlcgaT8WC9WOsxlEP9xNinIgIHk/LjkUpZ0ZVD96R1kOBSCJPzrQ
@@ -717,7 +717,7 @@ CE4tL7Oh31nz//+H/A8gfUhY
                     Opacity[1.], 
                     RGBColor[0.880722, 0.611041, 0.142051], 
                     AbsoluteThickness[2], 
-                    Dashing[{Small, Small}]], {
+                    Dashing[{0, Small}]], {
                     LineBox[{{0, 10}, {40, 10}}]}}, {
                     Directive[
                     EdgeForm[
@@ -728,7 +728,7 @@ CE4tL7Oh31nz//+H/A8gfUhY
                     Opacity[1.], 
                     RGBColor[0.880722, 0.611041, 0.142051], 
                     AbsoluteThickness[2], 
-                    Dashing[{Small, Small}]], {}}}, AspectRatio -> Full, 
+                    Dashing[{0, Small}]], {}}}, AspectRatio -> Full, 
                     ImageSize -> {40, 10}, PlotRangePadding -> None, 
                     ImagePadding -> Automatic, 
                     BaselinePosition -> (Scaled[0.1] -> Baseline)], #2}, {
@@ -874,8 +874,7 @@ CE4tL7Oh31nz//+H/A8gfUhY
                    RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", 
                    RowBox[{"Dashing", "[", 
                     RowBox[{"{", 
-                    RowBox[{"Small", ",", "Small"}], "}"}], "]"}]}], "]"}], 
-               ",", 
+                    RowBox[{"0", ",", "Small"}], "}"}], "]"}]}], "]"}], ",", 
                RowBox[{"Directive", "[", 
                  RowBox[{
                    RowBox[{"Opacity", "[", "1.`", "]"}], ",", 
@@ -954,7 +953,7 @@ CE4tL7Oh31nz//+H/A8gfUhY
    3.622121891894483*^9, {3.622988304375898*^9, 3.6229883909008493`*^9}, {
    3.622988478485799*^9, 3.622988503883358*^9}, 3.622988539535387*^9, {
    3.622988661008559*^9, 3.622988671891562*^9}, 3.623340828827607*^9, {
-   3.6233410175493803`*^9, 3.623341132477891*^9}}],
+   3.6233410175493803`*^9, 3.6233411464613132`*^9}}],
 
 Cell[BoxData["\<\"value_comparison.eps\"\>"], "Output",
  CellChangeTimes->{
@@ -966,7 +965,7 @@ Cell[BoxData["\<\"value_comparison.eps\"\>"], "Output",
    3.622121891894483*^9, {3.622988304375898*^9, 3.6229883909008493`*^9}, {
    3.622988478485799*^9, 3.622988503883358*^9}, 3.622988539535387*^9, {
    3.622988661008559*^9, 3.622988671891562*^9}, 3.623340828827607*^9, {
-   3.6233410175493803`*^9, 3.623341103268309*^9}, 3.623341133917145*^9}]
+   3.6233410175493803`*^9, 3.623341147956915*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1045,15 +1044,15 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[579, 22, 6641, 149, 533, "Input"],
-Cell[7223, 173, 674, 10, 28, "Output"],
-Cell[7900, 185, 7873, 146, 251, "Output"],
-Cell[15776, 333, 702, 10, 28, "Output"],
-Cell[16481, 345, 31900, 611, 250, "Output"],
-Cell[48384, 958, 723, 10, 28, "Output"]
+Cell[7223, 173, 673, 10, 28, "Output"],
+Cell[7899, 185, 7873, 146, 251, "Output"],
+Cell[15775, 333, 702, 10, 28, "Output"],
+Cell[16480, 345, 31870, 610, 250, "Output"],
+Cell[48353, 957, 701, 10, 86, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[49144, 973, 544, 14, 28, "Input"],
-Cell[49691, 989, 1832, 36, 120, "Output"]
+Cell[49091, 972, 544, 14, 28, "Input"],
+Cell[49638, 988, 1832, 36, 120, "Output"]
 }, Open  ]]
 }
 ]
