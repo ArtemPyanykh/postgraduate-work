@@ -2,3 +2,5 @@
 .texpadtmp
 build
 *eps-converted-to*
+*.aux
+*.log
