@@ -1,0 +1,151 @@
+% -*- coding: cp866 -*-
+%
+% ****** maiksamp.tex 29.11.2001 ******
+%
+\documentclass[
+aps,%
+12pt,%
+final,%
+notitlepage,%
+oneside,%
+onecolumn,%
+nobibnotes,%
+nofootinbib,% 
+superscriptaddress,%
+noshowpacs,%
+centertags]%
+{revtex4}
+
+\begin{document}
+\selectlanguage{russian}
+
+\title{НАЗВАНИЕ\\
+СТАТЬИ}% Разбиение на строки осуществляется командой \\
+
+\author{\firstname{А.~И.}~\surname{Пьяных}}
+% Здесь разбиение на строки осуществляется автоматически или командой \\
+\email{artem.pyanykh@gmail.com}
+\affiliation{%
+МГУ им. М.~В.~Ломоносова, ф-т ВМиК
+}%
+
+%\date{\today}
+%\today печатает cегодняшнее число
+
+\begin{abstract}
+  Исследуется обобщение дискретной многошаговой модели биржевых торгов, рассмотренной в \cite{domansky}.
+  Торги происходят между двумя игроками за однотипные акции, случайная цена акции может принимать два значения --- $ m $ с вероятностью $ p $ или $ 0 $ с вероятностью $ (1 - p) $ --- и определяется в начале торгов.
+  Настоящая цена акции известна Игроку 1.
+  Игрок 2 знает вероятность высокой цены акции и то, что Игрок 1 --- инсайдер.
+  На каждом шаге торгов игроки делают целочисленные ставки.
+  Игрок, предложивший большую ставку, покупает у второго акцию.
+  Цена сделки определяется как выпуклая комбинация предложенных ставок.
+  Данная модель сводится к повторяющейся игре с асимметричной информацией.
+  Получено решение игры бесконечной продолжительности при произвольных значениях $ m $~и~$ p $: найдены оптимальные стратегии игроков и значение игры.
+\end{abstract}
+
+\maketitle
+
+\section{Введение}
+
+Some text. And another one.
+
+And another one on the second line.
+
+%
+% Список литературы
+%
+\begin{thebibliography}{99}
+
+\bibitem{gelfond} 
+  \refitem{book} 
+  Гельфонд А.О. \textit{Исчисление конечных разностей.} М.: Книжный дом <<ЛИБРОКОМ>>, 2012
+
+\bibitem{kreps} 
+  \refitem{article} 
+  Крепс В.Л. \textit{Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности.} // Изв. РАН. Теория и системы управления. 2009. Вып. 4. С. 109-120
+
+\bibitem{samarsky}
+  \refitem{book}
+  Самарский А.А., Гулин А.В. \textit{Численные методы}. М.: Наука, 1989
+
+\bibitem{sandomirskaya}
+  \refitem{article}
+  Сандомирская М.С., Доманский В.К. \textit{Решение одношаговой игры биржевых торгов с неполной информацией} // Математическая теория игр и её приложения. 2012. Т. 4. Вып. 1. С. 32-54 
+
+\bibitem{aumann}
+  \refitem{article}
+  Aumann R.J., Maschler M. B. \textit{Repeated Games with Incomplete Information}. The MIT Press, Cambridge, London
+
+\bibitem{chatterjee}
+  \refitem{article}
+  Chatterjee K., Samuelson W. \textit{Bargaining under Incomplete Information} // Operations Research. 1983. V. 31. N. 5. P. 835--851
+
+\bibitem{demeyer}
+  \refitem{article}
+  De Meyer B., Saley H. \textit{On the strategic origin of Brownian motion in finance} // Int J Game Theory. 2002. V. 31. P. 285--319
+
+\bibitem{domansky}
+  \refitem{article}
+  Domansky V. \textit{Repeated games with asymmetric information and random price fluctuations at finance markets} // Int J Game Theory. 2007. V. 36(2). P. 241--257
+
+\bibitem{myerson83}
+  \refitem{article}
+  Myerson R.B., Satterthwaite M.A. \textit{Efficient Mechanisms for Bilateral Trading} // Journal of Economic Theory. 1983. V. 29. P. 265-281
+\end{thebibliography}
+%
+\newpage
+%
+% Для статей на русском языке далее следуют
+% на английском языке название статьи, список авторов и краткая аннотация.
+%
+\selectlanguage{english}
+\begin{center}
+\large \bfseries \MakeTextUppercase{%
+English name of paper
+}
+\end{center}
+%
+\begin{center}
+\bfseries A.~Pyanykh
+\end{center}
+%
+\begin{center}
+\begin{minipage}{\textwidth - 2cm}
+  \small%
+  This paper is concerned with a modification of a discrete multistage
+  bidding model introduced in \cite{domansky}. Bidding takes place
+  between two players for one unit of a risky asset. The price of the
+  asset is determined randomly at the start of the bidding and can be
+  either $ m $ with a probability of $ p $ or $ 0 $ with a probability
+  of $ (1 - p) $. The real price of the asset is known to Player
+  1. Player 2 knows only the probability of a high price and that
+  Player 1 is insider. At each stage of the bidding players make
+  integral bids. The higher bid wins and one unit of the asset is
+  transacted to the winning player. The price of the transaction
+  equals to a convex combination of bids. This model is reduced to the
+  repeated game with incomplete information. The solution for the
+  infinite game with arbitrary $ m $ an $ p $ is found, including
+  optimal strategies for both players and the value of the game.
+\end{minipage}
+\end{center}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Character code reference %%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%     Upper case russian letters (CP866): АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ   %                                                                       %
+%     Lower case russian letters (CP866): абвгдеёжзийклмнопрстуфхцчшщъыьэюя   %
+%                     Upper case letters: ABCDEFGHIJKLMNOPQRSTUVWXYZ          %
+%                     Lower case letters: abcdefghijklmnopqrstuvwxyz          %
+%                                   Digits: 0123456789                        %
+% Square, curly, angle braces, parentheses: [] {} <> ()                       %
+%                Backslash, slash, solidus: \ / |                             %
+%       Period, interrogative, exclamation: . ? !                             %
+%                 Comma, colon, semi-colon: , : ;                             %
+%          Underscore, hyphen, equals sign: _ - =                             %
+%             Quotes (left, right, double): ` ' "                             %
+%     Commercial-at, hash, dollar, percent: @ # $ %                           %
+%  Ampersand, asterisk, plus, caret, tilde: & * +   ^                         %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% ****** End of file apssampr.tex ******

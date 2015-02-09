@@ -4,3 +4,7 @@ build
 *eps-converted-to*
 *.aux
 *.log
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+auto/*.el
