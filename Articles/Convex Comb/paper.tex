@@ -16,11 +16,13 @@ noshowpacs,%
 centertags]%
 {revtex4}
 
+\bibliographystyle{maik}
+
 \begin{document}
 \selectlanguage{russian}
 
-\title{НАЗВАНИЕ\\
-СТАТЬИ}% Разбиение на строки осуществляется командой \\
+\title{МОДЕЛЬ БИРЖЕВЫХ ТОРГОВ С ИНСАЙДЕРОМ\\
+С ЭЛЕМЕНТАМИ ПЕРЕГОВОРОВ}% Разбиение на строки осуществляется командой \\
 
 \author{\firstname{А.~И.}~\surname{Пьяных}}
 % Здесь разбиение на строки осуществляется автоматически или командой \\
@@ -29,58 +31,27 @@ centertags]%
 МГУ им. М.~В.~Ломоносова, ф-т ВМиК
 }%
 
-%\date{\today}
-%\today печатает cегодняшнее число
+\date{\today} %\today печатает cегодняшнее число
 
 \begin{abstract}
-  TODO
+  Рассматривается модификация дискретной многошаговой модели биржевых торгов.
+  Два игрока ведут между собой торги рисковыми ценными бумагами (акциями).
+  Один из игроков (инсайдер) знает настоящую цену акции, второй знает только её вероятностное распределение.
+  На каждом шаге торгов игроки делают целочисленные ставки.
+  Игрок, предложивший большую ставку, покупает у второго акцию, причем цена сделки определяется как выпуклая комбинация предложенных ставок с некоторых заданным коэффициентом.
+  Получено решение игры бесконечной продолжительности при произвольных значениях параметров: найдены оптимальные стратегии игроков и значение игры.
 \end{abstract}
 
 \maketitle
 
 \section{Введение}
+TODO
 
 %
 % Список литературы
 %
-\begin{thebibliography}{99}
-
-\bibitem{gelfond} 
-  \refitem{book} 
-  Гельфонд А.О. \textit{Исчисление конечных разностей.} М.: Книжный дом <<ЛИБРОКОМ>>, 2012
-
-\bibitem{kreps} 
-  \refitem{article} 
-  Крепс В.Л. \textit{Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности.} // Изв. РАН. Теория и системы управления. 2009. Вып. 4. С. 109-120
-
-\bibitem{samarsky}
-  \refitem{book}
-  Самарский А.А., Гулин А.В. \textit{Численные методы}. М.: Наука, 1989
-
-\bibitem{sandomirskaya}
-  \refitem{article}
-  Сандомирская М.С., Доманский В.К. \textit{Решение одношаговой игры биржевых торгов с неполной информацией} // Математическая теория игр и её приложения. 2012. Т. 4. Вып. 1. С. 32-54 
-
-\bibitem{aumann}
-  \refitem{article}
-  Aumann R.J., Maschler M. B. \textit{Repeated Games with Incomplete Information}. The MIT Press, Cambridge, London
-
-\bibitem{chatterjee}
-  \refitem{article}
-  Chatterjee K., Samuelson W. \textit{Bargaining under Incomplete Information} // Operations Research. 1983. V. 31. N. 5. P. 835--851
-
-\bibitem{demeyer}
-  \refitem{article}
-  De Meyer B., Saley H. \textit{On the strategic origin of Brownian motion in finance} // Int J Game Theory. 2002. V. 31. P. 285--319
-
-\bibitem{domansky}
-  \refitem{article}
-  Domansky V. \textit{Repeated games with asymmetric information and random price fluctuations at finance markets} // Int J Game Theory. 2007. V. 36(2). P. 241--257
-
-\bibitem{myerson83}
-  \refitem{article}
-  Myerson R.B., Satterthwaite M.A. \textit{Efficient Mechanisms for Bilateral Trading} // Journal of Economic Theory. 1983. V. 29. P. 265-281
-\end{thebibliography}
+\nocite{*}
+\bibliography{paper}
 %
 \newpage
 %
@@ -90,7 +61,7 @@ centertags]%
 \selectlanguage{english}
 \begin{center}
 \large \bfseries \MakeTextUppercase{%
-English name of paper
+  Multistage bidding model with bargaining
 }
 \end{center}
 %
@@ -101,7 +72,12 @@ English name of paper
 \begin{center}
 \begin{minipage}{\textwidth - 2cm}
   \small%
-  TODO
+  This paper is concerned with a modification of a discreete multistage bidding model.
+  Bidding takes place between two players for one unit of a risky asset.
+  The first player (an insider) knows the real price of the asset, while the second knows only a probability distribution over the price.
+  At each stage of the bidding players make integral bids.
+  The higher bid wins and one unit of the asset is transacted to the winning player, wherein the price of the transaction equals to a convex combination of bids with some arbitrary coefficient.
+  This model is reduced to a repeated game with incomplete information. The solution for the infinite game is found including optimal strategies for both players and the value of the game.
 \end{minipage}
 \end{center}
 \end{document}
