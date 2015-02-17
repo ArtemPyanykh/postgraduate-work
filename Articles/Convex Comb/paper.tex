@@ -293,7 +293,7 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
 \end{gather*}
 
 \begin{proposition}
-  При $p \in P$ для значения $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ выигрыша первого игрока верны оценки:
+  При $p \in P$ для значения $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ выигрыша первого игрока верны оценки
   \begin{align*}
   \min_{\tau \in \Tau}
     \firstPlayerPayoff{1}{\pEven}{\fEven}{\tau} &\geq 0 
@@ -303,6 +303,67 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
   \end{align*}
 \end{proposition}
 Справедливость утверждения устанавливается подстановкой значений параметров $\fEven$ и $\fOdd$ в (\ref{eq:lowerPayoffGeneral}).
+
+Заметим, что если $p \in P$, то при применении инсайдером на первом шаге игры $\fEven$ и $\fOdd$, значения апостериорных вероятностей также принадлежат $P$.
+Таким образом, можно продолжить применение $\fEven$ и $\fOdd$ на последующих шагах игры, тем самым определив стратегию $\fOpt$ в игре
+$\generalGame{n}{p}, \, p \in P, \, n \in \mathbb{N}$.
+
+Пусть $\lowerBound[n]{p}, \, p \in P$ -- гарантированный выигрыш первого игрока в игре $\generalGame{n}{p}$ при применении стратегии $\fOpt$.
+В силу рекурсивной структуры игры $\generalGame{n}{p}$ (см. \cite{domansky07}) для $\lowerBound[n]{p}$ справедливы формулы
+\begin{gather*}
+  \lowerBound[n]{\frac{k + \beta}{m}} = \alpha\beta + 
+    \alpha\lowerBound[n-1]{\frac{k}{m}} +
+    \beta\lowerBound[n-1]{\frac{k + 1}{m}}\\
+  %
+  \lowerBound[n]{\frac{k}{m}} =
+    \beta\lowerBound[n-1]{\frac{k - 1 + \beta}{m}} +
+    \alpha\lowerBound[n-1]{\frac{k + \beta}{m}}\\
+  %
+  \lowerBound[n]{0} = \lowerBound[n]{1} = 0.
+\end{gather*}
+
+Так как $\lowerBound[n]{p}$ не убывает по $n$ и ограничена сверху, устремив $n$ к бесконечности, получим нижнюю оценку $\lowerBound{p}$ выигрыша первого игрока в игре $\infiniteGame{p}, \, p \in P$.
+
+Введем следующие обозначения:
+\[
+L_{2k} = \lowerBound{k/m}, \, k \in \overline{0,m}, \:%
+L_{2k+1} = \lowerBound{(k+\beta)/m)}, \, k \in \overline{0,m-1}.
+\]
+Тогда справедливы формулы
+\begin{equation}
+  \label{eq:lowerRecurrence}
+  \begin{gathered}
+    L_{2k+1} = \alpha\beta + \alpha L_{2k} + \beta L_{2(k+1)}, \, k \in \overline{0, m-1},\\
+    L_{2k} = \beta L_{2k-1} + \alpha L_{2k+1}, \, k \in \overline{1, m-1},\\
+    L_0 = L_{2m} = 0.
+  \end{gathered}
+\end{equation}
+
+Введем матрицу $ B \in \mathbb{R}^{(2m-1)\times(2m-1)} $ и вектор-столбец $ b \in \mathbb{R}^{2m-1} $ следующим образом:
+\begin{equation*}
+  B =
+  \left(
+    \begin{array}{cccccccc}
+      1      & -\beta  & 0       & 0      & \cdots & 0      & 0       & 0       \\
+      -\beta & 1       & -\alpha & 0      & \cdots & 0      & 0       & 0       \\
+      0      & -\alpha & 1       & -\beta & \cdots & 0      & 0       & 0       \\
+      \hdotsfor{8}                                                              \\
+      0      & 0       & 0       & 0      & \cdots & -\beta & 1       & -\alpha \\
+      0      & 0       & 0       & 0      & \cdots & 0      & -\alpha & 1 
+    \end{array}
+  \right),\quad
+  %
+  b = \left(
+    \begin{array}{c}
+      \alpha\beta \\
+      0           \\
+      \alpha\beta \\
+      \cdots      \\
+      0           \\
+      \alpha\beta
+    \end{array}
+  \right).
+\end{equation*}
 
 %
 % Список литературы

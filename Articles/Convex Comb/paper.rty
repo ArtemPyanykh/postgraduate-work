@@ -65,4 +65,10 @@ p^{\beta}_{#1}%
 \phi^{\beta}_{#1}%
 }
 
+\newcommand{\fOpt}{\sigma^*}
+
+\newcommand{\lowerBound}[2][\infty]{%
+L_{#1}^{m,\beta}\left({#2}\right)%
+}
+
 \endinput
