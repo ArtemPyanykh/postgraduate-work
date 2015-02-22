@@ -210,7 +210,7 @@ $
   \right)
 \end{multline*}
 
-Функция $\upperBound{p}$ является кусочно-линейной функцией, состоящей из $m+1$ линейных сегментов, и полностью определяется своими значениями в точках:
+Функция $\upperBound{p}$ является кусочно-линейной функцией, состоящей из $m+1$ линейных сегментов, и полностью определяется своими значениями в точках
 \begin{gather*}
   \
   \upperBound{\frac{k+\beta}{m}} = 1/2 \left(
@@ -364,6 +364,63 @@ L_{2k+1} = \lowerBound{(k+\beta)/m)}, \, k \in \overline{0,m-1}.
     \end{array}
   \right).
 \end{equation*}
+Тогда (\ref{eq:lowerRecurrence}) перепишем в следующем виде: 
+\[
+BL = B, L_0 = L_{2m} = 0
+\]
+где 
+$L = (L_1, L_2, \ldots, L_{2m-1})$.
+
+Системы $ Mx = f $ с трехдиагональной матрицей $ M $, имеющей структуру
+\[
+M = \left(\begin{array}{ccccccc}
+c_1 & b_1 & 0 & \cdots & 0 & 0 & 0 \\
+a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
+\hdotsfor{7} \\
+0 & 0 & 0 & \cdots & a_{n-1} & c_{n-1} & b_{n-1} \\
+0 & 0 & 0 & \cdots & 0 & a_n & c_n
+\end{array}\right),
+\]
+можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и переменных (см. \cite{samarsky89-num}):
+\begin{equation}
+  \label{eq:tridiagonal:formulas}
+  \begin{gathered}
+    x_i = \gamma_{i+1} x_{i+1} + \delta_{i+1}, \: i = \overline{1,n-1}, \quad
+    x_n = \frac{f_n - a_n\delta_n}{c_n + a_n\gamma_n}, \\
+    % 
+    \gamma_{i+1} = -\frac{b_i}{c_i + a_i\gamma_i}, \: i = \overline{2, n-1}, \quad
+    \gamma_2 = -\frac{b_1}{c_1}, \\
+    % 
+    \delta_{i+1} = \frac{f_i - a_i\delta_i}{c_i + a_i\gamma_i}, \: i = \overline{2, n-1}, \quad
+    \delta_2 = \frac{f_1}{c_1}.
+  \end{gathered}
+\end{equation}
+
+\begin{proposition}
+  \label{proposition:tridiagonal:coefficients}
+  Прогоночные коэффициенты для матрицы $B$ даются следующими формулами:
+  \begin{multline*}
+    \gamma_{2k} = \frac{\beta+k-1}{k}, \,
+    \gamma_{2k+1} = \frac{k}{k+\beta}, \\
+    \delta_{2k} = \frac{\alpha(k-1+2\beta)}{2}, \,
+    \delta_{2k+1} = \frac{k\beta(k-1+2\beta)}{2(k+\beta)}, \quad k \in \overline{1,m-1}.
+  \end{multline*}
+\end{proposition}
+Справедливость данного утверждения устанавливается доказательством по индукции.
+
+Заметим, что $L_{2k-1} = \gamma_{2k}\gamma_{2k+1}L_{2k+1} + \gamma_{2k}\delta_{2k+1} + \beta_{2k}$.
+Подстановкой $\upperBound{\frac{k+\beta}{m}}$ вместо $L_{2k+1}$ это равенство обращается в тождество, тем самым доказывая
+
+\begin{proposition}
+  \label{proposition:lower:recurrence-solution}
+  Решение системы (\ref{eq:lowerRecurrence}) дается следующими формулами:
+  \begin{gather*}
+    L_{2k+1} = 1/2((m - (k + \beta))(k + \beta) + \alpha\beta), \, k = \overline{0, m-1}, \\
+    L_{2k} = 1/2 k (m-k), \, k = \overline{0,m}.
+  \end{gather*}
+\end{proposition}
+
+Таким образом мы определили функцию $\lowerBound{p}$ при $p \in P$.
 
 %
 % Список литературы
