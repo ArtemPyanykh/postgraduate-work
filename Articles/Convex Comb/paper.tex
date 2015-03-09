@@ -190,7 +190,6 @@ $
 
 \begin{proposition}
   \label{proposition:secondPlayerStrategyPayoffs}
-
   При применении стратегии $\tau^k$ в игре $\infiniteGame{p}$ второй игрок гарантирует себе проигрыш не более
   \begin{align*}
     h_n^L(\tau^k) &= \sum_{t=0}^{n-1}(k - t - \alpha)^+,\\
@@ -284,7 +283,7 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
   p(H|k) = \frac{k - 1 + \beta}{m}, \quad p(H|k + 1) = \frac{k + \beta}{m},\\
   q_k = \beta, \quad q_{k+1} = \alpha.
 \end{gather*}
-Пусть также $\fEven[0] = 0$ и $\fEven[m] = 0$ (т.е. если неопределенности нет, первый игрок использует максиминную стратегию в соответствующей матричной игре).
+Пусть также $\fEven[0] = 0$ и $\fEven[m] = m$ (т.е. если неопределенности нет, первый игрок использует максиминную стратегию в соответствующей матричной игре).
 
 Аналогично для $p = \pOdd$ определим через $\fOdd$ действие $\fGeneral{k}$ с параметрами
 \begin{gather*}
@@ -310,7 +309,8 @@ $\generalGame{n}{p}, \, p \in P, \, n \in \mathbb{N}$.
 
 Пусть $\lowerBound[n]{p}, \, p \in P$ -- гарантированный выигрыш первого игрока в игре $\generalGame{n}{p}$ при применении стратегии $\fOpt$.
 В силу рекурсивной структуры игры $\generalGame{n}{p}$ (см. \cite{domansky07}) для $\lowerBound[n]{p}$ справедливы формулы
-\begin{gather*}
+\begin{gather}
+  \label{eq:lowerBound:recurrence:function}
   \lowerBound[n]{\frac{k + \beta}{m}} = \alpha\beta + 
     \alpha\lowerBound[n-1]{\frac{k}{m}} +
     \beta\lowerBound[n-1]{\frac{k + 1}{m}}\\
@@ -320,7 +320,7 @@ $\generalGame{n}{p}, \, p \in P, \, n \in \mathbb{N}$.
     \alpha\lowerBound[n-1]{\frac{k + \beta}{m}}\\
   %
   \lowerBound[n]{0} = \lowerBound[n]{1} = 0.
-\end{gather*}
+\end{gather}
 
 Так как $\lowerBound[n]{p}$ не убывает по $n$ и ограничена сверху, устремив $n$ к бесконечности, получим нижнюю оценку $\lowerBound{p}$ выигрыша первого игрока в игре $\infiniteGame{p}, \, p \in P$.
 
@@ -421,6 +421,85 @@ a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
 \end{proposition}
 
 Таким образом мы определили функцию $\lowerBound{p}$ при $p \in P$.
+
+\begin{proposition}
+  \label{proposition:first:combination:step}
+  При $\lambda \in (0, 1)$ и $\beta \geq \frac{1}{2}$ для значения $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ выигрыша первого игрока верны оценки
+  \begin{align*}
+    \min_{\tau \in \Tau}
+      \firstPlayerPayoff{1}{%
+        \lambda \pEven + (1-\lambda) \pOdd}{%
+        \lambda \fEven + (1-\lambda) \fOdd}{%
+        \tau}
+      &\geq \alpha \beta (1-\lambda)\\
+      %
+    \min_{\tau \in \Tau}
+      \firstPlayerPayoff{1}{%
+        \lambda \pOdd + (1-\lambda) \pEven[k+1]}{%
+        \lambda \fOdd + (1-\lambda) \fEven[k+1]}{%
+        \tau}
+      &\geq \alpha \beta \lambda.
+  \end{align*}
+\end{proposition}
+Данные неравенства можно доказать, воспользовавшись равенством (\ref{eq:lowerPayoffGeneral}) и линейностью $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ по $\sigma$.
+
+\begin{proposition}
+  \label{proposition:first:combination:game}
+  При $\lambda \in (0, 1)$ и $\beta \geq \frac{1}{2}$ для гарантированного выигрыша первого игрока в игре $\infiniteGame{p}$ справедливо
+  \begin{align*}
+    \lowerBound{\lambda \pEven + (1-\lambda) \pOdd} &= 
+      \lambda \lowerBound{\pEven} + (1-\lambda) \lowerBound{\pOdd}\\
+    \lowerBound{\lambda \pOdd + (1-\lambda) \pEven[k+1]} &=
+      \lambda \lowerBound{\pOdd} + (1-\lambda) \lowerBound{\pEven}.
+  \end{align*}
+\end{proposition}
+\begin{proof}
+  Покажем, что линейная комбинация соответствующих крайних стратегий дает необходимый результат.
+
+  Пусть $p = \lambda \pOdd + (1-\lambda) \pEven[k+1], \, k = \overline{0, m - 2}$.
+  В этом случае при использовании $\lambda\fOdd[k] + (1-\lambda)\fEven[k+1]$ первый игрок рандомизирует между ставками $k, k + 1, k + 2$ с параметрами
+  \begin{gather*}
+    q_k = \lambda\alpha, \, q_{k+1} = \beta, \, q_{k+2} = (1-\lambda)\alpha,\\
+    p(H|k) = \pEven, \, p(H|k+1) = \lambda \pEven[k+1] + (1-\lambda) \pOdd, \, p(H|k+2) = \pOdd[k+1].
+  \end{gather*}
+  
+  Тогда по аналогии с (\ref{eq:lowerBound:recurrence:function}) выписывается рекуррентная формула для $\lowerBound{p}$
+  \begin{equation}
+    \label{eq:first:combination:game:1}
+    \lowerBound{p} = \alpha \beta \lambda +
+      \lambda \alpha \lowerBound{\pEven} +
+      (1-\lambda) \alpha \lowerBound{\pOdd[k+1]} +
+      \beta \lowerBound{(1-\lambda) \pOdd + \lambda \pEven[k+1]}.
+  \end{equation}
+  Так как $(1-\lambda)\pOdd + \lambda \pEven[k+1] \in (\pOdd, \pEven[k+1])$, то для $\lowerBound{(1-\lambda)\pOdd + \lambda \pEven[k+1]}$ справедливо аналогичное представление.
+  Приведя подобные в (\ref{eq:first:combination:game:1}), получим
+  \begin{multline}
+    \label{eq:first:combination:game:2}
+    \lowerBound{p} = \frac{1}{1-\beta^2} \left(
+      \alpha\beta\lambda + \alpha\lambda\lowerBound{\pEven} + (1-\lambda)\lowerBound{\pOdd[k+1]} + \\
+      %
+      + \beta\left(
+          \alpha\beta(1-\lambda) + (1-\lambda)\alpha\lowerBound{\pEven} + \lambda\alpha\lowerBound{\pOdd[k+1]}
+        \right)
+      \right) = \\
+      %
+      = \frac{1}{2}\left(
+        (k + 1)(m - k - 1) + \alpha\lambda(2k - m + 2\beta + 1)
+      \right) = \\
+      = \lambda\lowerBound{\pOdd} + (1-\lambda)\lowerBound{\pEven[k+1]}.
+  \end{multline}
+  
+  Пусть $p = \lambda\pEven + (1-\lambda)\pOdd, \, k = \overline{1, m - 1}$.
+  В этом случае при использовании $\lambda\fEven + (1-~\lambda)\fOdd$ первый игрок рандомизирует между ставками $k$ и $k+1$ с параметрами
+  \begin{gather*}
+    q_k = \lambda\beta + (1-\lambda)(1-\beta), \:
+    p(H|k) = \frac{\lambda\beta}{q_k}\pOdd[k-1] +
+      \frac{(1-\lambda)(1-\beta)}{q_k} \pEven,\\
+    q_{k+1} = \lambda(1-\beta) + (1-\lambda)\beta, \:
+    p(H|k+1) = \frac{\lambda(1-\beta)}{q_{k+1}}\pOdd[k] +
+      \frac{(1-\lambda)\beta}{q_{k+1}}\pEven[k+1].
+  \end{gather*}
+\end{proof}
 
 %
 % Список литературы

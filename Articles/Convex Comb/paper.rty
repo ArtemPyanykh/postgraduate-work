@@ -5,6 +5,8 @@
 \input maik.rty
 %\def\refitem#1{\relax}
 
+\RequirePackage{amsthm}
+
 \newtheorem{theorem}{Теорема}[section]
 \newtheorem{lemma}[theorem]{Лемма}
 \newtheorem{proposition}[theorem]{Утверждение}
