@@ -103,13 +103,13 @@ centertags]%
 После этого на протяжении $ n \leq \infty $ шагов игроки играют в игру $ A^s $.
 Соответствующие платежные матрицы задаются следующим образом:
 \begin{equation*}
-  A^L(i, j) = \begin{cases}
+  A^{L,\beta}(i, j) = \begin{cases}
     \alpha i + \beta j, &\, i < j, \\
     0, &\, i = j, \\
     -\beta i - \alpha j, &\, i > j,
   \end{cases}
   \qquad
-  A^H(i, j) = \begin{cases}
+  A^{H,\beta}(i, j) = \begin{cases}
     \alpha i + \beta j - m, &\, i < j, \\
     0, &\, i = j, \\
     m - \beta i - \alpha j, &\, i > j,
@@ -118,9 +118,9 @@ centertags]%
 где $\alpha = 1 - \beta$, $\beta \in [0,1]$.
 
 На $ t $-ом шаге первый игрок выбирает ставку $ i_t \in I = \{0, 1, \ldots, m\} $, а второй --- ставку $ j_t \in J = \{0, 1, \ldots, m\} $. 
-Выигрыш первого игрока в повторяющейся игре равен $ \sum_{t=1}^n a_{i_t j_t}^s $. 
+Выигрыш первого игрока в повторяющейся игре равен $ \sum_{t=1}^n a_{i_t j_t}^{s,\beta} $. 
 Второму игроку этот выигрыш становится известным только после окончания игры.
-На промежуточных шагах он не имеет точной информации о величинах $ a_{i_t j_t}^s $.
+На промежуточных шагах он не имеет точной информации о величинах $ a_{i_t j_t}^{s,\beta} $.
 
 Таким образом, стратегией первого игрока является последовательность ходов
 $
@@ -142,28 +142,37 @@ $
 $ \sigma = (\sigma_1, \sigma_2, \ldots, \sigma_n) $, где 
 $ 
   \sigma_t~=~(\sigma_t^L, \sigma_t^H), \quad
-  \sigma^s_t~=~(\sigma^s_{t, 1}, \ldots, \sigma^s_{t, m}) \in \Delta(I),
+  \sigma^s_t~=~(\sigma^s_{t, 0}, \ldots, \sigma^s_{t, m}) \in \Delta(I),
 $ 
 а вторым игроком смешанной стратегии 
 $ \tau~=~(\tau_1, \tau_2, \ldots, \tau_n) $, где
-$ \tau_t~=~(\tau_{t, 1}, \ldots, \tau_{t, m}) \in \Delta(J) $,
+$ \tau_t~=~(\tau_{t, 0}, \ldots, \tau_{t, m}) \in \Delta(J) $,
 выигрыш первого игрока равен
 \begin{equation}
   \label{eq:firstPlayerPayoff}
   \firstPlayerPayoff{n}{p}{\sigma}{\tau} = \sum_{t=1}^n
   \left(
-    pA^H(\sigma_t^H, \tau_t) + (1 - p)A^L(\sigma_t^L, \tau_t)
+    pA^{H,\beta}(\sigma_t^H, \tau_t) + (1 - p)A^{L,\beta}(\sigma_t^L, \tau_t)
   \right),
 \end{equation}
 где 
 $ 
-A^s(\sigma^s_t,\tau_t) = 
+A^{s,\beta}(\sigma^s_t,\tau_t) = 
     \sum_{i \in I}
         \sum_{j \in J}
-            \sigma^s_{t, i} \tau_{t, j} A^s(i, j).
+            \sigma^s_{t, i} \tau_{t, j} A^{s,\beta}(i, j).
 $
 
 Через $\gameValue{n}{p}$ обозначим значение игры $\generalGame{n}{p}$.
+
+Заметим, что $A^{L,\beta}(i,j) = A^{H,1-\beta}(m-i,m-j), A^{H,\beta}(i,j) = A^{L,1-\beta}(m-i,m-j)$.
+Определим симметричные стратегии игроков
+\begin{gather*}
+  \symm{\sigma_t} = (\symm{\sigma^H_t}, \symm{\sigma^L}), \: \symm{\sigma^s_t} = (\sigma^s_{t,m},\ldots,\sigma^s_{t,0}) \in \Delta(I),\\
+  \symm{\tau_t} = (\tau_{t,m},\ldots,\tau_{t,0}) \in \Delta(J),
+\end{gather*}
+и симметричную игру $\symm{\generalGame{n}{p}} = \symmGameExpression[n]{1-p}$.
+Легко видеть, что выигрыши игроков в симметричных играх при использовании симметричных стратегий совпадают.
 
 \section{Оценки на выигрыш первого игрока}
 \label{sec:payoffBounds}
@@ -179,9 +188,9 @@ $
 \begin{align*}
   \tau^k_1 &= k, \\
   \tau^k_t(i_{t-1}, j_{t-1}) &= \begin{cases}
-    j_{t-1} - 1, &\, i_{t-1} < j_{t-1},\\
-    j_{t-1}, &\, i_{t-1} = j_{t-1},\\
-    j_{t-1} + 1, &\, i_{t-1} > j_{t-1}.
+    j_{t-1} - 1, & \, i_{t-1} < j_{t-1}, \\
+    j_{t-1},     & \, i_{t-1} = j_{t-1}, \\
+    j_{t-1} + 1, & \, i_{t-1} > j_{t-1}.
   \end{cases}
 \end{align*}
 
@@ -198,21 +207,21 @@ $
   в состояниях L и H соответственно, где $x^+ = \max(x; 0)$.
 \end{proposition}
 
-Очевидно, значения $h_n^L(\tau^k)$ и $h_n^H(\tau^k)$ ограничены сверху по $n$.
+Очевидно, значения $h_n^L(\tau^k)$ и $h_n^H(\tau^k)$ монотонны и ограничены сверху по $n$.
 Тогда можно ввести следующую функцию:
 \begin{multline*}
   \upperBound{p} = \min_{j \in J} \lim_{n \rightarrow \infty}\left(
     ph_n^H(\tau^j) + (1-p)h_n^L(\tau^j)
   \right) = \\
+  %
   = \min_{j \in J} \frac{1}{2} \left(
     p (m - j)(m - j + \alpha - \beta) + (1 - p)j(j + \beta - \alpha)
-  \right)
+  \right).
 \end{multline*}
 
 Функция $\upperBound{p}$ является кусочно-линейной функцией, состоящей из $m+1$ линейных сегментов, и полностью определяется своими значениями в точках
 \begin{gather*}
-  \
-  \upperBound{\frac{k+\beta}{m}} = 1/2 \left(
+  \upperBound{\frac{k+\beta}{m}} = \frac{1}{2} \left(
   (m - (k + \beta))(k + \beta) + \alpha\beta
   \right), \, k = \overline{0, m - 1},\\
   \upperBound{0} = \upperBound{1} = 0.
@@ -258,14 +267,10 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
     \label{eq:lowerPayoffGeneral}
     \firstPlayerPayoff{1}{p}{\fGeneral{k}}{j} =
     \begin{cases}
-      mp - \beta k - \alpha j - \beta q_{k+1}, &\, j < k,\\
-      \left(
-        m p(H|k+1) - k - \beta
-      \right) q_{k+1}, &\, j = k,\\
-      \left(
-        k + \beta - m p(H|k)
-      \right) q_k, &\, j = k + 1,\\
-      \alpha k + \beta j - mp + \alpha q_{k+1}, &\, j > k + 1.
+      mp - \beta k - \alpha j - \beta q_{k+1},      & \, j < k,     \\
+      \left(m p(H|k+1) - k - \beta \right) q_{k+1}, & \, j = k,     \\
+      \left(k + \beta - m p(H|k) \right) q_k,       & \, j = k + 1, \\
+      \alpha k + \beta j - mp + \alpha q_{k+1},     & \, j > k + 1.
     \end{cases}
   \end{equation}
 \end{proposition}
@@ -374,11 +379,11 @@ $L = (L_1, L_2, \ldots, L_{2m-1})$.
 Системы $ Mx = f $ с трехдиагональной матрицей $ M $, имеющей структуру
 \[
 M = \left(\begin{array}{ccccccc}
-c_1 & b_1 & 0 & \cdots & 0 & 0 & 0 \\
-a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
-\hdotsfor{7} \\
-0 & 0 & 0 & \cdots & a_{n-1} & c_{n-1} & b_{n-1} \\
-0 & 0 & 0 & \cdots & 0 & a_n & c_n
+c_1 & b_1 & 0   & \cdots & 0       & 0       & 0       \\
+a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
+\hdotsfor{7}                                           \\
+0   & 0   & 0   & \cdots & a_{n-1} & c_{n-1} & b_{n-1} \\
+0   & 0   & 0   & \cdots & 0       & a_n     & c_n
 \end{array}\right),
 \]
 можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и переменных (см. \cite{samarsky89-num}):
@@ -420,18 +425,19 @@ a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
   \end{gather*}
 \end{proposition}
 
-Таким образом мы определили функцию $\lowerBound{p}$ при $p \in P$.
+Тем самым мы определили функцию $\lowerBound{p}$ при $p \in P$.
+Для $p \in [0, 1] \setminus P$ стратегия инсайдера основана на применении линейной комбинации стратегий для крайних точек интервала, в котором находится $p$.
 
 \begin{proposition}
   \label{proposition:first:combination:step}
-  При $\lambda \in (0, 1)$ и $\beta \geq \frac{1}{2}$ для значения $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ выигрыша первого игрока верны оценки
+  При $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$ для значения $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ выигрыша первого игрока верны оценки
   \begin{align*}
     \min_{\tau \in \Tau}
       \firstPlayerPayoff{1}{%
         \lambda \pEven + (1-\lambda) \pOdd}{%
         \lambda \fEven + (1-\lambda) \fOdd}{%
         \tau}
-      &\geq \alpha \beta (1-\lambda)\\
+      &\geq \alpha \beta (1-\lambda), \\
       %
     \min_{\tau \in \Tau}
       \firstPlayerPayoff{1}{%
@@ -445,11 +451,11 @@ a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
 
 \begin{proposition}
   \label{proposition:first:combination:game}
-  При $\lambda \in (0, 1)$ и $\beta \geq \frac{1}{2}$ для гарантированного выигрыша первого игрока в игре $\infiniteGame{p}$ справедливо
+  При $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$ для гарантированного выигрыша первого игрока в игре $\infiniteGame{p}$ справедливо
   \begin{align*}
-    \lowerBound{\lambda \pEven + (1-\lambda) \pOdd} &= 
-      \lambda \lowerBound{\pEven} + (1-\lambda) \lowerBound{\pOdd}\\
-    \lowerBound{\lambda \pOdd + (1-\lambda) \pEven[k+1]} &=
+    \lowerBound{\lambda \pEven + (1-\lambda) \pOdd}      & = 
+      \lambda \lowerBound{\pEven} + (1-\lambda) \lowerBound{\pOdd}, \\
+    \lowerBound{\lambda \pOdd + (1-\lambda) \pEven[k+1]} & =
       \lambda \lowerBound{\pOdd} + (1-\lambda) \lowerBound{\pEven}.
   \end{align*}
 \end{proposition}
@@ -471,22 +477,23 @@ a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
       (1-\lambda) \alpha \lowerBound{\pOdd[k+1]} +
       \beta \lowerBound{(1-\lambda) \pOdd + \lambda \pEven[k+1]}.
   \end{equation}
-  Так как $(1-\lambda)\pOdd + \lambda \pEven[k+1] \in (\pOdd, \pEven[k+1])$, то для $\lowerBound{(1-\lambda)\pOdd + \lambda \pEven[k+1]}$ справедливо аналогичное представление.
+  Так как $(1-\lambda)\pOdd + \lambda \pEven[k+1] \in \left( \pOdd, \pEven[k+1] \right)$, то для $\lowerBound{(1-\lambda)\pOdd + \lambda \pEven[k+1]}$ справедливо аналогичное представление.
   Приведя подобные в (\ref{eq:first:combination:game:1}), получим
   \begin{multline}
     \label{eq:first:combination:game:2}
-    \lowerBound{p} = \frac{1}{1-\beta^2} \left(
-      \alpha\beta\lambda + \alpha\lambda\lowerBound{\pEven} + (1-\lambda)\lowerBound{\pOdd[k+1]} + \\
-      %
-      + \beta\left(
-          \alpha\beta(1-\lambda) + (1-\lambda)\alpha\lowerBound{\pEven} + \lambda\alpha\lowerBound{\pOdd[k+1]}
-        \right)
-      \right) = \\
-      %
-      = \frac{1}{2}\left(
-        (k + 1)(m - k - 1) + \alpha\lambda(2k - m + 2\beta + 1)
-      \right) = \\
-      = \lambda\lowerBound{\pOdd} + (1-\lambda)\lowerBound{\pEven[k+1]}.
+    \lowerBound{p} = \frac{1}{1-\beta^2} 
+    \left(\alpha\beta\lambda + \alpha\lambda\lowerBound{\pEven} + (1-\lambda)\lowerBound{\pOdd[k+1]} + \right.\\
+    % 
+    \left. + \beta
+      \left(
+        \alpha\beta(1-\lambda) + (1-\lambda)\alpha\lowerBound{\pEven} + \lambda\alpha\lowerBound{\pOdd[k+1]}
+      \right)
+    \right) = \\
+    % 
+    = \frac{1}{2} \left(
+      (k + 1)(m - k - 1) + \alpha\lambda(2k - m + 2\beta + 1)
+    \right) = \\
+    = \lambda\lowerBound{\pOdd} + (1-\lambda)\lowerBound{\pEven[k+1]}.
   \end{multline}
   
   Пусть $p = \lambda\pEven + (1-\lambda)\pOdd, \, k = \overline{1, m - 1}$.
@@ -499,7 +506,30 @@ a_2 & c_2 & b_2 & \cdots & 0 & 0 & 0 \\
     p(H|k+1) = \frac{\lambda(1-\beta)}{q_{k+1}}\pOdd[k] +
       \frac{(1-\lambda)\beta}{q_{k+1}}\pEven[k+1].
   \end{gather*}
+  
+  Заметим, что $p(H|k) \in \left( \pOdd[k-1], \pEven \right)$, а $p(H|k+1) \in \left( \pOdd, \pEven[k+1] \right)$.
+  Тогда с помощью (\ref{eq:first:combination:game:2}) получим
+  \begin{multline*}
+    \lowerBound{p} = \lambda \beta \lowerBound{\pOdd[k-1]} + (1-\lambda)(1-\beta)\lowerBound{\pEven} + \lambda(1-\beta)\lowerBound{\pOdd} + \\
+      + (1-\lambda)\beta\lowerBound{\pEven[k+1]} =
+    \lambda \lowerBound{\pEven} + (1-\lambda) \lowerBound{\pOdd}.
+  \end{multline*}
+  
+  При $p \in \left( 0, \pOdd[1] \right)$ и $p \in \left( \pOdd[m-1], 1 \right)$ доказательство проводится аналогично.
 \end{proof}
+
+Заметим, что при $\beta < 1/2$ полученные результаты также имеют место, а стратегию $\fOpt$ можно получить, рассмотрев дополнительную игру $\symm{\infiniteGame{p}}$.
+Таким образом, мы определили $\lowerBound{p}$ и $\fOpt$ для $p \in [0, 1], \, \beta \in [0, 1]$.
+
+\begin{lemma}
+  \label{lemma:first:lower}
+  При использовании первым игроком стратегии $\fOpt$ в игре $\infiniteGame{p}$, его выигрыш ограничен снизу функцией $\lowerBound{p}$, т.е.
+  \[
+  \min_{\tau \in \Tau} \infiniteFirstPlayerPayoff{p}{\fOpt}{\tau} \geq \lowerBound{p}.
+  \]
+\end{lemma}
+
+Отметим, что приведенная стратегия инсайдера для $p \in [0, 1] \setminus P$ принципиально отличается от аналогичной стратегии в \cite{pyanykh14}, которая дает необходимые результаты только при $\beta = 1/2$.
 
 %
 % Список литературы
