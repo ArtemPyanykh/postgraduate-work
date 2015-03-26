@@ -7,6 +7,7 @@
 \usepackage[centertags]{amsmath}
 \usepackage{amsthm,amsfonts,amssymb}
 \usepackage{indentfirst}
+\sloppy
 %-------------------------------------------------------------------------------
 \frenchspacing
 \parindent=0.6cm
@@ -33,6 +34,9 @@
 \newtheorem{proposition}{Утверждение}
 \newtheorem{remark}{Замечание}
 \def\proof{{\indent Доказательство.}}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
 
 %%%%%%%%%%   Custom commands   %%%%%%%%%%%%%%
 \newcommand{\Tau}{%
@@ -162,8 +166,8 @@ L_{#1}^{m,\beta}\left({#2}\right)%
 
 Таким образом мы приходим к следующей формализации рассматриваемой модели.
 Множество состояний рынка $ S = \states $. На первом шаге случай выбирает $ s \in S $ с вероятностями $ p(H) = p $ и $ p(L) = (1 - p) $.
-После этого на протяжении $ n \leq \infty $ шагов игроки играют в игру $ A^s $.
-Соответствующие платежные матрицы задаются следующим образом:
+После этого на протяжении $ n \leq \infty $ шагов игроки играют в игру $ A^{s,\beta} $.
+Платежные матрицы задаются следующим образом:
 \begin{equation*}
   A^{L,\beta}(i, j) = \begin{cases}
     \alpha i + \beta j, &\, i < j, \\
@@ -186,7 +190,7 @@ L_{#1}^{m,\beta}\left({#2}\right)%
 
 Таким образом, стратегией первого игрока является последовательность ходов
 $
-  \sigma~=~(\sigma_1, \sigma_2, \ldots, \sigma_t, \ldots),
+  \sigma = (\sigma_1, \sigma_2, \ldots, \sigma_t, \ldots),
 $
 где $\sigma_t: S \times I^{t-1} \rightarrow \Delta(I)$, а $\Delta(I)$ --- вероятностное распределение на множестве возможных ставок.
 Как и в \cite{domansky07}, мы ограничимся рассмотрением только тех стратегий $\sigma$, которые гарантируют первому игроку на каждом шаге игры неотрицательный выигрыш.
@@ -194,7 +198,7 @@ $
 
 Аналогично стратегией второго игрока назовем последовательность ходов
 $
-  \tau~=~(\tau_1, \tau_2, \ldots, \tau_t, \ldots),
+  \tau = (\tau_1, \tau_2, \ldots, \tau_t, \ldots),
 $
 где $ \tau_t: I^{t-1} \rightarrow \Delta(J) $.
 Множество всевозможных стратегий второго игрока обозначим через $\Tau$.
@@ -241,14 +245,14 @@ $
 
 Рассмотрим чистую стратегию второго игрока $\tau^k, \, k \in J$:
 
-\begin{align*}
-  \tau^k_1 &= k, \\
-  \tau^k_t(i_{t-1}, j_{t-1}) &= \begin{cases}
+\[
+  \tau^k_1 = k, \quad
+  \tau^k_t(i_{t-1}, j_{t-1}) = \begin{cases}
     j_{t-1} - 1, & \, i_{t-1} < j_{t-1}, \\
     j_{t-1},     & \, i_{t-1} = j_{t-1}, \\
     j_{t-1} + 1, & \, i_{t-1} > j_{t-1}.
   \end{cases}
-\end{align*}
+\]
 
 По сути эта стратегия представляет собой стратегию подражания инсайдеру.
 Доказательство следующего утверждения проводится по индукции.
@@ -256,10 +260,10 @@ $
 \begin{proposition}
   \label{proposition:secondPlayerStrategyPayoffs}
   При применении стратегии $\tau^k$ в игре $\infiniteGame{p}$ второй игрок гарантирует себе проигрыш не более
-  \begin{equation*}
-    h_n^L(\tau^k) &= \sum_{t=0}^{n-1}(k - t - \alpha)^+, \quad
-    h_n^H(\tau^k) &= \sum_{t=0}^{n-1}(m - k - t - \beta)^+,
-  \end{equation*}
+  \[
+    h_n^L(\tau^k) = \sum_{t=0}^{n-1}(k - t - \alpha)^+, \quad
+    h_n^H(\tau^k) = \sum_{t=0}^{n-1}(m - k - t - \beta)^+,
+  \]
   в состояниях L и H соответственно, где $x^+ = \max(x; 0)$.
 \end{proposition}
 
@@ -270,17 +274,18 @@ $
     ph_n^H(\tau^j) + (1-p)h_n^L(\tau^j)
   \right) = \\
   %
-  = \min_{j \in J} \frac{1}{2} \left(
+  = \min_{j \in J} \left(
     p (m - j)(m - j + \alpha - \beta) + (1 - p)j(j + \beta - \alpha)
-  \right).
+  \right) / 2.
 \end{multline*}
 
-При $p \in \left( (k-\alpha)/m, (k+\beta)/m) \right]$ минимум достигается при $j = k$.
+При $p \in \left( (k-\alpha)/m, (k+\beta)/m) \right]$ минимум функции достигается при $j = k$.
 Таким образом функция $\upperBound{p}$ является кусочно-линейной функцией, состоящей из $m~+~1$ линейных сегментов, и полностью определяется своими значениями в точках
 \begin{gather*}
-  \upperBound{\frac{k+\beta}{m}} = \frac{1}{2} \left(
+  \upperBound{\frac{k+\beta}{m}} = \left(
   (m - (k + \beta))(k + \beta) + \alpha\beta
-  \right), \, k = \overline{0, m - 1},\\
+  \right) / 2, \, 
+  k = \overline{0, m - 1},\\
   \upperBound{0} = \upperBound{1} = 0.
 \end{gather*}
 
@@ -308,9 +313,9 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
 
 Определим следующие параметры: полные вероятности действий $k$ и $k+1$ равные $q_k$ и $q_{k+1}$ соответственно, а также апостериорные вероятности $p(s|i)$ состояния $s$ при условии, что на предыдущем шаге первый игрок сделал ставку $i$.
 Тогда вероятности $\fGeneral[1,i]{s}$ можно найти по формуле Байеса
-\[
+$
 \fGeneral[1,i]{s}~=~p(s|i)q_i/p(s), \: i = k, k + 1.
-\]
+$
 
 Следующее утверждение характеризует $\fGeneral{k}$ с точки зрения гарантированного результата и является обобщением утверждения 4.1 из \cite{pyanykh14}.
 
@@ -338,13 +343,13 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
 
 Для $p = \pEven$ определим $\fEven$ как действие $\fGeneral{k}$ с параметрами
 \begin{equation*}
-  p(H|k) = \frac{k - 1 + \beta}{m}, \quad p(H|k + 1) = \frac{k + \beta}{m}, \quad q_k = \beta, \quad q_{k+1} = \alpha.
+  p(H|k) = \pOdd[k-1], \quad p(H|k + 1) = \pOdd[k], \quad q_k = \beta, \quad q_{k+1} = \alpha.
 \end{equation*}
 Пусть также $\fEven[0] = 0$ и $\fEven[m] = m$ (т.е. если неопределенности нет, первый игрок использует максиминную стратегию в соответствующей матричной игре).
 
 Аналогично для $p = \pOdd$ определим $\fOdd$ как действие $\fGeneral{k}$ с параметрами
 \begin{equation*}
-  p(H|k) = \frac{k}{m}, \quad p(H|k + 1) = \frac{k + 1}{m}, \quad q_k = \alpha, \quad q_{k+1} = \beta.
+  p(H|k) = \pEven[k], \quad p(H|k + 1) = \pEven[k+1], \quad q_k = \alpha, \quad q_{k+1} = \beta.
 \end{equation*}
 
 \begin{proposition}
@@ -363,20 +368,21 @@ $\fGeneral[1,i]{s}$ -- вероятность сделать ставку равную $i$ в состоянии $s \in 
 Таким образом, можно продолжить применение $\fEven$ и $\fOdd$ на последующих шагах игры, тем самым определив стратегию $\fOpt$ в игре
 $\generalGame{n}{p}, \, p \in P, \, n \in \mathbb{N}$.
 
-Пусть $\lowerBound[n]{p}, \, p \in P$ -- гарантированный выигрыш первого игрока в игре $\generalGame{n}{p}$ при применении стратегии $\fOpt$.
+Пусть $\lowerBound[n]{p}, \, p \in P$ --- гарантированный выигрыш первого игрока в игре $\generalGame{n}{p}$ при применении стратегии $\fOpt$.
 В силу рекурсивной структуры игры $\generalGame{n}{p}$ (см. \cite{domansky07}) для $\lowerBound[n]{p}$ справедливы формулы
-\begin{gather}
-  \label{eq:lowerBound:recurrence:function}
-  \lowerBound[n]{\frac{k + \beta}{m}} = \alpha\beta + 
-    \alpha\lowerBound[n-1]{\frac{k}{m}} +
-    \beta\lowerBound[n-1]{\frac{k + 1}{m}}\\
+\begin{equation}
+  \begin{gathered}
+    \label{eq:lowerBound:recurrence:function}
+    \lowerBound[n]{(k + \beta)/m} = \alpha\beta +
+    \alpha\lowerBound[n-1]{k/m} +
+    \beta\lowerBound[n-1]{(k + 1)/m}\\
   %
-  \lowerBound[n]{\frac{k}{m}} =
-    \beta\lowerBound[n-1]{\frac{k - 1 + \beta}{m}} +
-    \alpha\lowerBound[n-1]{\frac{k + \beta}{m}}\\
+    \lowerBound[n]{k/m} = \beta\lowerBound[n-1]{(k - 1 + \beta)/m} +
+    \alpha\lowerBound[n-1]{(k + \beta)/m}\\
   %
-  \lowerBound[n]{0} = \lowerBound[n]{1} = 0.
-\end{gather}
+    \lowerBound[n]{0} = \lowerBound[n]{1} = 0.
+  \end{gathered}
+\end{equation}
 
 Так как $\lowerBound[n]{p}$ не убывает по $n$ и ограничена сверху, устремив $n$ к бесконечности, получим нижнюю оценку $\lowerBound{p}$ выигрыша первого игрока в игре $\infiniteGame{p}, \, p \in P$.
 
@@ -438,19 +444,16 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 \end{array}\right),
 \]
 можно решать методом прогонки, используя следующие формулы для прогоночных коэффициентов и переменных (см. \cite{samarsky89-num}):
-\begin{equation}
-  \label{eq:tridiagonal:formulas}
-  \begin{gathered}
-    x_i = \gamma_{i+1} x_{i+1} + \delta_{i+1}, \: i = \overline{1,n-1}, \quad
-    x_n = \frac{f_n - a_n\delta_n}{c_n + a_n\gamma_n}, \\
-    % 
-    \gamma_{i+1} = -\frac{b_i}{c_i + a_i\gamma_i}, \: i = \overline{2, n-1}, \quad
-    \gamma_2 = -\frac{b_1}{c_1}, \\
-    % 
-    \delta_{i+1} = \frac{f_i - a_i\delta_i}{c_i + a_i\gamma_i}, \: i = \overline{2, n-1}, \quad
-    \delta_2 = \frac{f_1}{c_1}.
-  \end{gathered}
-\end{equation}
+\begin{gather*}
+  x_i = \gamma_{i+1} x_{i+1} + \delta_{i+1}, \: i = \overline{1,n-1}, \quad
+  x_n = \frac{f_n - a_n\delta_n}{c_n + a_n\gamma_n}, \\
+  % 
+  \gamma_{i+1} = -\frac{b_i}{c_i + a_i\gamma_i}, \: i = \overline{2, n-1}, \quad
+  \gamma_2 = -\frac{b_1}{c_1}, \\
+  % 
+  \delta_{i+1} = \frac{f_i - a_i\delta_i}{c_i + a_i\gamma_i}, \: i = \overline{2, n-1}, \quad
+  \delta_2 = \frac{f_1}{c_1}.
+\end{gather*}
 
 \begin{proposition}
   \label{proposition:tridiagonal:coefficients}
@@ -471,8 +474,8 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
   \label{proposition:lower:recurrence-solution}
   Решение системы (\ref{eq:lowerRecurrence}) дается следующими формулами:
   \begin{gather*}
-    L_{2k+1} = 1/2((m - (k + \beta))(k + \beta) + \alpha\beta), \, k = \overline{0, m-1}, \\
-    L_{2k} = 1/2 k (m-k), \, k = \overline{0,m}.
+    L_{2k+1} = ((m - (k + \beta))(k + \beta) + \alpha\beta)/2, \, k = \overline{0, m-1}, \\
+    L_{2k} = k (m-k)/2, \, k = \overline{0,m}.
   \end{gather*}
 \end{proposition}
 
@@ -540,9 +543,9 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
       \right)
     \right) = \\
     % 
-    = \frac{1}{2} \left(
+    = \left(
       (k + 1)(m - k - 1) + \alpha\lambda(2k - m + 2\beta + 1)
-    \right) = \\
+    \right)/2 = \\
     = \lambda\lowerBound{\pOdd} + (1-\lambda)\lowerBound{\pEven[k+1]}.
   \end{multline}
   
