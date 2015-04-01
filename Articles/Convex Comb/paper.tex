@@ -290,7 +290,7 @@ $
 \fGeneral{k}~=~\left(\fGeneral{H}, \fGeneral{L}\right)
 $, где 
 $\fGeneral{H} = \left(\fGeneral[1,k]{H}, \fGeneral[1,k+1]{H}\right)$,
-$\fGeneral{L} = \left(\fGeneral[1,k]{L}, \fGeneral[1,k+1]{L}\right)$ и
+$\fGeneral{L} = \left(\fGeneral[1,k]{L}, \fGeneral[1,k+1]{L}\right)$, и
 $\fGeneral[1,i]{s}$ -- веро€тность сделать ставку $i$ в состо€нии $s \in \states$.
 ѕримен€€ $\fGeneral{k}$, инсайдер делает ставки $k$ и $k+1$ с некоторыми заданными веро€тност€ми.
 
@@ -319,8 +319,8 @@ $
 ѕостроим оптимальную стратегию инсайдера.
 –ассмотрим на $[0,1]$ множество $P$ точек вида
 \[
-\pEven[i] = \frac{i}{m}, \, i = \overline{0, m}, \quad
-\pOdd[i] = \frac{i + \beta}{m}, \, i = \overline{0, m - 1}.
+\pEven[i] = i/m, \, i = \overline{0, m}, \quad
+\pOdd[i] = (i + \beta)/m, \, i = \overline{0, m - 1}.
 \]
 
 ƒл€ $p = \pEven$ определим $\fEven$ как действие $\fGeneral{k}$ с параметрами
@@ -349,9 +349,9 @@ $
 
 «аметим, что если $p \in P$, то при применении инсайдером на первом шаге игры $\fEven$ и $\fOdd$, значени€ апостериорных веро€тностей также принадлежат $P$.
 “аким образом, можно продолжить применение $\fEven$ и $\fOdd$ на последующих шагах игры, тем самым определив стратегию $\fOpt$ в игре
-$\generalGame{n}{p}, \, p \in P, \, n \in \mathbb{N}$.
+$\generalGame{n}{p}$, где $p \in P, \, n \in \mathbb{N}$.
 
-ѕусть $\lowerBound[n]{p}, \, p \in P$ --- гарантированный выигрыш первого игрока в игре $\generalGame{n}{p}$ при применении стратегии $\fOpt$.
+ѕусть $\lowerBound[n]{p}$ при $p \in P$ --- гарантированный выигрыш первого игрока в игре $\generalGame{n}{p}$ при применении стратегии $\fOpt$.
 ¬ силу рекурсивной структуры игры $\generalGame{n}{p}$ (см. \cite{domansky07}) и неравенств (\ref{eq:lowerBound:inequalities}) дл€ $\lowerBound[n]{p}$ справедливы формулы
 \begin{equation}
   \begin{gathered}
@@ -467,24 +467,24 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 \begin{proposition}
   \label{proposition:first:combination:step}
-  ѕри $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$ дл€ значени€ $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ выигрыша первого игрока верны оценки
+  ѕри $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$ дл€ значени€ $\firstPlayerPayoff{1}{p}{\sigma}{j}$ выигрыша первого игрока верны оценки
   \begin{align*}
-    \min_{\tau \in \Tau}
+    \min_{j \in J}
       \firstPlayerPayoff{1}{%
         \lambda \pEven + (1-\lambda) \pOdd}{%
         \lambda \fEven + (1-\lambda) \fOdd}{%
-        \tau}
+        j}
       &\geq \alpha \beta (1-\lambda), \\
       %
-    \min_{\tau \in \Tau}
+    \min_{j \in J}
       \firstPlayerPayoff{1}{%
         \lambda \pOdd + (1-\lambda) \pEven[k+1]}{%
         \lambda \fOdd + (1-\lambda) \fEven[k+1]}{%
-        \tau}
+        j}
       &\geq \alpha \beta \lambda.
   \end{align*}
 \end{proposition}
-”тверждение следует из линейности $\firstPlayerPayoff{1}{p}{\sigma}{\tau}$ по $\sigma$ и равенства (\ref{eq:lowerPayoffGeneral}).
+”тверждение следует из линейности $\firstPlayerPayoff{1}{p}{\sigma}{j}$ по $\sigma$ и равенства (\ref{eq:lowerPayoffGeneral}).
 
 \begin{proposition}
   \label{proposition:first:combination:game}
