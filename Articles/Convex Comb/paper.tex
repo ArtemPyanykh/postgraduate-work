@@ -7,7 +7,6 @@
 \usepackage[centertags]{amsmath}
 \usepackage{amsthm,amsfonts,amssymb}
 \usepackage{indentfirst}
-\sloppy
 %-------------------------------------------------------------------------------
 \frenchspacing
 \parindent=0.6cm
@@ -120,8 +119,9 @@ L_{#1}^{m,\beta}\left({#2}\right)%
                        E--mail: artem.pyanykh@gmail.com},
 \medskip
 
-МОДЕЛЬ БИРЖЕВЫХ ТОРГОВ С НЕПОЛНОЙ ИНФОРМАЦИЕЙ \\
-\indent С ЭЛЕМЕНТАМИ ПЕРЕГОВОРОВ
+МНОГОШАГОВАЯ МОДЕЛЬ БИРЖЕВЫХ ТОРГОВ С \\
+\indent АСИММЕТРИЧНОЙ ИНФОРМАЦИЕЙ И ЭЛЕМЕНТАМИ \\
+\indent ПЕРЕГОВОРОВ 
 }
 
 \begin{quotation}{\footnotesize
@@ -141,18 +141,17 @@ L_{#1}^{m,\beta}\left({#2}\right)%
 Выбранная цена сообщается первому игроку и не сообщается второму, при этом второй знает, что первый игрок --- инсайдер.
 Оба игрока знают вероятность $p$ высокой цены акции.
 На каждом шаге торгов оба игрока одновременно и независимо назначают некоторую цену за акцию.
-Игроку могут делать произвольные вещественные ставки, причем игрок предложивший большую цену покупает у второго акцию по названной цене.
-Предложенные цены объявляются игрокам в конце каждого хода.
+Игроки могут делать произвольные вещественные ставки, причем игрок предложивший б\'{о}льшую цену покупает у другого акцию по названной цене.
 Игроки помнят предложенные цены на всех предыдущих этапах торгов.
-Задачей игроков является максимизация стоимости портфеля.
+Задачей игрока является максимизация стоимости портфеля, состояющего из некоторого числа акций и суммы денег.
 Модель сводится к повторяющейся игре с неполной информацией, как описано в \cite{aumann95-rep}, для которой Де Мейером и Салей были найдены оптимальные стратегии игроков и значение игры.
 
-Позднее Доманским \cite{domansky07} была рассмотрена модификация модели, в которой ставки игроков могли принимать только целые значения. В данной постановке им было получено решение для игры неограниченной продолжительности.
-Отметим также работу В. Крепс \cite{kreps09} с явным решением для $n$-шаговых игр при $m \leq 3$ и работу М. Сандомирской и В. Доманского \cite{sandomirskaya12} с решением одношаговой игры при произвольном $m \in \mathbb{N}$.
+Позднее В. Доманским \cite{domansky07} была рассмотрена модификация модели, в которой ставки игроков могли принимать только целые значения. В данной постановке им было получено решение для игры неограниченной продолжительности.
+Отметим работу В. Крепс \cite{kreps09} с явным решением для $n$-шаговых игр при $m \leq 3$, а также работу М. Сандомирской и В. Доманского \cite{sandomirskaya12} с решением одношаговой игры при произвольном $m \in \mathbb{N}$.
 
 Рассмотрим следующий механизм формирования цены акции, предложенный в \cite{chatterjee83} Чаттерджи и Самуэльсоном.
 Игроки одновременно предлагают цены $i$ и $j$.
-При $i > j$ акция продается по цене $\beta i + (1-\beta) j$, где $\beta \in [0, 1]$ --- заданный коэффициент.
+При $i > j$ акция продается по цене $\beta i + (1-\beta) j$, где $\beta \in [0, 1]$ --- заданный коэффициент, характеризующий переговорную силу продавца.
 В работе \cite{domansky07} фактически $\beta = 1$.
 Решение задачи при значении $\beta = 1/2$ получено в работе \cite{pyanykh14}.
 В данной работе решение бесконечной игры найдено при произвольном $\beta \in [0, 1]$.
@@ -201,7 +200,7 @@ $
 а вторым игроком смешанной стратегии 
 $ \tau~=~(\tau_1, \tau_2, \ldots, \tau_n) $, где
 $ \tau_t~=~(\tau_{t, 0}, \ldots, \tau_{t, m}) \in \Delta(J) $,
-выигрыш первого игрока равен
+ожидаемый выигрыш первого игрока равен
 \begin{equation}
   \label{eq:firstPlayerPayoff}
   \firstPlayerPayoff{n}{p}{\sigma}{\tau} = \sum_{t=1}^n
@@ -221,13 +220,20 @@ $
 Заметим, что $A^{L,\beta}(i,j) = A^{H,\alpha}(m-i,m-j), \, A^{H,\beta}(i,j) = A^{L,\alpha}(m-i,m-j)$.
 Определим симметричные по отношению к $\sigma$ и $\tau$ стратегии игроков
 $
-  \symm{\sigma_t} = (\symm{\sigma^H_t}, \symm{\sigma^L}), \: \symm{\sigma^s_t} = (\sigma^s_{t,m},\ldots,\sigma^s_{t,0}) \in \Delta(I),
-  \symm{\tau_t} = (\tau_{t,m},\ldots,\tau_{t,0}) \in \Delta(J)
+  \symm{\sigma_t} = (\symm{\sigma^H_t}, \symm{\sigma^L}),
 $
-и симметричную игру $\symm{\generalGame{n}{p}} = \symmGameExpression[n]{1-p}$.
-Легко видеть, что выигрыши игроков в симметричных играх при использовании симметричных стратегий совпадают.
+где 
+$
+  \symm{\sigma^s_t} = (\sigma^s_{t,m},\ldots,\sigma^s_{t,0}) \in \Delta(I),
+$ 
+и
+$
+  \symm{\tau_t} = (\tau_{t,m},\ldots,\tau_{t,0}) \in \Delta(J)
+$.
+Также введем обозначение $\symm{\generalGame{n}{p}} = \symmGameExpression[n]{1-p}$.
+Легко видеть, что выигрыши игроков в играх $\generalGame{n}{p}$ и $\symm{\generalGame{n}{p}}$ при использовании симметричных стратегий совпадают.
 
-{\bfseries 3. Оценка сверху выигрыша первого игрока.}\ Рассмотрим чистую стратегию второго игрока $\tau^k, \, k \in J$:
+{\bfseries 3. Оценка сверху выигрыша первого игрока.}\ Следуя \cite{domansky07}, рассмотрим чистую стратегию второго игрока $\tau^k, \, k \in J$:
 \[
   \tau^k_1 = k, \quad
   \tau^k_t(i_{t-1}, j_{t-1}) = \begin{cases}
@@ -247,23 +253,23 @@ $
     h_n^L(\tau^k) = \sum_{t=0}^{n-1}(k - t - \alpha)^+, \quad
     h_n^H(\tau^k) = \sum_{t=0}^{n-1}(m - k - t - \beta)^+,
   \]
-  в состояниях L и H соответственно, где $x^+ = \max(x; 0)$.
+  в состояниях L и H соответственно, где $x^+ = \max(x; 0)$ для $x \in \mathbb{R}$.
 \end{proposition}
 
-Очевидно, что значения $h_n^L(\tau^k)$ и $h_n^H(\tau^k)$ монотонны и ограничены сверху по $n$.
+Очевидно, что выражения $h_n^L(\tau^k)$ и $h_n^H(\tau^k)$ монотонны и ограничены сверху по $n$.
 Введем следующую функцию:
 \begin{multline*}
   \upperBound{p} = \min_{j \in J} \lim_{n \rightarrow \infty}\left(
     ph_n^H(\tau^j) + (1-p)h_n^L(\tau^j)
   \right) = \\
   %
-  = \min_{j \in J} \left(
+  = \min_{j \in J} \left[
     p (m - j)(m - j + \alpha - \beta) + (1 - p)j(j + \beta - \alpha)
-  \right) / 2.
+  \right] / 2.
 \end{multline*}
 
-При $p \in \left( (k-\alpha)/m, (k+\beta)/m) \right]$ минимум функции достигается при $j = k$.
-Таким образом $\upperBound{p}$ является кусочно-линейной функцией, состоящей из $m~+~1$ линейных сегментов, и полностью определяется своими значениями в точках
+При $p \in \left( (k-\alpha)/m, (k+\beta)/m) \right]$ минимум по $j \in J$ достигается при $j = k$.
+Таким образом, $\upperBound{p}$ является кусочно-линейной функцией, состоящей из $m~+~1$ линейных сегментов, и полностью определяется своими значениями в точках
 \begin{gather*}
   \upperBound{(k+\beta)/m} = \left(
   (m - (k + \beta))(k + \beta) + \alpha\beta
@@ -272,7 +278,7 @@ $
   \upperBound{0} = \upperBound{1} = 0.
 \end{gather*}
 
-Пусть второй игрок при $p \in \left( (k-\alpha)/m, (k+\beta)/m) \right]$ применяет $\tau^k, \, k \in \overline{0, m}$. Обозначим эту стратегию через $\tau^*$. Тогда справедлива следующая
+Пусть второй игрок при $p \in \left( (k-\alpha)/m, (k+\beta)/m) \right]$ применяет $\tau^k, \, k = \overline{0, m}$. Обозначим эту стратегию через $\tau^*$. Тогда справедлива следующая
 
 \begin{lemma}
   \label{lemma:upperBound} 
@@ -285,12 +291,12 @@ $
 \end{lemma}
 
 {\bfseries 4. Оценка снизу выигрыша первого игрока.}\ Перейдем к описанию стратегии первого игрока, гарантирующей ему выигрыш не менее $\upperBound{p}$ в игре $\infiniteGame{p}$.
-Пусть на определенном шаге игрок применяет 
+Пусть на первом шаге игрок применяет 
 $
 \fGeneral{k}~=~\left(\fGeneral{H}, \fGeneral{L}\right)
 $, где 
 $\fGeneral{H} = \left(\fGeneral[1,k]{H}, \fGeneral[1,k+1]{H}\right)$,
-$\fGeneral{L} = \left(\fGeneral[1,k]{L}, \fGeneral[1,k+1]{L}\right)$, и
+$\fGeneral{L} = \left(\fGeneral[1,k]{L}, \fGeneral[1,k+1]{L}\right)$ и
 $\fGeneral[1,i]{s}$ -- вероятность сделать ставку $i$ в состоянии $s \in \states$.
 Применяя $\fGeneral{k}$, инсайдер делает ставки $k$ и $k+1$ с некоторыми заданными вероятностями.
 
@@ -327,8 +333,7 @@ $
 \begin{equation*}
   p(H|k) = \pOdd[k-1], \quad p(H|k + 1) = \pOdd[k], \quad q_k = \beta, \quad q_{k+1} = \alpha.
 \end{equation*}
-Пусть также $\fEven[0] = 0$ и $\fEven[m] = m$ (первый игрок использует максиминную стратегию в соответствующей матричной игре).
-
+Дополнительно определим $\fEven[0]$ как действие состоящее в применении ставки $0$ с вероятностью $1$, а $\fEven[m]$ -- как действие состоящее в применении ставки $m$ с вероятностью $1$.
 Аналогично для $p = \pOdd$ определим $\fOdd$ как действие $\fGeneral{k}$ с параметрами
 \begin{equation*}
   p(H|k) = \pEven[k], \quad p(H|k + 1) = \pEven[k+1], \quad q_k = \alpha, \quad q_{k+1} = \beta.
@@ -357,11 +362,11 @@ $\generalGame{n}{p}$, где $p \in P, \, n \in \mathbb{N}$.
   \begin{gathered}
     \label{eq:lowerBound:recurrence:function}
     \lowerBound[n]{(k + \beta)/m} = \alpha\beta +
-    \alpha\lowerBound[n-1]{k/m} +
-    \beta\lowerBound[n-1]{(k + 1)/m},\\
+      \alpha\lowerBound[n-1]{k/m} +
+      \beta\lowerBound[n-1]{(k + 1)/m}, \: k = \overline{0, m-1}, \\
     % 
     \lowerBound[n]{k/m} = \beta\lowerBound[n-1]{(k - 1 + \beta)/m} +
-    \alpha\lowerBound[n-1]{(k + \beta)/m},\\
+      \alpha\lowerBound[n-1]{(k + \beta)/m}, \: k = \overline{1, m-1}, \\
     % 
     \lowerBound[n]{0} = \lowerBound[n]{1} = 0.
   \end{gathered}
@@ -371,15 +376,15 @@ $\generalGame{n}{p}$, где $p \in P, \, n \in \mathbb{N}$.
 
 Введем следующие обозначения:
 \[
-L_{2k} = \lowerBound{k/m}, \, k \in \overline{0,m}, \:%
-L_{2k+1} = \lowerBound{(k+\beta)/m)}, \, k \in \overline{0,m-1}.
+L_{2k} = \lowerBound{k/m}, \, k = \overline{0,m}, \:%
+L_{2k+1} = \lowerBound{(k+\beta)/m)}, \, k = \overline{0,m-1}.
 \]
 Тогда справедливы формулы
 \begin{equation}
   \label{eq:lowerRecurrence}
   \begin{gathered}
-    L_{2k+1} = \alpha\beta + \alpha L_{2k} + \beta L_{2(k+1)}, \, k \in \overline{0, m-1},\\
-    L_{2k} = \beta L_{2k-1} + \alpha L_{2k+1}, \, k \in \overline{1, m-1},\\
+    L_{2k+1} = \alpha\beta + \alpha L_{2k} + \beta L_{2(k+1)}, \, k = \overline{0, m-1},\\
+    L_{2k} = \beta L_{2k-1} + \alpha L_{2k+1}, \, k = \overline{1, m-1},\\
     L_0 = L_{2m} = 0.
   \end{gathered}
 \end{equation}
@@ -445,17 +450,17 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
     \gamma_{2k} = \frac{\beta+k-1}{k}, \,
     \gamma_{2k+1} = \frac{k}{k+\beta}, \\
     \delta_{2k} = \frac{\alpha(k-1+2\beta)}{2}, \,
-    \delta_{2k+1} = \frac{k\beta(k-1+2\beta)}{2(k+\beta)}, \quad k \in \overline{1,m-1}.
+    \delta_{2k+1} = \frac{k\beta(k-1+2\beta)}{2(k+\beta)}, \quad k = \overline{1,m-1}.
   \end{multline*}
 \end{proposition}
 Данное утверждение доказывается по индукции.
 
-Из (\ref{eq:lowerRecurrence}) следует, что $L_{2k-1} = \gamma_{2k}\gamma_{2k+1}L_{2k+1} + \gamma_{2k}\delta_{2k+1} + \delta_{2k}$.
+Из (\ref{eq:lowerRecurrence}) следует, что $L_{2k-1} = \gamma_{2k}\gamma_{2k+1}L_{2k+1} + \gamma_{2k}\delta_{2k+1} + \delta_{2k}, \, k = \overline{1, m-1}$.
 Подстановкой $\upperBound{(k+\beta)/m}$ вместо $L_{2k+1}$ это равенство обращается в тождество. Тем самым доказано
 
 \begin{proposition}
   \label{proposition:lower:recurrence-solution}
-  Решение системы (\ref{eq:lowerRecurrence}) дается следующими формулами:
+  Решение системы {\normalfont(\ref{eq:lowerRecurrence})} дается следующими формулами:
   \begin{gather*}
     L_{2k+1} = ((m - (k + \beta))(k + \beta) + \alpha\beta)/2, \, k = \overline{0, m-1}, \quad
     L_{2k} = k (m-k)/2, \, k = \overline{0,m}.
@@ -467,7 +472,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 \begin{proposition}
   \label{proposition:first:combination:step}
-  При $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$ для значения $\firstPlayerPayoff{1}{p}{\sigma}{j}$ выигрыша первого игрока верны оценки
+  При $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$ для значения выигрыша первого игрока верны оценки
   \begin{align*}
     \min_{j \in J}
       \firstPlayerPayoff{1}{%
@@ -488,7 +493,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 \begin{proposition}
   \label{proposition:first:combination:game}
-  При $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$, для гарантированного выигрыша первого игрока в игре $\infiniteGame{p}$ справедливо
+  При $\lambda \in (0, 1), \, \beta \geq 1/2, \, k = \overline{0, m-1}$, для гарантированного выигрыша первого игрока в игре $\infiniteGame{p}$ справедливы равенства
   \begin{align*}
     \lowerBound{\lambda \pEven + (1-\lambda) \pOdd}      & = 
       \lambda \lowerBound{\pEven} + (1-\lambda) \lowerBound{\pOdd}, \\
@@ -497,7 +502,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
   \end{align*}
 \end{proposition}
 \begin{proof}
-  Пусть $p = \lambda \pOdd + (1-\lambda) \pEven[k+1]$, где $k \in \{0, \ldots, m - 2\}, \, \lambda \in (0, 1)$.
+  Пусть $p = \lambda \pOdd + (1-\lambda) \pEven[k+1]$, где $k = \overline{0, m - 2}, \, \lambda \in (0, 1)$.
   Обозначим через $\lambda\fOdd[k] + (1-\lambda)\fEven[k+1]$ распределение, при котором первый игрок рандомизирует выбор ставок $k, k+1, k+2$ с параметрами
   \begin{gather*}
     q_k = \lambda\alpha, \, q_{k+1} = \beta, \, q_{k+2} = (1-\lambda)\alpha,\\
@@ -530,7 +535,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
     = \lambda\lowerBound{\pOdd} + (1-\lambda)\lowerBound{\pEven[k+1]}.
   \end{multline}
   
-  Пусть $p = \lambda\pEven + (1-\lambda)\pOdd$, где $k \in \{1, \ldots, m - 1\}, \, \lambda \in (0, 1)$.
+  Пусть $p = \lambda\pEven + (1-\lambda)\pOdd$, где $k = \overline{1, m - 1}, \, \lambda \in (0, 1)$.
   Обозначим через $\lambda\fEven + (1-~\lambda)\fOdd$ распределение, при котором первый игрок рандомизирует выбор ставок $k$ и $k+1$ с параметрами
   \begin{gather*}
     q_k = \lambda\beta + (1-\lambda)(1-\beta), \:
@@ -552,7 +557,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
   При $p \in \left( 0, \pOdd[1] \right)$ и $p \in \left( \pOdd[m-1], 1 \right)$ доказательство проводится аналогично.
 \end{proof}
 
-Заметим, что при $\beta < 1/2$ полученные результаты также имеют место, а стратегию $\fOpt$ можно получить, рассмотрев дополнительную игру $\symm{\infiniteGame{p}}$.
+Заметим, что при $\beta < 1/2$ полученные результаты также имеют место, а стратегию $\fOpt$ можно получить, рассмотрев игру $\symm{\infiniteGame{p}}$.
 Таким образом, мы определили $\lowerBound{p}$ и $\fOpt$ для любых $p \in [0, 1], \, \beta \in [0, 1]$.
 
 \begin{lemma}
@@ -563,12 +568,15 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
   \]
 \end{lemma}
 
-Отметим, что приведенная стратегия инсайдера для $p \in [0, 1] \setminus P$ принципиально отличается от аналогичной стратегии в \cite{pyanykh14}, которая дает необходимые результаты только при $\beta = 1/2$.
+Отметим, что приведенная стратегия инсайдера для $p \in [0, 1] \setminus P$ принципиально отличается от его стратегии в \cite{pyanykh14}, которая оптимальна только при $\beta = 1/2$.
 
 \begin{theorem}
-  Игра $\infiniteGame{p}$ имеет значение $\infiniteGameValue{p} = \upperBound{p} = \lowerBound{p}$, при этом $\fOpt$ -- оптимальная стратегия первого игрока, $\tau^*$ -- оптимальная стратегия второго игрока.
+  Игра $\infiniteGame{p}$ имеет значение $\infiniteGameValue{p} = \upperBound{p} = \lowerBound{p}$.
+  При этом $\fOpt$ -- оптимальная стратегия первого игрока, а $\tau^*$ -- оптимальная стратегия второго игрока.
 \end{theorem}
-Доказательство по форме повторяет доказательство аналогичной теоремы в работе \cite{domansky07}.
+Доказательство по форме повторяет доказательство аналогичной теоремы в \cite{domansky07}.
+
+\vspace{-3.5em}
 
 %
 % Список литературы
@@ -578,28 +586,28 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 %
 \begin{thebibliography}{99}\itemsep=-2pt
   \selectlanguage{english}
-  \bibitem{aumann95-rep}%
-    Aumann R.\,J., Maschler M.\,B.\,: Repeated games with incomplete information. The MIT Press. 1995.
-
-  \selectlanguage{english}
-  \bibitem{chatterjee83}
-    Chatterjee K., Samuelson W.\,: Bargaining under Incomplete Information~// Operations Research. 1983. {\bfseries 31}. P.\, 835--851.
-
-  \selectlanguage{english}
   \bibitem{demeyer02}
-    De Meyer B., Saley H.\,: On the strategic origin of Brownian motion in finance~// Int J Game Theory. 2002. {\bfseries 31}. P.\, 285--319.
-    
+    De Meyer B., Saley H.\,: On the strategic origin of Brownian motion in finance~// International Journal of Game Theory. 2002. {\bfseries 31}. N~2. P.\, 285--319.
+
+  \selectlanguage{english}
+  \bibitem{aumann95-rep}%
+    Aumann R.\,J., Maschler M.\,B.\,: Repeated games with incomplete information. Cambridge, Massachusetts: The MIT Press, 1995.
+
   \selectlanguage{english}
   \bibitem{domansky07}%
     Domansky V.\,: Repeated games with asymmetric information and random price fluctuations at finance markets~// Int J Game Theory. 2007. {\bfseries 36}. N~2. P.\, 265--281.
 
   \selectlanguage{russian}
   \bibitem{kreps09}%
-    Крепс В.\,Л.\,: Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности~// Изв. РАН. Теория и системы управления. 2009. {\bfseries 4}. С.\, 109--120.
+    Крепс В.\,Л.\,: Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности~// Известия РАН. Теория и системы управления. 2009. №~4. С.\, 109--120.
 
   \selectlanguage{russian}
   \bibitem{sandomirskaya12}
-    Сандомирская М.\,С., Доманский В.\,К.\,: Решение одношаговой игры биржевых торгов с неполной информацией~// Математическая Теория Игр и ее Приложения. 2012. {\bfseries 4}. №~1. С.\, 32-54.
+    Сандомирская М.\,С., Доманский В.\,К.\,: Решение одношаговой игры биржевых торгов с неполной информацией~// Математическая теория игр и ее приложения. 2012. {\bfseries 4}. №~1. С.\, 32-54.
+
+  \selectlanguage{english}
+  \bibitem{chatterjee83}
+    Chatterjee K., Samuelson W.\,: Bargaining under Incomplete Information~// Operations Research. 1983. {\bfseries 31}. N~5. P.\, 835--851.
 
   \selectlanguage{russian}
   \bibitem{pyanykh14}%
@@ -609,6 +617,13 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
   \bibitem{samarsky89-num}%
     Самарский А.\,А., Гулин А.\,В.\,: Численные методы. М.: Наука, 1989.
 \end{thebibliography}
+
+\begin{flushright}
+  Поступила в редакцию\\
+  \today\\
+  \mbox{}
+\end{flushright}
+
 % 
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Character code reference %%%%%%%%%%%%%%%%%%%%%%%%%
