@@ -1,0 +1,151 @@
+\message{ !name(paper.tex)}% -*- coding: cp1251 -*- %
+\documentclass[12pt, a4paper]{article}
+\usepackage[cp1251]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm,amsfonts,amssymb}
+\usepackage{indentfirst}
+\sloppy
+%-------------------------------------------------------------------------------
+\frenchspacing
+\parindent=0.6cm
+\parskip=2pt
+\mathsurround=1pt
+%
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+%
+\topskip=0mm
+\headsep=0mm
+\topmargin=0mm
+\headheight=0mm
+\textwidth=165mm
+\textheight=240mm
+\oddsidemargin=0mm
+
+\renewcommand{\baselinestretch}{1.3}
+%--------------------------------------------------------------------------
+
+\newtheorem{lemma}{\indent Ëåììà}
+\newtheorem{theorem}{\indent Òåîğåìà}
+\newtheorem{proposition}{Óòâåğæäåíèå}
+\newtheorem{remark}{Çàìå÷àíèå}
+\def\proof{{\indent Äîêàçàòåëüñòâî.}}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+%%%%%%%%%%   Custom commands   %%%%%%%%%%%%%%
+\newcommand{\Tau}{%
+\mathrm{T}
+}
+
+\newcommand{\states}{%
+\left\{H, L\right\}
+}
+
+\newcommand{\generalGame}[2]{%
+G_{#1}^{m, \beta}\left({#2}\right)%
+}
+
+\newcommand{\infiniteGame}[1]{%
+G_{\infty}^{m, \beta}\left({#1}\right)%
+}
+
+\newcommand{\firstPlayerPayoff}[4]{%
+K_{#1}^{m,\beta}\left({#2}, {#3}, {#4}\right)%
+}
+
+\newcommand{\infiniteFirstPlayerPayoff}[3]{%
+K_{\infty}^{m,\beta}\left({#1}, {#2}, {#3}\right)%
+}
+
+\newcommand{\gameValue}[2]{%
+V_{#1}^{m,\beta}\left({#2}\right)%
+}
+
+\newcommand{\infiniteGameValue}[1]{%
+V_{\infty}^{m,\beta}\left({#1}\right)%
+}
+
+\newcommand{\symm}[1]{%
+\overline{#1}%
+}
+
+\newcommand{\symmGameExpression}[2][\infty]{%
+G_{#1}^{m, 1-\beta}\left({#2}\right)%
+}
+
+\newcommand{\upperBound}[1]{%
+H_{\infty}^{m,\beta}\left({#1}\right)%
+}
+
+\newcommand{\fGeneral}[2][1]{%
+\sigma_{#1}^{#2}%
+}
+
+\newcommand{\pEven}[1][k]{%
+p^0_{#1}%
+}
+
+\newcommand{\pOdd}[1][k]{%
+p^{\beta}_{#1}%
+}
+
+\newcommand{\fEven}[1][k]{%
+\phi^0_{#1}%
+}
+
+\newcommand{\fOdd}[1][k]{%
+\phi^{\beta}_{#1}%
+}
+
+\newcommand{\fOpt}{\sigma^*}
+
+\newcommand{\lowerBound}[2][\infty]{%
+L_{#1}^{m,\beta}\left({#2}\right)%
+}
+%%%%%%%%%% End custom commands %%%%%%%%%%%%%%
+
+\begin{document}
+
+\message{ !name(paper.tex) !offset(419) }
+\begin{multline}
+    \label{eq:first:combination:game:2}
+    \lowerBound{p} = \frac{1}{1-\beta^2} 
+    \left(\alpha\beta\lambda + \alpha\lambda\lowerBound{\pEven} + (1-\lambda)\lowerBound{\pOdd[k+1]} + \right.\\
+    % 
+    \left. + \beta
+      \left(
+        \alpha\beta(1-\lambda) + (1-\lambda)\alpha\lowerBound{\pEven} + \lambda\alpha\lowerBound{\pOdd[k+1]}
+      \right)
+    \right) = \\
+    % 
+    = \left(
+      (k + 1)(m - k - 1) + \alpha\lambda(2k - m + 2\beta + 1)
+    \right)/2 = \\
+    = \lambda\lowerBound{\pOdd} + (1-\lambda)\lowerBound{\pEven[k+1]}.
+  \end{multline}
+\message{ !name(paper.tex) !offset(498) }
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Character code reference %%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                             %
+%     Upper case russian letters (CP1251): ÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞß  %                                                                       %
+%     Lower case russian letters (CP1251): àáâãäå¸æçèéêëìíîïğñòóôõö÷øùúûüışÿ  %
+%                     Upper case letters: ABCDEFGHIJKLMNOPQRSTUVWXYZ          %
+%                     Lower case letters: abcdefghijklmnopqrstuvwxyz          %
+%                                   Digits: 0123456789                        %
+% Square, curly, angle braces, parentheses: [] {} <> ()                       %
+%                Backslash, slash, solidus: \ / |                             %
+%       Period, interrogative, exclamation: . ? !                             %
+%                 Comma, colon, semi-colon: , : ;                             %
+%          Underscore, hyphen, equals sign: _ - =                             %
+%             Quotes (left, right, double): ` ' "                             %
+%     Commercial-at, hash, dollar, percent: @ # $ %                           %
+%  Ampersand, asterisk, plus, caret, tilde: & * +   ^                         %
+%                                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

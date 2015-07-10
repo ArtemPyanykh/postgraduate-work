@@ -1,0 +1,317 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9252,        308]
+NotebookOptionsPosition[      8405,        273]
+NotebookOutlinePosition[      8758,        289]
+CellTagsIndexPosition[      8715,        286]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"3", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "p"}], ")"}]}], ",", 
+       RowBox[{
+        RowBox[{"p", " ", "x"}], " ", "+", " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "x"}], ")"}]}], ",", 
+       RowBox[{"x", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", "p"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "x"}], ")"}]}]}], ",", 
+       RowBox[{"3", "p"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", "\"\<Expressions\>\""}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"p", ",", "0", ",", "1"}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.641014463392613*^9, 3.6410145168979883`*^9}, {
+  3.6410145531870527`*^9, 3.6410145540953293`*^9}, {3.641014610623967*^9, 
+  3.641014617367486*^9}, {3.6410154116519957`*^9, 3.641015453063163*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`p$$ = 0.512, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`p$$], 0, 1}}, Typeset`size$$ = {545., {198., 202.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`p$21435$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`p$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`p$$, $CellContext`p$21435$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{3 (1 - $CellContext`p$$), $CellContext`p$$ $CellContext`x + (
+          1 - $CellContext`x), $CellContext`x + (1 - $CellContext`p$$) (
+           1 - $CellContext`x), 3 $CellContext`p$$}, {$CellContext`x, 0, 1}, 
+        PlotLegends -> "Expressions", AspectRatio -> Automatic], 
+      "Specifications" :> {{$CellContext`p$$, 0, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{590., {255., 260.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.6410154538838387`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"s1", "=", 
+  RowBox[{"x", "/.", 
+   RowBox[{
+    RowBox[{"Solve", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", "p"}], "\[Equal]", 
+       RowBox[{
+        RowBox[{"x", " ", "p"}], " ", "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", "x"}], ")"}], 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "p"}], ")"}]}]}]}], ",", "x"}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"s2", "=", 
+  RowBox[{"x", "/.", 
+   RowBox[{
+    RowBox[{"Solve", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"x", " ", "p"}], " ", "+", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", "x"}], ")"}]}], "\[Equal]", 
+      RowBox[{"3", "p"}]}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"s1", "\[Equal]", "s2"}], ",", "p"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.641015131600628*^9, 3.641015179854271*^9}, {
+   3.6410157647803383`*^9, 3.641015766335832*^9}, {3.6410158011324253`*^9, 
+   3.641015840509691*^9}, 3.641015912063241*^9, {3.641016107078076*^9, 
+   3.641016187269846*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", "1"}], "+", 
+   RowBox[{"4", " ", "p"}]}], 
+  RowBox[{
+   RowBox[{"-", "1"}], "+", 
+   RowBox[{"2", " ", "p"}]}]]], "Output",
+ CellChangeTimes->{
+  3.641015912435924*^9, {3.641016109989986*^9, 3.641016187818982*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", "1"}], "+", 
+   RowBox[{"3", " ", "p"}]}], 
+  RowBox[{
+   RowBox[{"-", "1"}], "+", "p"}]]], "Output",
+ CellChangeTimes->{
+  3.641015912435924*^9, {3.641016109989986*^9, 3.641016187828086*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"p", "\[Rule]", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"p", "\[Rule]", "0"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.641015912435924*^9, {3.641016109989986*^9, 3.641016187834688*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", "-", 
+   RowBox[{"Sqrt", "[", "3", "]"}]}], "//", "N"}]], "Input",
+ CellChangeTimes->{{3.641015610382433*^9, 3.6410156183754396`*^9}}],
+
+Cell[BoxData["0.2679491924311228`"], "Output",
+ CellChangeTimes->{{3.641015614093668*^9, 3.641015618627021*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"4", "p"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"2", "p"}]}], ")"}]}], "\[Equal]", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"3", "p"}]}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "p"}], ")"}]}]}], "//", 
+  "FullSimplify"}]], "Input",
+ CellChangeTimes->{{3.641016048856978*^9, 3.64101606408286*^9}, {
+  3.641016208887684*^9, 3.641016223033388*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{"p", " ", 
+    RowBox[{"(", 
+     RowBox[{"2", "+", 
+      RowBox[{"p", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "11"}], "+", 
+         RowBox[{"6", " ", "p"}]}], ")"}]}]}], ")"}]}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    RowBox[{"2", " ", "p"}]}]], "\[Equal]", "0"}]], "Output",
+ CellChangeTimes->{{3.641016218828662*^9, 3.641016223580717*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"3", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", "p"}], ")"}]}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"p", " ", "x"}], " ", "+", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", "x"}], ")"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"3", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", "p"}], ")"}]}], "\[Equal]", 
+      RowBox[{"x", "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "p"}], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", "x"}], ")"}]}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"p", ",", "x"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.641301989858873*^9, 3.6413020408447866`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "-", 
+       SqrtBox["3"]}]}], ",", 
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "-", 
+       SqrtBox["3"]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"p", "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       SqrtBox["3"]}]}], ",", 
+     RowBox[{"x", "\[Rule]", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       SqrtBox["3"]}]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.641302042184511*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 619},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"10.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 23, \
+2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1172, 31, 97, "Input"],
+Cell[1755, 55, 1822, 36, 532, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3614, 96, 1157, 33, 63, "Input"],
+Cell[4774, 131, 271, 9, 50, "Output"],
+Cell[5048, 142, 247, 8, 50, "Output"],
+Cell[5298, 152, 274, 8, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5609, 165, 173, 4, 28, "Input"],
+Cell[5785, 171, 112, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5934, 177, 609, 22, 28, "Input"],
+Cell[6546, 201, 428, 14, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7011, 220, 766, 25, 28, "Input"],
+Cell[7780, 247, 609, 23, 95, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
