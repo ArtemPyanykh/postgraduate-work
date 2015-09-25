@@ -28,11 +28,23 @@
 \renewcommand{\baselinestretch}{1.3}
 %--------------------------------------------------------------------------
 
-\newtheorem{lemma}{\indent Лемма}
-\newtheorem{theorem}{\indent Теорема}
-\newtheorem{proposition}{Утверждение}
-\newtheorem{remark}{Замечание}
-\def\proof{{\indent Доказательство.}}
+\newtheoremstyle{light}% <name>
+ {}% <Space above>
+ {}% <Space below>
+ {\itshape}% <Body font>
+ {}% <Indent amount>
+ {\normalfont}% <Theorem head font>
+ {.}% <Punctuation after theorem head>
+ {.5em}% <Space after theorem headi>
+ {}% <Theorem head spec (can be left empty, meaning `normal')>
+
+\theoremstyle{light}
+
+\newtheorem{lemma}{\indent Л е м м а }
+\newtheorem*{theorem*}{\indent Т е о р е м а }
+\newtheorem{proposition}{\indent У т в е р ж д е н и е }
+\newtheorem{remark}{\indent З а м е ч а н и е }
+\def\proof{{\indent Д о к а з а т е л ь с т в о.}}
 
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
@@ -116,7 +128,7 @@ L_{#1}^{m,\beta}\left({#2}\right)%
 
 {\bfseries
 А.\,И. Пьяных\footnote{Факультет ВМК МГУ, асп.,
-                       E--mail: artem.pyanykh@gmail.com},
+                       e--mail: artem.pyanykh@gmail.com},
 \medskip
 
 МНОГОШАГОВАЯ МОДЕЛЬ БИРЖЕВЫХ ТОРГОВ С \\
@@ -136,24 +148,24 @@ L_{#1}^{m,\beta}\left({#2}\right)%
 \end{quotation}
 \medskip
 
-{\bfseries 1. Введение.}\ Де Мейером и Салей в \cite{demeyer02} была рассмотрена многошаговая модель биржевых торгов однотипными акциями, в которой торги между собой ведут два игрока.
+{\bfseries 1. Введение.}\ В работе \cite{demeyer02} была рассмотрена многошаговая модель биржевых торгов однотипными акциями, в которой торги между собой ведут два игрока.
 Перед началом торгов случайный ход определяет цену акции на весь период торгов. В состояниях рынка $L$ и $H$ цена акции равна $0$ и $m \in \mathbb{N}$ соответственно.
 Выбранная цена сообщается первому игроку и не сообщается второму, при этом второй знает, что первый игрок --- инсайдер.
 Оба игрока знают вероятность $p$ высокой цены акции.
 На каждом шаге торгов оба игрока одновременно и независимо назначают некоторую цену за акцию.
-Игроки могут делать произвольные вещественные ставки, причем игрок предложивший б\'{о}льшую цену покупает у другого акцию по названной цене.
+Игроки могут делать произвольные вещественные ставки, причем игрок, предложивший б\'{о}льшую цену, покупает у другого акцию по названной цене.
 Игроки помнят предложенные цены на всех предыдущих этапах торгов.
 Задачей игрока является максимизация стоимости портфеля, состоящего из некоторого числа акций и суммы денег.
-Модель сводится к повторяющейся игре с неполной информацией, как описано в \cite{aumann95-rep}, для которой Де Мейером и Салей были найдены оптимальные стратегии игроков и значение игры.
+Модель сводится к повторяющейся игре с неполной информацией, как описано в \cite{aumann95-rep}, для которой Де Мейером и Салей \cite{demeyer02} были найдены оптимальные стратегии игроков и значение игры.
 
 Позднее В. Доманским \cite{domansky07} была рассмотрена модификация модели, в которой ставки игроков могли принимать только целые значения. В данной постановке им было получено решение для игры неограниченной продолжительности.
 Отметим работу В. Крепс \cite{kreps09} с явным решением для $n$-шаговых игр при $m \leq 3$, а также работу М. Сандомирской и В. Доманского \cite{sandomirskaya12} с решением одношаговой игры при произвольном $m \in \mathbb{N}$.
 
-Рассмотрим следующий механизм формирования цены акции, предложенный в \cite{chatterjee83} Чаттерджи и Самуэльсоном.
+Рассмотрим следующий механизм формирования цены акции, предложенный в \cite{chatterjee83}.
 Игроки одновременно предлагают цены $i$ и $j$.
 При $i > j$ акция продается по цене $\beta i + (1-\beta) j$, где $\beta \in [0, 1]$ --- заданный коэффициент, характеризующий переговорную силу продавца.
 В работе \cite{domansky07} фактически $\beta = 1$.
-Решение задачи при значении $\beta = 1/2$ получено в работе \cite{pyanykh14}.
+Решение задачи при значении $\beta = 1/2$ получено в \cite{pyanykh14}.
 В данной работе решение бесконечной игры найдено при произвольном $\beta \in [0, 1]$.
 
 {\bfseries 2. Модель игры.}\ Пусть множество состояний рынка $ S = \states $. На первом шаге случай выбирает $ s \in S $ с вероятностями $ p(H) = p $ и $ p(L) = 1 - p $.
@@ -173,7 +185,7 @@ L_{#1}^{m,\beta}\left({#2}\right)%
 \end{equation*}
 
 На $ t $-м шаге первый игрок выбирает ставку $ i_t \in I = \{0, 1, \ldots, m\} $, а второй --- ставку $ j_t \in J = \{0, 1, \ldots, m\} $. 
-Выигрыш первого игрока в повторяющейся игре равен $ \sum_{t=1}^n a_{i_t j_t}^{s,\beta} $. 
+Выигрыш первого игрока в повторяющейся игре равен $ \sum\limits_{t=1}^n a_{i_t j_t}^{s,\beta} $.
 Второму игроку этот выигрыш становится известным только после окончания игры.
 На промежуточных шагах он не имеет точной информации о величинах $ a_{i_t j_t}^{s,\beta} $.
 
@@ -191,7 +203,7 @@ $
 где $ \tau_t: I^{t-1} \rightarrow \Delta(J) $.
 Множество стратегий второго игрока обозначим через $\Tau$.
 
-При применении первым игроком смешанной стратегий 
+При применении первым игроком смешанной стратегии
 $ \sigma = (\sigma_1, \sigma_2, \ldots, \sigma_n) $, где 
 $ 
   \sigma_t~=~(\sigma_t^L, \sigma_t^H), \quad
@@ -211,8 +223,8 @@ $ \tau_t~=~(\tau_{t, 0}, \ldots, \tau_{t, m}) \in \Delta(J) $,
 где 
 $ 
 A^{s,\beta}(\sigma^s_t,\tau_t) = 
-    \sum_{i \in I}
-        \sum_{j \in J}
+    \sum\limits_{i \in I}
+        \sum\limits_{j \in J}
             \sigma^s_{t, i} \tau_{t, j} A^{s,\beta}(i, j).
 $
 Полученную игру обозначим через $\generalGame{n}{p}$, а ее значение через $\gameValue{n}{p}$.
@@ -256,7 +268,7 @@ $.
   в состояниях L и H соответственно, где $x^+ = \max(x; 0)$ для $x \in \mathbb{R}$.
 \end{proposition}
 
-Очевидно, что выражения $h_n^L(\tau^k)$ и $h_n^H(\tau^k)$ монотонны и ограничены сверху по $n$.
+Очевидно, что $h_n^L(\tau^k)$ и $h_n^H(\tau^k)$ монотонны и ограничены сверху по $n$.
 Введем следующую функцию:
 \begin{multline*}
   \upperBound{p} = \min_{j \in J} \lim_{n \rightarrow \infty}\left(
@@ -273,7 +285,7 @@ $.
 \begin{gather*}
   \upperBound{(k+\beta)/m} = \left(
   (m - (k + \beta))(k + \beta) + \alpha\beta
-  \right) / 2, \, 
+  \right) / 2, \enskip 
   k = \overline{0, m - 1},\\
   \upperBound{0} = \upperBound{1} = 0.
 \end{gather*}
@@ -282,7 +294,7 @@ $.
 
 \begin{lemma}
   \label{lemma:upperBound} 
-  При использовании вторым игроком стратегии $\tau^*$ в игре $\infiniteGame{p}$, выигрыш первого игрока ограничен сверху функцией $\upperBound{p}$, т.е.
+  При использовании вторым игроком стратегии $\tau^*$ в игре $\infiniteGame{p}$\textup{,} выигрыш первого игрока ограничен сверху функцией $\upperBound{p}$, т.е.
   \[
   \max_{\sigma \in \Sigma} 
     \infiniteFirstPlayerPayoff{p}{\sigma}{\tau^*}
@@ -333,7 +345,7 @@ $
 \begin{equation*}
   p(H|k) = \pOdd[k-1], \quad p(H|k + 1) = \pOdd[k], \quad q_k = \beta, \quad q_{k+1} = \alpha.
 \end{equation*}
-Дополнительно определим $\fEven[0]$ как действие состоящее в применении ставки $0$ с вероятностью $1$, а $\fEven[m]$ -- как действие состоящее в применении ставки $m$ с вероятностью $1$.
+Дополнительно определим $\fEven[0]$ как действие, состоящее в применении ставки $0$ с вероятностью $1$, а $\fEven[m]$ -- как действие, состоящее в применении ставки $m$ с вероятностью $1$.
 Аналогично для $p = \pOdd$ определим $\fOdd$ как действие $\fGeneral{k}$ с параметрами
 \begin{equation*}
   p(H|k) = \pEven[k], \quad p(H|k + 1) = \pEven[k+1], \quad q_k = \alpha, \quad q_{k+1} = \beta.
@@ -372,24 +384,26 @@ $\generalGame{n}{p}$, где $p \in P, \, n \in \mathbb{N}$.
   \end{gathered}
 \end{equation}
 
-Так как $\lowerBound[n]{p}$ не убывает по $n$ и ограничена сверху, устремив $n$ к бесконечности, получим нижнюю оценку $\lowerBound{p}$ выигрыша первого игрока в игре $\infiniteGame{p}, \, p \in P$.
+Так как $\lowerBound[n]{p}$ не убывает по $n$ и ограничена сверху, то устремив $n$ к бесконечности, получим нижнюю оценку $\lowerBound{p}$ выигрыша первого игрока в игре $\infiniteGame{p}, \, p \in P$.
 
 Введем следующие обозначения:
 \[
-L_{2k} = \lowerBound{k/m}, \, k = \overline{0,m}, \:%
+L_{2k} = \lowerBound{k/m}, \, k = \overline{0,m}, \enskip%
 L_{2k+1} = \lowerBound{(k+\beta)/m)}, \, k = \overline{0,m-1}.
 \]
 Тогда справедливы формулы
 \begin{equation}
   \label{eq:lowerRecurrence}
   \begin{gathered}
-    L_{2k+1} = \alpha\beta + \alpha L_{2k} + \beta L_{2(k+1)}, \, k = \overline{0, m-1},\\
-    L_{2k} = \beta L_{2k-1} + \alpha L_{2k+1}, \, k = \overline{1, m-1},\\
+    L_{2k+1} = \alpha\beta + \alpha L_{2k} + \beta L_{2(k+1)}, \enskip k = \overline{0, m-1},\\
+    L_{2k} = \beta L_{2k-1} + \alpha L_{2k+1}, \enskip k = \overline{1, m-1},\\
     L_0 = L_{2m} = 0.
   \end{gathered}
 \end{equation}
 
-Введем $(2m-1)\times(2m-1)$-матрицу $B$ и $(2m-1)$-вектор-столбец $b$
+\begingroup\setlength{\medmuskip}{0mu}
+Введем $(2m-1)\times(2m-1)$-матрицу $B$ и $(2m-1)$-вектор-столбец $b$:
+\endgroup
 \begin{equation*}
   B =
   \left(
@@ -445,7 +459,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 \begin{proposition}
   \label{proposition:tridiagonal:coefficients}
-  Прогоночные коэффициенты для матрицы $B$ даются следующими формулами:
+  Прогоночные коэффициенты для матрицы $B$ даются следующими формулами\textup{:}
   \begin{multline*}
     \gamma_{2k} = \frac{\beta+k-1}{k}, \,
     \gamma_{2k+1} = \frac{k}{k+\beta}, \\
@@ -460,7 +474,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 \begin{proposition}
   \label{proposition:lower:recurrence-solution}
-  Решение системы {\normalfont(\ref{eq:lowerRecurrence})} дается следующими формулами:
+  Решение системы {\normalfont(\ref{eq:lowerRecurrence})} дается следующими формулами\textup{:}
   \begin{gather*}
     L_{2k+1} = ((m - (k + \beta))(k + \beta) + \alpha\beta)/2, \, k = \overline{0, m-1}, \quad
     L_{2k} = k (m-k)/2, \, k = \overline{0,m}.
@@ -562,7 +576,7 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 \begin{lemma}
   \label{lemma:first:lower}
-  При использовании первым игроком стратегии $\fOpt$ в игре $\infiniteGame{p}$, его выигрыш ограничен снизу функцией $\lowerBound{p}$, т.е.
+  При использовании первым игроком стратегии $\fOpt$ в игре $\infiniteGame{p}$\textup{,} его выигрыш ограничен снизу функцией $\lowerBound{p}$\textup{,} т.е.
   \[
   \min_{\tau \in \Tau} \infiniteFirstPlayerPayoff{p}{\fOpt}{\tau} \geq \lowerBound{p}.
   \]
@@ -570,9 +584,9 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 
 Отметим, что приведенная стратегия инсайдера для $p \in [0, 1] \setminus P$ принципиально отличается от его стратегии в \cite{pyanykh14}, которая оптимальна только при $\beta = 1/2$.
 
-\begin{theorem}
+\begin{theorem*}
   Игра $\infiniteGame{p}$ имеет значение $\infiniteGameValue{p} = \upperBound{p} = \lowerBound{p}$.
-  При этом $\fOpt$ -- оптимальная стратегия первого игрока, а $\tau^*$ -- оптимальная стратегия второго игрока.
+  При этом $\fOpt$ -- оптимальная стратегия первого игрока\textup{,} а $\tau^*$ -- оптимальная стратегия второго игрока.
 \end{theorem}
 Доказательство по форме повторяет доказательство аналогичной теоремы в \cite{domansky07}.
 
@@ -587,42 +601,41 @@ a_2 & c_2 & b_2 & \cdots & 0       & 0       & 0       \\
 \begin{thebibliography}{99}\itemsep=-2pt
   \selectlanguage{english}
   \bibitem{demeyer02}
-    De Meyer B., Saley H.\,: On the strategic origin of Brownian motion in finance~// International Journal of Game Theory. 2002. {\bfseries 31}. N~2. P.\, 285--319.
+    De Meyer B., Saley H. On the strategic origin of Brownian motion in finance~// Intern. J. Game Theory. 2002. {\bfseries 31}. N~2. P.\, 285--319.
 
   \selectlanguage{english}
   \bibitem{aumann95-rep}%
-    Aumann R.\,J., Maschler M.\,B.\,: Repeated games with incomplete information. Cambridge, Massachusetts: The MIT Press, 1995.
+    Aumann R.\,J., Maschler M.\,B. Repeated Games with Incomplete Information. Cambridge, Massachusetts: The MIT Press, 1995.
 
   \selectlanguage{english}
   \bibitem{domansky07}%
-    Domansky V.\,: Repeated games with asymmetric information and random price fluctuations at finance markets~// International Journal of Game Theory. 2007. {\bfseries 36}. N~2. P.\, 265--281.
+    Domansky V. Repeated games with asymmetric information and random price fluctuations at finance markets~// Intern. J. Game Theory. 2007. {\bfseries 36}. N~2. P.\, 265--281.
 
   \selectlanguage{russian}
   \bibitem{kreps09}%
-    Крепс В.\,Л.\,: Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности~// Известия РАН. Теория и системы управления. 2009. №~4. С.\, 109--120.
+    Крепс В.\,Л. Повторяющиеся игры, моделирующие биржевые торги, и возвратные последовательности~// Известия РАН. Теория и системы управления. 2009. №~4. С.\, 109--120.
 
   \selectlanguage{russian}
   \bibitem{sandomirskaya12}
-    Сандомирская М.\,С., Доманский В.\,К.\,: Решение одношаговой игры биржевых торгов с неполной информацией~// Математическая теория игр и ее приложения. 2012. {\bfseries 4}. №~1. С.\, 32-54.
+    Сандомирская М.\,С., Доманский В.\,К. Решение одношаговой игры биржевых торгов с неполной информацией~// Математическая теория игр и ее приложения. 2012. {\bfseries 4}. №~1. С.\, 32--54.
 
   \selectlanguage{english}
   \bibitem{chatterjee83}
-    Chatterjee K., Samuelson W.\,: Bargaining under Incomplete Information~// Operations Research. 1983. {\bfseries 31}. N~5. P.\, 835--851.
+    Chatterjee K., Samuelson W. Bargaining under incomplete information~// Operations Research. 1983. {\bfseries 31}. N~5. P.\, 835--851.
 
   \selectlanguage{russian}
   \bibitem{pyanykh14}%
-    Пьяных А.\,И.\,: Об одной модификации модели биржевых торгов с инсайдером~// Математическая теория игр и ее приложения. 2014. {\bfseries 6}. №~4. С.\, 68--84.
+    Пьяных А.\,И. Об одной модификации модели биржевых торгов с инсайдером~// Математическая теория игр и ее приложения. 2014. {\bfseries 6}. №~4. С.\, 68--84.
     
   \selectlanguage{russian}
   \bibitem{samarsky89-num}%
-    Самарский А.\,А., Гулин А.\,В.\,: Численные методы. М.: Наука, 1989.
+    Самарский А.\,А., Гулин А.\,В. Численные методы. М.: Наука, 1989.
 \end{thebibliography}
 
-\begin{flushright}
-  Поступила в редакцию\\
-  \today\\
-  \mbox{}
-\end{flushright}
+\hfill\begin{tabular}{l}
+Поступила в редакцию\\
+15.04.15
+\end{tabular}
 
 % 
 \end{document}
