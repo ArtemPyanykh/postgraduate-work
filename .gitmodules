@@ -1,0 +1,9 @@
+[submodule "articles/convex-combination-paper"]
+	path = articles/convex-combination-paper
+	url = git@gitlab.pyanykh.org:artem/convex-combination-paper.git
+[submodule "articles/tikhonov-readings-2014"]
+	path = articles/tikhonov-readings-2014
+	url = git@gitlab.pyanykh.org:artem/tikhonov-readings-2014.git
+[submodule "articles/halfsum-paper"]
+	path = articles/halfsum-paper
+	url = git@gitlab.pyanykh.org:artem/halfsum-paper.git
